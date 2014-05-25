@@ -52,7 +52,7 @@ public:
 	virtual void			Init( void );
 ////	virtual void			Shutdown( void );
 ////
-////	virtual void			AddCommand( const char *cmdName, cmdFunction_t function, int flags, const char *description, argCompletion_t argCompletion = NULL );
+	virtual void			AddCommand( const char *cmdName, cmdFunction_t function, int flags, const char *description, argCompletion_t argCompletion = NULL );
 ////	virtual void			RemoveCommand( const char *cmdName );
 ////	virtual void			RemoveFlaggedCommands( int flags );
 ////
@@ -73,16 +73,16 @@ public:
 ////	void					SetWait( int numFrames ) { wait = numFrames; }
 ////	commandDef_t *			GetCommands( void ) const { return commands; }
 ////
-////private:
-////	static const int		MAX_CMD_BUFFER = 0x10000;
-////
-////	commandDef_t *			commands;
-////
-////	int						wait;
-////	int						textLength;
-////	byte					textBuf[MAX_CMD_BUFFER];
-////
-////	idStr					completionString;
+	private:
+		static const int		MAX_CMD_BUFFER = 0x10000;
+	
+		commandDef_t *			commands;
+	
+		int						wait;
+		int						textLength;
+		//byte					textBuf[MAX_CMD_BUFFER];
+	
+		idStr					completionString;
 ////	idStrList				completionParms;
 ////
 ////	// piggybacks on the text buffer, avoids tokenize again and screwing it up

@@ -130,7 +130,7 @@ class idCommonLocal : public idCommon {
 ////	virtual void				BeginRedirect( char *buffer, int buffersize, void (*flush)( const char * ) );
 ////	virtual void				EndRedirect( void );
 ////	virtual void				SetRefreshOnPrint( bool set );
-////	virtual void				Printf( const char *fmt, ... ) id_attribute((format(printf,2,3)));
+	virtual void				Printf( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 ////	virtual void				VPrintf( const char *fmt, va_list arg );
 ////	virtual void				DPrintf( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 ////	virtual void				Warning( const char *fmt, ... ) id_attribute((format(printf,2,3)));
@@ -449,24 +449,26 @@ idCommonLocal::idCommonLocal( void ) {
 ////
 ////#endif
 ////}
-////
-/////*
-////==================
-////idCommonLocal::Printf
-////
-////Both client and server can use this, and it will output to the appropriate place.
-////
-////A raw string should NEVER be passed as fmt, because of "%f" type crashers.
-////==================
-////*/
-////void idCommonLocal::Printf( const char *fmt, ... ) {
-////	va_list argptr;
-////	va_start( argptr, fmt );
-////	VPrintf( fmt, argptr );
-////	va_end( argptr );
-////}
-////
-/////*
+
+/*
+==================
+idCommonLocal::Printf
+
+Both client and server can use this, and it will output to the appropriate place.
+
+A raw string should NEVER be passed as fmt, because of "%f" type crashers.
+==================
+*/
+void idCommonLocal::Printf( const char *fmt, ... ) {
+	va_list argptr;
+#ifdef TODO
+	va_start( argptr, fmt );
+	VPrintf( fmt, argptr );
+	va_end( argptr );
+#endif
+}
+
+/*
 ////==================
 ////idCommonLocal::DPrintf
 ////

@@ -37,8 +37,8 @@
 ////===============================================================================
 ////*/
 ////
-////// these library functions should not be used for cross platform compatibility
-////#define strcmp			idStr::Cmp		// use_idStr_Cmp
+// these library functions should not be used for cross platform compatibility
+#define strcmp			idStr::Cmp		// use_idStr_Cmp
 ////#define strncmp			use_idStr_Cmpn
 ////
 ////#if defined( StrCmpN )
@@ -116,7 +116,7 @@ typedef enum {
 class idStr {
 
 public:
-////						idStr( void );
+						idStr( void );
 ////						idStr( const idStr &text );
 ////						idStr( const idStr &text, int start, int end );
 ////						idStr( const char *text );
@@ -126,7 +126,7 @@ public:
 ////						explicit idStr( const int i );
 ////						explicit idStr( const unsigned u );
 ////						explicit idStr( const float f );
-////						~idStr( void );
+						~idStr( void );
 ////
 ////	size_t				Size( void ) const;
 ////	const char *		c_str( void ) const;
@@ -167,8 +167,8 @@ public:
 ////	friend bool			operator!=( const idStr &a, const char *b );
 ////	friend bool			operator!=( const char *a, const idStr &b );
 ////
-////						// case sensitive compare
-////	int					Cmp( const char *text ) const;
+						// case sensitive compare
+	int					Cmp( const char *text ) const;
 ////	int					Cmpn( const char *text, int n ) const;
 ////	int					CmpPrefix( const char *text ) const;
 ////
@@ -256,7 +256,7 @@ public:
 ////	static bool			HasUpper( const char *s );
 ////	static int			LengthWithoutColors( const char *s );
 ////	static char *		RemoveColors( char *s );
-////	static int			Cmp( const char *s1, const char *s2 );
+	static int			Cmp( const char *s1, const char *s2 );
 ////	static int			Cmpn( const char *s1, const char *s2, int n );
 ////	static int			Icmp( const char *s1, const char *s2 );
 ////	static int			Icmpn( const char *s1, const char *s2, int n );
@@ -297,7 +297,7 @@ public:
 ////	friend int			vsprintf( idStr &dest, const char *fmt, va_list ap );
 ////
 ////	void				ReAllocate( int amount, bool keepold );				// reallocate string data buffer
-////	void				FreeData( void );									// free allocated string memory
+	void				FreeData( void );									// free allocated string memory
 ////
 ////						// format value in the given measurement with the best unit, returns the best unit
 ////	int					BestUnit( const char *format, float value, Measure_t measure );
@@ -312,38 +312,38 @@ public:
 ////	int					DynamicMemoryUsed() const;
 ////	static idStr		FormatNumber( int number );
 ////
-////protected:
-////	int					len;
-////	char *				data;
-////	int					alloced;
-////	char				baseBuffer[ STR_ALLOC_BASE ];
-////
-////	void				Init( void );										// initialize string using base buffer
+	protected:
+	int					len;
+	char *				data;
+	int					alloced;
+	char				baseBuffer[ STR_ALLOC_BASE ];
+
+	void				Init( void );										// initialize string using base buffer
 ////	void				EnsureAlloced( int amount, bool keepold = true );	// ensure string data buffer is large anough
 };
 
 ////char *					va( const char *fmt, ... ) id_attribute((format(printf,1,2)));
-////
-////
+
+
 ////ID_INLINE void idStr::EnsureAlloced( int amount, bool keepold ) {
 ////	if ( amount > alloced ) {
 ////		ReAllocate( amount, keepold );
 ////	}
 ////}
-////
-////ID_INLINE void idStr::Init( void ) {
-////	len = 0;
-////	alloced = STR_ALLOC_BASE;
-////	data = baseBuffer;
-////	data[ 0 ] = '\0';
-////#ifdef ID_DEBUG_UNINITIALIZED_MEMORY
-////	memset( baseBuffer, 0, sizeof( baseBuffer ) );
-////#endif
-////}
-////
-////ID_INLINE idStr::idStr( void ) {
-////	Init();
-////}
+
+ID_INLINE void idStr::Init( void ) {
+	len = 0;
+	alloced = STR_ALLOC_BASE;
+	data = baseBuffer;
+	data[ 0 ] = '\0';
+#ifdef ID_DEBUG_UNINITIALIZED_MEMORY
+	memset( baseBuffer, 0, sizeof( baseBuffer ) );
+#endif
+}
+
+ID_INLINE idStr::idStr( void ) {
+	Init();
+}
 ////
 ////ID_INLINE idStr::idStr( const idStr &text ) {
 ////	int l;
@@ -475,11 +475,11 @@ public:
 ////	strcpy( data, text );
 ////	len = l;
 ////}
-////
-////ID_INLINE idStr::~idStr( void ) {
-////	FreeData();
-////}
-////
+
+ID_INLINE idStr::~idStr( void ) {
+	FreeData();
+}
+
 ////ID_INLINE size_t idStr::Size( void ) const {
 ////	return sizeof( *this ) + Allocated();
 ////}
@@ -648,11 +648,11 @@ public:
 ////ID_INLINE bool operator!=( const char *a, const idStr &b ) {
 ////	return !( a == b );
 ////}
-////
-////ID_INLINE int idStr::Cmp( const char *text ) const {
-////	assert( text );
-////	return idStr::Cmp( data, text );
-////}
+
+ID_INLINE int idStr::Cmp( const char *text ) const {
+	assert( text );
+	return idStr::Cmp( data, text );
+}
 ////
 ////ID_INLINE int idStr::Cmpn( const char *text, int n ) const {
 ////	assert( text );

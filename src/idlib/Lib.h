@@ -210,9 +210,9 @@ class idVec4;
 ////#include "Heap.h"
 ////#include "containers/List.h"
 ////
-////// math
+// math
 ////#include "math/Simd.h"
-////#include "math/Math.h"
+#include "math/Math.h"
 ////#include "math/Random.h"
 ////#include "math/Complex.h"
 ////#include "math/Vector.h"
@@ -245,9 +245,9 @@ class idVec4;
 ////#include "geometry/Surface_Polytope.h"
 ////#include "geometry/Surface_SweptSpline.h"
 ////#include "geometry/TraceModel.h"
-////
-////// text manipulation
-////#include "Str.h"
+
+// text manipulation
+#include "Str.h"
 ////#include "Token.h"
 ////#include "Lexer.h"
 ////#include "Parser.h"

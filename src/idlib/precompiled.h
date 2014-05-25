@@ -105,9 +105,9 @@ If you have questions concerning this license or the applicable additional terms
 #include <math.h>
 
 //-----------------------------------------------------
-////
-////// non-portable system services
-////#include "../sys/sys_public.h"
+
+// non-portable system services
+#include "../sys/sys_public.h"
 
 // id lib
 #include "../idlib/Lib.h"

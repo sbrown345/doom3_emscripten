@@ -26,7 +26,7 @@
 ////===========================================================================
 ////*/
 ////
-////#include "precompiled.h"
+#include "precompiled.h"
 ////#pragma hdrstop
 ////
 ////#if !defined( ID_REDIRECT_NEWDELETE ) && !defined( MACOS_X )
@@ -1062,28 +1062,28 @@
 ////	
 ////	return false;
 ////}
-////
-/////*
-////================
-////idStr::Cmp
-////================
-////*/
-////int idStr::Cmp( const char *s1, const char *s2 ) {
-////	int c1, c2, d;
-////
-////	do {
-////		c1 = *s1++;
-////		c2 = *s2++;
-////
-////		d = c1 - c2;
-////		if ( d ) {
-////			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
-////		}
-////	} while( c1 );
-////
-////	return 0;		// strings are equal
-////}
-////
+
+/*
+================
+idStr::Cmp
+================
+*/
+int idStr::Cmp( const char *s1, const char *s2 ) {
+	int c1, c2, d;
+
+	do {
+		c1 = *s1++;
+		c2 = *s2++;
+
+		d = c1 - c2;
+		if ( d ) {
+			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
+		}
+	} while( c1 );
+
+	return 0;		// strings are equal
+}
+
 /////*
 ////================
 ////idStr::Cmpn

@@ -19,6 +19,7 @@
   <ItemGroup>
     <ClInclude Include="CmdArgs.h" />
     <ClInclude Include="Lib.h" />
+    <ClInclude Include="math\Math.h" />
     <ClInclude Include="precompiled.h" />
     <ClInclude Include="Str.h" />
   </ItemGroup>
