@@ -139,16 +139,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\framework\async\AsyncClient.cpp" />
     <ClCompile Include="..\framework\CmdSystem.cpp" />
     <ClCompile Include="..\framework\Common.cpp" />
+    <ClCompile Include="..\framework\CVarSystem.cpp" />
+    <ClCompile Include="..\framework\Session.cpp" />
+    <ClCompile Include="..\framework\UsercmdGen.cpp" />
     <ClCompile Include="..\sys\sys_local.cpp" />
+    <ClCompile Include="..\ui\UserInterface.cpp" />
     <ClCompile Include="js_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\framework\async\AsyncClient.h" />
+    <ClInclude Include="..\framework\async\AsyncNetwork.h" />
     <ClInclude Include="..\framework\CmdSystem.h" />
     <ClInclude Include="..\framework\Common.h" />
+    <ClInclude Include="..\framework\CVarSystem.h" />
+    <ClInclude Include="..\framework\Session.h" />
+    <ClInclude Include="..\framework\Session_local.h" />
+    <ClInclude Include="..\framework\UsercmdGen.h" />
     <ClInclude Include="..\sys\sys_local.h" />
     <ClInclude Include="..\sys\sys_public.h" />
+    <ClInclude Include="..\ui\UserInterface.h" />
+    <ClInclude Include="..\ui\UserInterfaceLocal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

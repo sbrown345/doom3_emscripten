@@ -1,44 +1,44 @@
-/*
-===========================================================================
-
-Doom 3 GPL Source Code
-Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
-
-This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
-
-Doom 3 Source Code is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Doom 3 Source Code is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Doom 3 Source Code.  If not, see <http://www.gnu.org/licenses/>.
-
-In addition, the Doom 3 Source Code is also subject to certain additional terms. You should have received a copy of these additional terms immediately following the terms and conditions of the GNU General Public License which accompanied the Doom 3 Source Code.  If not, please request a copy in writing from id Software at the address below.
-
-If you have questions concerning this license or the applicable additional terms, you may contact in writing id Software LLC, c/o ZeniMax Media Inc., Suite 120, Rockville, Maryland 20850 USA.
-
-===========================================================================
-*/
-
-#ifndef __ASYNCNETWORK_H__
-#define __ASYNCNETWORK_H__
-
-/*
-DOOM III gold:	33
-1.1 beta patch:	34
-1.1 patch:		35
-1.2 XP:			36-39
-1.3 patch:		40
-1.3.1:			41
-*/
+/////*
+////===========================================================================
+////
+////Doom 3 GPL Source Code
+////Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
+////
+////This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+////
+////Doom 3 Source Code is free software: you can redistribute it and/or modify
+////it under the terms of the GNU General Public License as published by
+////the Free Software Foundation, either version 3 of the License, or
+////(at your option) any later version.
+////
+////Doom 3 Source Code is distributed in the hope that it will be useful,
+////but WITHOUT ANY WARRANTY; without even the implied warranty of
+////MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+////GNU General Public License for more details.
+////
+////You should have received a copy of the GNU General Public License
+////along with Doom 3 Source Code.  If not, see <http://www.gnu.org/licenses/>.
+////
+////In addition, the Doom 3 Source Code is also subject to certain additional terms. You should have received a copy of these additional terms immediately following the terms and conditions of the GNU General Public License which accompanied the Doom 3 Source Code.  If not, please request a copy in writing from id Software at the address below.
+////
+////If you have questions concerning this license or the applicable additional terms, you may contact in writing id Software LLC, c/o ZeniMax Media Inc., Suite 120, Rockville, Maryland 20850 USA.
+////
+////===========================================================================
+////*/
+////
+////#ifndef __ASYNCNETWORK_H__
+////#define __ASYNCNETWORK_H__
+////
+/////*
+////DOOM III gold:	33
+////1.1 beta patch:	34
+////1.1 patch:		35
+////1.2 XP:			36-39
+////1.3 patch:		40
+////1.3.1:			41
+////*/
 const int ASYNC_PROTOCOL_MINOR		= 41;
-const int ASYNC_PROTOCOL_VERSION	= ( ASYNC_PROTOCOL_MAJOR << 16 ) + ASYNC_PROTOCOL_MINOR;
+////const int ASYNC_PROTOCOL_VERSION	= ( ASYNC_PROTOCOL_MAJOR << 16 ) + ASYNC_PROTOCOL_MINOR;
 #define MAJOR_VERSION(v) ( v >> 16 )
 
 const int MAX_ASYNC_CLIENTS			= 32;
@@ -60,10 +60,10 @@ const int MAX_SERVER_PORTS			= 8;
 const int GAME_INIT_ID_INVALID		= -1;
 const int GAME_INIT_ID_MAP_LOAD		= -2;
 
-
-#include "MsgChannel.h"
-#include "AsyncServer.h"
-#include "ServerScan.h"
+////
+////#include "MsgChannel.h"
+////#include "AsyncServer.h"
+////#include "ServerScan.h"
 #include "AsyncClient.h"
 
 /*
@@ -142,29 +142,29 @@ typedef struct master_s {
 
 class idAsyncNetwork {
 public:
-							idAsyncNetwork();
-
-	static void				Init( void );
-	static void				Shutdown( void );
-	static bool				IsActive( void ) { return ( server.IsActive() || client.IsActive() ); }
-	static void				RunFrame( void );
-
-	static void				WriteUserCmdDelta( idBitMsg &msg, const usercmd_t &cmd, const usercmd_t *base );
-	static void				ReadUserCmdDelta( const idBitMsg &msg, usercmd_t &cmd, const usercmd_t *base );
-
-	static bool				DuplicateUsercmd( const usercmd_t &previousUserCmd, usercmd_t &currentUserCmd, int frame, int time );
-	static bool				UsercmdInputChanged( const usercmd_t &previousUserCmd, const usercmd_t &currentUserCmd );
-
-							// returns true if the corresponding master is set to something (and could be resolved)
-	static bool				GetMasterAddress( int index, netadr_t &adr );
-							// get the hardcoded idnet master, equivalent to GetMasterAddress( 0, .. )
-	static netadr_t			GetMasterAddress( void );
-	
-	static void				GetNETServers( );
-	
-	static void				ExecuteSessionCommand( const char *sessCmd );
-
-	static idAsyncServer	server;
+////							idAsyncNetwork();
+////
+////	static void				Init( void );
+////	static void				Shutdown( void );
+////	static bool				IsActive( void ) { return ( server.IsActive() || client.IsActive() ); }
+////	static void				RunFrame( void );
+////
+////	static void				WriteUserCmdDelta( idBitMsg &msg, const usercmd_t &cmd, const usercmd_t *base );
+////	static void				ReadUserCmdDelta( const idBitMsg &msg, usercmd_t &cmd, const usercmd_t *base );
+////
+////	static bool				DuplicateUsercmd( const usercmd_t &previousUserCmd, usercmd_t &currentUserCmd, int frame, int time );
+////	static bool				UsercmdInputChanged( const usercmd_t &previousUserCmd, const usercmd_t &currentUserCmd );
+////
+////							// returns true if the corresponding master is set to something (and could be resolved)
+////	static bool				GetMasterAddress( int index, netadr_t &adr );
+////							// get the hardcoded idnet master, equivalent to GetMasterAddress( 0, .. )
+////	static netadr_t			GetMasterAddress( void );
+////	
+////	static void				GetNETServers( );
+////	
+////	static void				ExecuteSessionCommand( const char *sessCmd );
+////
+////	static idAsyncServer	server;
 	static idAsyncClient	client;
 	
 	static idCVar			verbose;						// verbose output
@@ -200,20 +200,20 @@ public:
 
 private:
 	static int				realTime;
-	static master_t			masters[ MAX_MASTER_SERVERS];	// master1 etc.
+	////static master_t			masters[ MAX_MASTER_SERVERS];	// master1 etc.
 
-	static void				SpawnServer_f( const idCmdArgs &args );
-	static void				NextMap_f( const idCmdArgs &args );
-	static void				Connect_f( const idCmdArgs &args );
-	static void				Reconnect_f( const idCmdArgs &args );
-	static void				GetServerInfo_f( const idCmdArgs &args );
-	static void				GetLANServers_f( const idCmdArgs &args );
-	static void				ListServers_f( const idCmdArgs &args );
-	static void				RemoteConsole_f( const idCmdArgs &args );
-	static void				Heartbeat_f( const idCmdArgs &args );
-	static void				Kick_f( const idCmdArgs &args );
-	static void				CheckNewVersion_f( const idCmdArgs &args );
-	static void				UpdateUI_f( const idCmdArgs &args );
+////	static void				SpawnServer_f( const idCmdArgs &args );
+////	static void				NextMap_f( const idCmdArgs &args );
+////	static void				Connect_f( const idCmdArgs &args );
+////	static void				Reconnect_f( const idCmdArgs &args );
+////	static void				GetServerInfo_f( const idCmdArgs &args );
+////	static void				GetLANServers_f( const idCmdArgs &args );
+////	static void				ListServers_f( const idCmdArgs &args );
+////	static void				RemoteConsole_f( const idCmdArgs &args );
+////	static void				Heartbeat_f( const idCmdArgs &args );
+////	static void				Kick_f( const idCmdArgs &args );
+////	static void				CheckNewVersion_f( const idCmdArgs &args );
+////	static void				UpdateUI_f( const idCmdArgs &args );
 };
-
-#endif /* !__ASYNCNETWORK_H__ */
+////
+////#endif /* !__ASYNCNETWORK_H__ */

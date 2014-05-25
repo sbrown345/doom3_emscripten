@@ -54,21 +54,21 @@ typedef struct {
 	usercmd_t	cmd;
 	int			consistencyHash;
 } logCmd_t;
-
-struct fileTIME_T {
-	int				index;
-	ID_TIME_T			timeStamp;
-
-					operator int() const { return timeStamp; }
-};
-
-typedef struct {
-	idDict			serverInfo;
-	idDict			syncedCVars;
-	idDict			userInfo[MAX_ASYNC_CLIENTS];
-	idDict			persistentPlayerInfo[MAX_ASYNC_CLIENTS];
-	usercmd_t		mapSpawnUsercmd[MAX_ASYNC_CLIENTS];		// needed for tracking delta angles
-} mapSpawnData_t;
+////
+////struct fileTIME_T {
+////	int				index;
+////	ID_TIME_T			timeStamp;
+////
+////					operator int() const { return timeStamp; }
+////};
+////
+////typedef struct {
+////	idDict			serverInfo;
+////	idDict			syncedCVars;
+////	idDict			userInfo[MAX_ASYNC_CLIENTS];
+////	idDict			persistentPlayerInfo[MAX_ASYNC_CLIENTS];
+////	usercmd_t		mapSpawnUsercmd[MAX_ASYNC_CLIENTS];		// needed for tracking delta angles
+////} mapSpawnData_t;
 
 typedef enum {
 	TD_NO,
@@ -88,74 +88,74 @@ public:
 
 	virtual void		Init();
 
-	virtual void		Shutdown();
+	////virtual void		Shutdown();
 
-	virtual void		Stop();
+	////virtual void		Stop();
 
-	virtual void		UpdateScreen( bool outOfSequence = true );
+	////virtual void		UpdateScreen( bool outOfSequence = true );
 
-	virtual void		PacifierUpdate();
+	////virtual void		PacifierUpdate();
 
-	virtual void		Frame();
+	////virtual void		Frame();
 
 	virtual bool		IsMultiplayer();
 
-	virtual bool		ProcessEvent( const sysEvent_t *event );
+	////virtual bool		ProcessEvent( const sysEvent_t *event );
 
-	virtual void		StartMenu( bool playIntro = false );
-	virtual void		ExitMenu();
-	virtual void		GuiFrameEvents();
-	virtual void		SetGUI( idUserInterface *gui, HandleGuiCommand_t handle );
+	////virtual void		StartMenu( bool playIntro = false );
+	////virtual void		ExitMenu();
+	////virtual void		GuiFrameEvents();
+	////virtual void		SetGUI( idUserInterface *gui, HandleGuiCommand_t handle );
 
-	virtual const char *MessageBox( msgBoxType_t type, const char *message, const char *title = NULL, bool wait = false, const char *fire_yes = NULL, const char *fire_no = NULL, bool network = false  );
-	virtual void		StopBox( void );
-	virtual void		DownloadProgressBox( backgroundDownload_t *bgl, const char *title, int progress_start = 0, int progress_end = 100 );
-	virtual void		SetPlayingSoundWorld();
+	////virtual const char *MessageBox( msgBoxType_t type, const char *message, const char *title = NULL, bool wait = false, const char *fire_yes = NULL, const char *fire_no = NULL, bool network = false  );
+	////virtual void		StopBox( void );
+	////virtual void		DownloadProgressBox( backgroundDownload_t *bgl, const char *title, int progress_start = 0, int progress_end = 100 );
+	////virtual void		SetPlayingSoundWorld();
 
-	virtual void		TimeHitch( int msec );
+	////virtual void		TimeHitch( int msec );
 
-	virtual void		ReadCDKey( void );
-	virtual void		WriteCDKey( void );
-	virtual const char *GetCDKey( bool xp );
-	virtual bool		CheckKey( const char *key, bool netConnect, bool offline_valid[ 2 ] );
-	virtual bool		CDKeysAreValid( bool strict );
-	virtual void		ClearCDKey( bool valid[ 2 ] );
-	virtual void		SetCDKeyGuiVars( void );
-	virtual bool		WaitingForGameAuth( void );
-	virtual void		CDKeysAuthReply( bool valid, const char *auth_msg );
+	////virtual void		ReadCDKey( void );
+	////virtual void		WriteCDKey( void );
+	////virtual const char *GetCDKey( bool xp );
+	////virtual bool		CheckKey( const char *key, bool netConnect, bool offline_valid[ 2 ] );
+	////virtual bool		CDKeysAreValid( bool strict );
+	////virtual void		ClearCDKey( bool valid[ 2 ] );
+	////virtual void		SetCDKeyGuiVars( void );
+	////virtual bool		WaitingForGameAuth( void );
+	////virtual void		CDKeysAuthReply( bool valid, const char *auth_msg );
 
-	virtual int			GetSaveGameVersion( void );
+	////virtual int			GetSaveGameVersion( void );
 
-	virtual const char *GetCurrentMapName();
+	////virtual const char *GetCurrentMapName();
 
-	//=====================================
+	//////=====================================
 
-	int					GetLocalClientNum();
+	////int					GetLocalClientNum();
 
-	void				MoveToNewMap( const char *mapName );
+	////void				MoveToNewMap( const char *mapName );
 
-	// loads a map and starts a new game on it
-	void				StartNewGame( const char *mapName, bool devmap = false );
-	void				PlayIntroGui();
+	////// loads a map and starts a new game on it
+	////void				StartNewGame( const char *mapName, bool devmap = false );
+	////void				PlayIntroGui();
 
-	void				LoadSession( const char *name );
-	void				SaveSession( const char *name );
+	////void				LoadSession( const char *name );
+	////void				SaveSession( const char *name );
 
-	// called by Draw when the scene to scene wipe is still running
-	void				DrawWipeModel();
-	void				StartWipe( const char *materialName, bool hold = false);
-	void				CompleteWipe();
-	void				ClearWipe();
+	////// called by Draw when the scene to scene wipe is still running
+	////void				DrawWipeModel();
+	////void				StartWipe( const char *materialName, bool hold = false);
+	////void				CompleteWipe();
+	////void				ClearWipe();
 
-	void				ShowLoadingGui();
+	////void				ShowLoadingGui();
 
-	void				ScrubSaveGameFileName( idStr &saveFileName ) const;
-	idStr				GetAutoSaveName( const char *mapName ) const;
+	////void				ScrubSaveGameFileName( idStr &saveFileName ) const;
+	////idStr				GetAutoSaveName( const char *mapName ) const;
 
-	bool				LoadGame(const char *saveName);
-	bool				SaveGame(const char *saveName, bool autosave = false);
+	////bool				LoadGame(const char *saveName);
+	////bool				SaveGame(const char *saveName, bool autosave = false);
 
-	const char			*GetAuthMsg( void );
+	////const char			*GetAuthMsg( void );
 
 	//=====================================
 
@@ -177,7 +177,7 @@ public:
 	int					timeHitch;
 
 	bool				menuActive;
-	idSoundWorld *		menuSoundWorld;			// so the game soundWorld can be muted
+	////idSoundWorld *		menuSoundWorld;			// so the game soundWorld can be muted
 
 	bool				insideExecuteMapChange;	// draw loading screen and update
 												// screen on prints
@@ -189,7 +189,7 @@ public:
 
 	// this is the information required to be set before ExecuteMapChange() is called,
 	// which can be saved off at any time with the following commands so it can all be played back
-	mapSpawnData_t		mapSpawnData;
+	////mapSpawnData_t		mapSpawnData;
 	idStr				currentMapName;			// for checking reload on same level
 	bool				mapSpawned;				// cleared on Stop()
 

@@ -41,16 +41,16 @@ typedef enum {
 	ERP_DISCONNECT					// don't kill server
 } errorParm_t;
 
-////#if defined( _DEBUG )
-////	#define BUILD_DEBUG "-debug"
-////#else
-////	#define BUILD_DEBUG ""
-////#endif
-////
-////struct version_s {
-////			version_s( void ) { sprintf( string, "%s.%d%s %s %s %s", ENGINE_VERSION, BUILD_NUMBER, BUILD_DEBUG, BUILD_STRING, __DATE__, __TIME__ ); }
-////	char	string[256];
-////} version;
+#if defined( _DEBUG )
+	#define BUILD_DEBUG "-debug"
+#else
+	#define BUILD_DEBUG ""
+#endif
+
+struct version_s {
+			version_s( void ) { sprintf( string, "%s.%d%s %s %s %s", ENGINE_VERSION, BUILD_NUMBER, BUILD_DEBUG, BUILD_STRING, __DATE__, __TIME__ ); }
+	char	string[256];
+} version;
 ////
 ////idCVar com_version( "si_version", version.string, CVAR_SYSTEM|CVAR_ROM|CVAR_SERVERINFO, "engine version" );
 ////idCVar com_skipRenderer( "com_skipRenderer", "0", CVAR_BOOL|CVAR_SYSTEM, "skip the renderer completely" );
@@ -2788,19 +2788,21 @@ void idCommonLocal::Init( int argc, const char **argv, const char *cmdline ) {
 
 		// init CVar system
 		cvarSystem->Init();
-		exit(0); // i'm here
-////		// start file logging right away, before early console or whatever
-////		StartupVariable( "win_outputDebugString", false );
-////
-////		// register all static CVars
-////		idCVar::RegisterStaticVars();
-////
-////		// print engine version
-////		Printf( "%s\n", version.string );
-////
-////		// initialize key input/binding, done early so bind command exists
-////		idKeyInput::Init();
-////
+	
+		// start file logging right away, before early console or whatever
+#ifdef TODO
+		StartupVariable( "win_outputDebugString", false );
+#endif
+
+		// register all static CVars
+		idCVar::RegisterStaticVars();
+
+		// print engine version
+		Printf( "%s\n", version.string );
+
+		// initialize key input/binding, done early so bind command exists
+		idKeyInput::Init();
+			exit(0); // i'm here
 ////		// init the console so we can take prints
 ////		console->Init();
 ////

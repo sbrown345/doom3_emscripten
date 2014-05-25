@@ -267,19 +267,19 @@ public:
 	static void			Copynz( char *dest, const char *src, int destsize );
 ////	static int			snPrintf( char *dest, int size, const char *fmt, ... ) id_attribute((format(printf,3,4)));
 ////	static int			vsnPrintf( char *dest, int size, const char *fmt, va_list argptr );
-////	static int			FindChar( const char *str, const char c, int start = 0, int end = -1 );
-////	static int			FindText( const char *str, const char *text, bool casesensitive = true, int start = 0, int end = -1 );
+	static int			FindChar( const char *str, const char c, int start = 0, int end = -1 );
+	static int			FindText( const char *str, const char *text, bool casesensitive = true, int start = 0, int end = -1 );
 ////	static bool			Filter( const char *filter, const char *name, bool casesensitive );
 ////	static void			StripMediaName( const char *name, idStr &mediaName );
 ////	static bool			CheckExtension( const char *name, const char *ext );
 ////	static const char *	FloatArrayToString( const float *array, const int length, const int precision );
-////
-////	// hash keys
-////	static int			Hash( const char *string );
-////	static int			Hash( const char *string, int length );
-////	static int			IHash( const char *string );					// case insensitive
-////	static int			IHash( const char *string, int length );		// case insensitive
 
+
+	// hash keys
+	static int			Hash( const char *string );
+	static int			Hash( const char *string, int length );
+	static int			IHash( const char *string );					// case insensitive
+	static int			IHash( const char *string, int length );		// case insensitive
 	// character methods
 	static char			ToLower( char c );
 	static char			ToUpper( char c );
@@ -926,62 +926,62 @@ ID_INLINE bool idStr::HasUpper( void ) const {
 ////	return idStr::CheckExtension( data, ext );
 ////}
 ////
-////ID_INLINE int idStr::Length( const char *s ) {
-////	int i;
-////	for ( i = 0; s[i]; i++ ) {}
-////	return i;
-////}
-////
-////ID_INLINE char *idStr::ToLower( char *s ) {
-////	for ( int i = 0; s[i]; i++ ) {
-////		if ( CharIsUpper( s[i] ) ) {
-////			s[i] += ( 'a' - 'A' );
-////		}
-////	}
-////	return s;
-////}
-////
-////ID_INLINE char *idStr::ToUpper( char *s ) {
-////	for ( int i = 0; s[i]; i++ ) {
-////		if ( CharIsLower( s[i] ) ) {
-////			s[i] -= ( 'a' - 'A' );
-////		}
-////	}
-////	return s;
-////}
-////
-////ID_INLINE int idStr::Hash( const char *string ) {
-////	int i, hash = 0;
-////	for ( i = 0; *string != '\0'; i++ ) {
-////		hash += ( *string++ ) * ( i + 119 );
-////	}
-////	return hash;
-////}
-////
-////ID_INLINE int idStr::Hash( const char *string, int length ) {
-////	int i, hash = 0;
-////	for ( i = 0; i < length; i++ ) {
-////		hash += ( *string++ ) * ( i + 119 );
-////	}
-////	return hash;
-////}
-////
-////ID_INLINE int idStr::IHash( const char *string ) {
-////	int i, hash = 0;
-////	for( i = 0; *string != '\0'; i++ ) {
-////		hash += ToLower( *string++ ) * ( i + 119 );
-////	}
-////	return hash;
-////}
-////
-////ID_INLINE int idStr::IHash( const char *string, int length ) {
-////	int i, hash = 0;
-////	for ( i = 0; i < length; i++ ) {
-////		hash += ToLower( *string++ ) * ( i + 119 );
-////	}
-////	return hash;
-////}
-////
+ID_INLINE int idStr::Length( const char *s ) {
+	int i;
+	for ( i = 0; s[i]; i++ ) {}
+	return i;
+}
+
+ID_INLINE char *idStr::ToLower( char *s ) {
+	for ( int i = 0; s[i]; i++ ) {
+		if ( CharIsUpper( s[i] ) ) {
+			s[i] += ( 'a' - 'A' );
+		}
+	}
+	return s;
+}
+
+ID_INLINE char *idStr::ToUpper( char *s ) {
+	for ( int i = 0; s[i]; i++ ) {
+		if ( CharIsLower( s[i] ) ) {
+			s[i] -= ( 'a' - 'A' );
+		}
+	}
+	return s;
+}
+
+ID_INLINE int idStr::Hash( const char *string ) {
+	int i, hash = 0;
+	for ( i = 0; *string != '\0'; i++ ) {
+		hash += ( *string++ ) * ( i + 119 );
+	}
+	return hash;
+}
+
+ID_INLINE int idStr::Hash( const char *string, int length ) {
+	int i, hash = 0;
+	for ( i = 0; i < length; i++ ) {
+		hash += ( *string++ ) * ( i + 119 );
+	}
+	return hash;
+}
+
+ID_INLINE int idStr::IHash( const char *string ) {
+	int i, hash = 0;
+	for( i = 0; *string != '\0'; i++ ) {
+		hash += ToLower( *string++ ) * ( i + 119 );
+	}
+	return hash;
+}
+
+ID_INLINE int idStr::IHash( const char *string, int length ) {
+	int i, hash = 0;
+	for ( i = 0; i < length; i++ ) {
+		hash += ToLower( *string++ ) * ( i + 119 );
+	}
+	return hash;
+}
+
 ////ID_INLINE bool idStr::IsColor( const char *s ) {
 ////	return ( s[0] == C_COLOR_ESCAPE && s[1] != '\0' && s[1] != ' ' );
 ////}

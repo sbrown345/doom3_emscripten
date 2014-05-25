@@ -12,6 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CmdArgs.cpp" />
+    <ClCompile Include="containers\HashIndex.cpp" />
+    <ClCompile Include="Dict.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Lib.cpp" />
     <ClCompile Include="precompiled.cpp" />
@@ -19,6 +21,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CmdArgs.h" />
+    <ClInclude Include="containers\HashIndex.h" />
+    <ClInclude Include="containers\List.h" />
+    <ClInclude Include="containers\StrPool.h" />
+    <ClInclude Include="Dict.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="Lib.h" />
     <ClInclude Include="math\Math.h" />

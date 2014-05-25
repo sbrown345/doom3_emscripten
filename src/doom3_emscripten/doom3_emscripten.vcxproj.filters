@@ -51,6 +51,21 @@
     <ClCompile Include="..\sys\sys_local.cpp">
       <Filter>Sys</Filter>
     </ClCompile>
+    <ClCompile Include="..\framework\CVarSystem.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\Session.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\UsercmdGen.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\async\AsyncClient.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ui\UserInterface.cpp">
+      <Filter>Ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\framework\Common.h">
@@ -64,6 +79,30 @@
     </ClInclude>
     <ClInclude Include="..\sys\sys_local.h">
       <Filter>Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\CVarSystem.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\Session.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\Session_local.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\UsercmdGen.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\async\AsyncNetwork.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\async\AsyncClient.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UserInterface.h">
+      <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ui\UserInterfaceLocal.h">
+      <Filter>Ui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

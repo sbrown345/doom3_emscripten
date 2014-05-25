@@ -600,29 +600,31 @@
 ////#elif defined( MACOS_X )
 ////	kill( getpid(), SIGINT );
 ////#endif
-////}
-////
-/////*
-////===============================================================================
-////
-////	JavaScript Debug Helpers
-////
-////===============================================================================
-////*/
-////
-//////#define DEBUG_RegisterDeclFolder isd(1)
-//////#define DEBUG_Lexer isd(1)
-////
-////void dlog(bool log, char *format, ...) {
-////	if (log) {
-////		va_list argptr;
-////		va_start(argptr, format);
-////		//vfprintf(stderr, format, argptr);
-////		vprintf(format, argptr);
-////		va_end(argptr);
-////	}
-////}
-////
+//}
+
+/*
+===============================================================================
+
+	JavaScript Debug Helpers
+
+===============================================================================
+*/
+
+#define DEBUG_RegisterDeclFolder isd(1)
+#define DEBUG_Lexer isd(1)
+
+void dlog(bool log, char *format, ...) {
+#ifdef TODO
+	if (log) {
+		va_list argptr;
+		va_start(argptr, format);
+		//vfprintf(stderr, format, argptr);
+		vprintf(format, argptr);
+		va_end(argptr);
+	}
+#endif
+}
+
 /////*
 ////============
 ////va

@@ -30,6 +30,10 @@
       <Filter>Text</Filter>
     </ClCompile>
     <ClCompile Include="Heap.cpp" />
+    <ClCompile Include="containers\HashIndex.cpp">
+      <Filter>Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Dict.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompiled.h" />
@@ -44,5 +48,15 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Heap.h" />
+    <ClInclude Include="containers\HashIndex.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="containers\List.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Dict.h" />
+    <ClInclude Include="containers\StrPool.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

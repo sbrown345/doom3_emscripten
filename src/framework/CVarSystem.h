@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-#ifndef __CVARSYSTEM_H__
-#define __CVARSYSTEM_H__
+//#ifndef __CVARSYSTEM_H__
+//#define __CVARSYSTEM_H__
 
 /*
 ===============================================================================
@@ -113,17 +113,17 @@ typedef enum {
 
 class idCVar {
 public:
-							// Never use the default constructor.
-							idCVar( void ) { assert( typeid( this ) != typeid( idCVar ) ); }
-
-							// Always use one of the following constructors.
-							idCVar( const char *name, const char *value, int flags, const char *description,
-									argCompletion_t valueCompletion = NULL );
-							idCVar( const char *name, const char *value, int flags, const char *description,
-									float valueMin, float valueMax, argCompletion_t valueCompletion = NULL );
-							idCVar( const char *name, const char *value, int flags, const char *description,
-									const char **valueStrings, argCompletion_t valueCompletion = NULL );
-
+////							// Never use the default constructor.
+////							idCVar( void ) { assert( typeid( this ) != typeid( idCVar ) ); }
+////
+////							// Always use one of the following constructors.
+////							idCVar( const char *name, const char *value, int flags, const char *description,
+////									argCompletion_t valueCompletion = NULL );
+////							idCVar( const char *name, const char *value, int flags, const char *description,
+////									float valueMin, float valueMax, argCompletion_t valueCompletion = NULL );
+////							idCVar( const char *name, const char *value, int flags, const char *description,
+////									const char **valueStrings, argCompletion_t valueCompletion = NULL );
+////
 	virtual					~idCVar( void ) {}
 
 	const char *			GetName( void ) const { return internalVar->name; }
@@ -177,24 +177,24 @@ private:
 
 	static idCVar *			staticVars;
 };
-
-ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
-							argCompletion_t valueCompletion ) {
-	if ( !valueCompletion && ( flags & CVAR_BOOL ) ) {
-		valueCompletion = idCmdSystem::ArgCompletion_Boolean;
-	}
-	Init( name, value, flags, description, 1, -1, NULL, valueCompletion );
-}
-
-ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
-							float valueMin, float valueMax, argCompletion_t valueCompletion ) {
-	Init( name, value, flags, description, valueMin, valueMax, NULL, valueCompletion );
-}
-
-ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
-							const char **valueStrings, argCompletion_t valueCompletion ) {
-	Init( name, value, flags, description, 1, -1, valueStrings, valueCompletion );
-}
+////
+////ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
+////							argCompletion_t valueCompletion ) {
+////	if ( !valueCompletion && ( flags & CVAR_BOOL ) ) {
+////		valueCompletion = idCmdSystem::ArgCompletion_Boolean;
+////	}
+////	Init( name, value, flags, description, 1, -1, NULL, valueCompletion );
+////}
+////
+////ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
+////							float valueMin, float valueMax, argCompletion_t valueCompletion ) {
+////	Init( name, value, flags, description, valueMin, valueMax, NULL, valueCompletion );
+////}
+////
+////ID_INLINE idCVar::idCVar( const char *name, const char *value, int flags, const char *description,
+////							const char **valueStrings, argCompletion_t valueCompletion ) {
+////	Init( name, value, flags, description, 1, -1, valueStrings, valueCompletion );
+////}
 
 
 /*
@@ -210,9 +210,9 @@ public:
 	virtual					~idCVarSystem( void ) {}
 
 	virtual void			Init( void ) = 0;
-	virtual void			Shutdown( void ) = 0;
-	virtual bool			IsInitialized( void ) const = 0;
-
+////	virtual void			Shutdown( void ) = 0;
+////	virtual bool			IsInitialized( void ) const = 0;
+////
 							// Registers a CVar.
 	virtual void			Register( idCVar *cvar ) = 0;
 
@@ -225,21 +225,21 @@ public:
 	virtual void			SetCVarBool( const char *name, const bool value, int flags = 0 ) = 0;
 	virtual void			SetCVarInteger( const char *name, const int value, int flags = 0 ) = 0;
 	virtual void			SetCVarFloat( const char *name, const float value, int flags = 0 ) = 0;
-
+////
 							// Gets the value of a CVar by name.
 	virtual const char *	GetCVarString( const char *name ) const = 0;
 	virtual bool			GetCVarBool( const char *name ) const = 0;
 	virtual int				GetCVarInteger( const char *name ) const = 0;
 	virtual float			GetCVarFloat( const char *name ) const = 0;
 
-							// Called by the command system when argv(0) doesn't match a known command.
-							// Returns true if argv(0) is a variable reference and prints or changes the CVar.
-	virtual bool			Command( const idCmdArgs &args ) = 0;
-
-							// Command and argument completion using callback for each valid string.
-	virtual void			CommandCompletion( void(*callback)( const char *s ) ) = 0;
-	virtual void			ArgCompletion( const char *cmdString, void(*callback)( const char *s ) ) = 0;
-
+////							// Called by the command system when argv(0) doesn't match a known command.
+////							// Returns true if argv(0) is a variable reference and prints or changes the CVar.
+////	virtual bool			Command( const idCmdArgs &args ) = 0;
+////
+////							// Command and argument completion using callback for each valid string.
+////	virtual void			CommandCompletion( void(*callback)( const char *s ) ) = 0;
+////	virtual void			ArgCompletion( const char *cmdString, void(*callback)( const char *s ) ) = 0;
+////
 							// Sets/gets/clears modified flags that tell what kind of CVars have changed.
 	virtual void			SetModifiedFlags( int flags ) = 0;
 	virtual int				GetModifiedFlags( void ) const = 0;
@@ -248,15 +248,15 @@ public:
 							// Resets variables with one of the given flags set.
 	virtual void			ResetFlaggedVariables( int flags ) = 0;
 
-							// Removes auto-completion from the flagged variables.
-	virtual void			RemoveFlaggedAutoCompletion( int flags ) = 0;
-
-							// Writes variables with one of the given flags set to the given file.
-	virtual void			WriteFlaggedVariables( int flags, const char *setCmd, idFile *f ) const = 0;
-
-							// Moves CVars to and from dictionaries.
-	virtual const idDict *	MoveCVarsToDict( int flags ) const = 0;
-	virtual void			SetCVarsFromDict( const idDict &dict ) = 0;
+////							// Removes auto-completion from the flagged variables.
+////	virtual void			RemoveFlaggedAutoCompletion( int flags ) = 0;
+////
+////							// Writes variables with one of the given flags set to the given file.
+////	virtual void			WriteFlaggedVariables( int flags, const char *setCmd, idFile *f ) const = 0;
+////
+////							// Moves CVars to and from dictionaries.
+////	virtual const idDict *	MoveCVarsToDict( int flags ) const = 0;
+////	virtual void			SetCVarsFromDict( const idDict &dict ) = 0;
 };
 
 extern idCVarSystem *		cvarSystem;
@@ -306,4 +306,4 @@ ID_INLINE void idCVar::RegisterStaticVars( void ) {
 	}
 }
 
-#endif /* !__CVARSYSTEM_H__ */
+////#endif /* !__CVARSYSTEM_H__ */

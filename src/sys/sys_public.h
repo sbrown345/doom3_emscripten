@@ -236,9 +236,9 @@ typedef struct sysMemoryStats_s {
 
 typedef unsigned long address_t;
 
-////template<class type> class idList;		// for Sys_ListFiles
-////
-////
+template<class type> class idList;		// for Sys_ListFiles
+
+
 ////void			Sys_Init( void );
 ////void			Sys_Shutdown( void );
 ////void			Sys_Error( const char *error, ...);
@@ -388,31 +388,31 @@ typedef unsigned long address_t;
 ////
 ////// display perference dialog
 ////void			Sys_DoPreferences( void );
-////
-/////*
-////==============================================================
-////
-////	Networking
-////
-////==============================================================
-////*/
-////
-////typedef enum {
-////	NA_BAD,					// an address lookup failed
-////	NA_LOOPBACK,
-////	NA_BROADCAST,
-////	NA_IP
-////} netadrtype_t;
-////
-////typedef struct {
-////	netadrtype_t	type;
-////	unsigned char	ip[4];
-////	unsigned short	port;
-////} netadr_t;
-////
-////#define	PORT_ANY			-1
-////
-////class idPort {
+
+/*
+==============================================================
+
+	Networking
+
+==============================================================
+*/
+
+typedef enum {
+	NA_BAD,					// an address lookup failed
+	NA_LOOPBACK,
+	NA_BROADCAST,
+	NA_IP
+} netadrtype_t;
+
+typedef struct {
+	netadrtype_t	type;
+	unsigned char	ip[4];
+	unsigned short	port;
+} netadr_t;
+
+#define	PORT_ANY			-1
+
+class idPort {
 ////public:
 ////				idPort();				// this just zeros netSocket and port
 ////	virtual		~idPort();
@@ -427,17 +427,17 @@ typedef unsigned long address_t;
 ////	bool		GetPacketBlocking( netadr_t &from, void *data, int &size, int maxSize, int timeout );
 ////	void		SendPacket( const netadr_t to, const void *data, int size );
 ////
-////	int			packetsRead;
-////	int			bytesRead;
-////
-////	int			packetsWritten;
-////	int			bytesWritten;
-////
-////private:
-////	netadr_t	bound_to;		// interface and port
-////	int			netSocket;		// OS specific socket
-////};
-////
+	int			packetsRead;
+	int			bytesRead;
+
+	int			packetsWritten;
+	int			bytesWritten;
+
+private:
+	netadr_t	bound_to;		// interface and port
+	int			netSocket;		// OS specific socket
+};
+
 ////class idTCP {
 ////public:
 ////				idTCP();

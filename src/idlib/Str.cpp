@@ -176,62 +176,62 @@ void idStr::operator=( const char *text ) {
 	len = l;
 }
 
-/////*
-////============
-////idStr::FindChar
-////
-////returns -1 if not found otherwise the index of the char
-////============
-////*/
-////int idStr::FindChar( const char *str, const char c, int start, int end ) {
-////	int i;
-////
-////	if ( end == -1 ) {
-////		end = strlen( str ) - 1;
-////	}
-////	for ( i = start; i <= end; i++ ) {
-////		if ( str[i] == c ) {
-////			return i;
-////		}
-////	}
-////	return -1;
-////}
-////
-/////*
-////============
-////idStr::FindText
-////
-////returns -1 if not found otherwise the index of the text
-////============
-////*/
-////int idStr::FindText( const char *str, const char *text, bool casesensitive, int start, int end ) {
-////	int l, i, j;
-////
-////	if ( end == -1 ) {
-////		end = strlen( str );
-////	}
-////	l = end - strlen( text );
-////	for ( i = start; i <= l; i++ ) {
-////		if ( casesensitive ) {
-////			for ( j = 0; text[j]; j++ ) {
-////				if ( str[i+j] != text[j] ) {
-////					break;
-////				}
-////			}
-////		} else {
-////			for ( j = 0; text[j]; j++ ) {
-////				if ( ::toupper( str[i+j] ) != ::toupper( text[j] ) ) {
-////					break;
-////				}
-////			}
-////		}
-////		if ( !text[j] ) {
-////			return i;
-////		}
-////	}
-////	return -1;
-////}
-////
+/*
+============
+idStr::FindChar
+
+returns -1 if not found otherwise the index of the char
+============
+*/
+int idStr::FindChar( const char *str, const char c, int start, int end ) {
+	int i;
+
+	if ( end == -1 ) {
+		end = strlen( str ) - 1;
+	}
+	for ( i = start; i <= end; i++ ) {
+		if ( str[i] == c ) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+/*
+============
+idStr::FindText
+
+returns -1 if not found otherwise the index of the text
+============
+*/
+int idStr::FindText( const char *str, const char *text, bool casesensitive, int start, int end ) {
+	int l, i, j;
+
+	if ( end == -1 ) {
+		end = strlen( str );
+	}
+	l = end - strlen( text );
+	for ( i = start; i <= l; i++ ) {
+		if ( casesensitive ) {
+			for ( j = 0; text[j]; j++ ) {
+				if ( str[i+j] != text[j] ) {
+					break;
+				}
+			}
+		} else {
+			for ( j = 0; text[j]; j++ ) {
+				if ( ::toupper( str[i+j] ) != ::toupper( text[j] ) ) {
+					break;
+				}
+			}
+		}
+		if ( !text[j] ) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 /////*
 ////============
 ////idStr::Filter

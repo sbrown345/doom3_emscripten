@@ -25,6 +25,8 @@ If you have questions concerning this license or the applicable additional terms
 
 ===========================================================================
 */
+#define GAME_DLL
+
 
 #ifndef __PRECOMPILED_H__
 #define __PRECOMPILED_H__
@@ -117,11 +119,11 @@ If you have questions concerning this license or the applicable additional terms
 ////#include "../framework/BuildDefines.h"
 ////#include "../framework/Licensee.h"
 #include "../framework/CmdSystem.h"
-////#include "../framework/CVarSystem.h"
+#include "../framework/CVarSystem.h"
 #include "../framework/Common.h"
 ////#include "../framework/File.h"
 ////#include "../framework/FileSystem.h"
-////#include "../framework/UsercmdGen.h"
+#include "../framework/UsercmdGen.h"
 ////
 ////// decls
 ////#include "../framework/DeclManager.h"
@@ -153,9 +155,9 @@ If you have questions concerning this license or the applicable additional terms
 ////// asynchronous networking
 ////#include "../framework/async/NetworkSystem.h"
 ////
-////// user interfaces
+// user interfaces
 ////#include "../ui/ListGUI.h"
-////#include "../ui/UserInterface.h"
+#include "../ui/UserInterface.h"
 ////
 ////// collision detection system
 ////#include "../cm/CollisionModel.h"
@@ -196,10 +198,10 @@ If you have questions concerning this license or the applicable additional terms
 ////#include "../framework/EditField.h"
 ////#include "../framework/Console.h"
 ////#include "../framework/DemoFile.h"
-////#include "../framework/Session.h"
-////
-////// asynchronous networking
-////#include "../framework/async/AsyncNetwork.h"
+#include "../framework/Session.h"
+
+// asynchronous networking
+#include "../framework/async/AsyncNetwork.h"
 ////
 ////// The editor entry points are always declared, but may just be
 ////// stubbed out on non-windows platforms.

@@ -157,38 +157,38 @@ class idVec4;
 ////// move from Math.h to keep gcc happy
 ////template<class T> ID_INLINE T	Max( T x, T y ) { return ( x > y ) ? x : y; }
 ////template<class T> ID_INLINE T	Min( T x, T y ) { return ( x < y ) ? x : y; }
-////
-/////*
-////===============================================================================
-////
-////JavaScript Debug Helpers
-////
-////===============================================================================
-////*/
-////
-////#define JS_CHANGES
-////
-////extern "C" bool DEBUG_LOG_MODE;
-//////#define isd(v) DEBUG_LOG_MODE && v
-////// todo: use cvars and config files
-////extern "C" bool DEBUG_RENDER_METHODS;
-////extern "C" bool DEBUG_RegisterDeclFolder;
-////extern "C" bool DEBUG_Lexer;
-////extern "C" bool DEBUG_DeriveTangents;
-////extern "C" bool DEBUG_R_DeriveTangents;
-////extern "C" bool DEBUG_COMPILER;
-////extern "C" bool DEBUG_GUI;
-////extern "C" bool DEBUG_HASHINDEX;
-////extern "C" bool DEBUG_STRPOOL;
-////extern "C" bool DEBUG_RENDERWORLD_LOAD;
-////extern "C" bool DEBUG_CM;
-////extern "C" bool DEBUG_MAP_FILE;
-////extern "C" bool DEBUG_SPAWN;
-////
-////extern "C" int RTCount;
-////
-////void dlog(bool log, char *format, ...);
-////
+
+/*
+===============================================================================
+
+JavaScript Debug Helpers
+
+===============================================================================
+*/
+
+#define JS_CHANGES
+
+extern "C" bool DEBUG_LOG_MODE;
+//#define isd(v) DEBUG_LOG_MODE && v
+// todo: use cvars and config files
+extern "C" bool DEBUG_RENDER_METHODS;
+extern "C" bool DEBUG_RegisterDeclFolder;
+extern "C" bool DEBUG_Lexer;
+extern "C" bool DEBUG_DeriveTangents;
+extern "C" bool DEBUG_R_DeriveTangents;
+extern "C" bool DEBUG_COMPILER;
+extern "C" bool DEBUG_GUI;
+extern "C" bool DEBUG_HASHINDEX;
+extern "C" bool DEBUG_STRPOOL;
+extern "C" bool DEBUG_RENDERWORLD_LOAD;
+extern "C" bool DEBUG_CM;
+extern "C" bool DEBUG_MAP_FILE;
+extern "C" bool DEBUG_SPAWN;
+
+extern "C" int RTCount;
+
+void dlog(bool log, char *format, ...);
+
 /////*
 ////============
 ////va
@@ -208,7 +208,7 @@ class idVec4;
 
 // memory management and arrays
 #include "Heap.h"
-////#include "containers/List.h"
+#include "containers/List.h"
 ////
 // math
 ////#include "math/Simd.h"
@@ -253,11 +253,11 @@ class idVec4;
 ////#include "Parser.h"
 ////#include "Base64.h"
 #include "CmdArgs.h"
-////
-////// containers
+
+// containers
 ////#include "containers/BTree.h"
 ////#include "containers/BinSearch.h"
-////#include "containers/HashIndex.h"
+#include "containers/HashIndex.h"
 ////#include "containers/HashTable.h"
 ////#include "containers/StaticList.h"
 ////#include "containers/LinkList.h"
@@ -265,7 +265,7 @@ class idVec4;
 ////#include "containers/Queue.h"
 ////#include "containers/Stack.h"
 ////#include "containers/StrList.h"
-////#include "containers/StrPool.h"
+#include "containers/StrPool.h"
 ////#include "containers/VectorSet.h"
 ////#include "containers/PlaneSet.h"
 ////
@@ -275,7 +275,7 @@ class idVec4;
 ////#include "hashing/MD5.h"
 ////
 ////// misc
-////#include "Dict.h"
+#include "Dict.h"
 ////#include "LangDict.h"
 ////#include "BitMsg.h"
 ////#include "MapFile.h"

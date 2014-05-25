@@ -174,7 +174,7 @@ public:
 ////	static int					MaskForIntegerSign( int i );// returns 0x00000000 if x >= 0 and returns 0xFFFFFFFF if x < 0
 ////	static int					FloorPowerOfTwo( int x );	// round x down to the nearest power of 2
 ////	static int					CeilPowerOfTwo( int x );	// round x up to the nearest power of 2
-////	static bool					IsPowerOfTwo( int x );		// returns true if x is a power of 2
+	static bool					IsPowerOfTwo( int x );		// returns true if x is a power of 2
 ////	static int					BitCount( int x );			// returns the number of 1 bits in x
 ////	static int					BitReverse( int x );		// returns the bit reverse of x
 ////
@@ -751,10 +751,10 @@ private:
 ////	return x;
 ////}
 ////
-////ID_INLINE bool idMath::IsPowerOfTwo( int x ) {
-////	return ( x & ( x - 1 ) ) == 0 && x > 0;
-////}
-////
+ID_INLINE bool idMath::IsPowerOfTwo( int x ) {
+	return ( x & ( x - 1 ) ) == 0 && x > 0;
+}
+
 ////ID_INLINE int idMath::BitCount( int x ) {
 ////	x -= ( ( x >> 1 ) & 0x55555555 );
 ////	x = ( ( ( x >> 2 ) & 0x33333333 ) + ( x & 0x33333333 ) );
