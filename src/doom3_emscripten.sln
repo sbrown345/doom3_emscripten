@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "doom3_emscripten", "doom3_emscripten\doom3_emscripten.vcxproj", "{ACF4DEBC-3285-43A8-BC23-16A2CACC2C34}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{CDCEED6D-EEEE-4D50-8493-A0B98E20910C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "idLib", "idlib\idLib\idLib.vcxproj", "{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,8 +17,15 @@ Global
 		{ACF4DEBC-3285-43A8-BC23-16A2CACC2C34}.Debug|Win32.Build.0 = Debug|Win32
 		{ACF4DEBC-3285-43A8-BC23-16A2CACC2C34}.Release|Win32.ActiveCfg = Release|Win32
 		{ACF4DEBC-3285-43A8-BC23-16A2CACC2C34}.Release|Win32.Build.0 = Release|Win32
+		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}.Debug|Win32.ActiveCfg = Debug|Win32
+		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}.Debug|Win32.Build.0 = Debug|Win32
+		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}.Release|Win32.ActiveCfg = Release|Win32
+		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509} = {CDCEED6D-EEEE-4D50-8493-A0B98E20910C}
 	EndGlobalSection
 EndGlobal
