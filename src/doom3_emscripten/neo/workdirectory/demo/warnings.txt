@@ -1,0 +1,10 @@
+------------- Warnings ---------------
+
+during DOOM 3 initialization...
+WARNING: CVar 'developer' declared multiple times with different initial value
+
+1 warnings.
+
+
+-------------- Errors ---------------
+
