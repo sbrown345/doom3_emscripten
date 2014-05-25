@@ -1,11 +1,17 @@
 // doom3_emscripten.cpp : Defines the entry point for the console application.
 //
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
 #include "stdafx.h"
 
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char **av)
 {
+	printf("hi\n");
+	printf("hi\n");
 	return 0;
 }
 
