@@ -72,48 +72,48 @@
 ////	return g_color_table[ i & 15 ];
 ////}
 ////
-/////*
-////============
-////idStr::ReAllocate
-////============
-////*/
-////void idStr::ReAllocate( int amount, bool keepold ) {
-////	char	*newbuffer;
-////	int		newsize;
-////	int		mod;
-////
-////	//assert( data );
-////	assert( amount > 0 );
-////
-////	mod = amount % STR_ALLOC_GRAN;
-////	if ( !mod ) {
-////		newsize = amount;
-////	}
-////	else {
-////		newsize = amount + STR_ALLOC_GRAN - mod;
-////	}
-////	alloced = newsize;
-////
-////#ifdef USE_STRING_DATA_ALLOCATOR
-////	newbuffer = stringDataAllocator.Alloc( alloced );
-////#else
-////	newbuffer = new char[ alloced ];
-////#endif
-////	if ( keepold && data ) {
-////		data[ len ] = '\0';
-////		strcpy( newbuffer, data );
-////	}
-////
-////	if ( data && data != baseBuffer ) {
-////#ifdef USE_STRING_DATA_ALLOCATOR
-////		stringDataAllocator.Free( data );
-////#else
-////		delete [] data;
-////#endif
-////	}
-////
-////	data = newbuffer;
-////}
+/*
+============
+idStr::ReAllocate
+============
+*/
+void idStr::ReAllocate( int amount, bool keepold ) {
+	char	*newbuffer;
+	int		newsize;
+	int		mod;
+
+	//assert( data );
+	assert( amount > 0 );
+
+	mod = amount % STR_ALLOC_GRAN;
+	if ( !mod ) {
+		newsize = amount;
+	}
+	else {
+		newsize = amount + STR_ALLOC_GRAN - mod;
+	}
+	alloced = newsize;
+
+#ifdef USE_STRING_DATA_ALLOCATOR
+	newbuffer = stringDataAllocator.Alloc( alloced );
+#else
+	newbuffer = new char[ alloced ];
+#endif
+	if ( keepold && data ) {
+		data[ len ] = '\0';
+		strcpy( newbuffer, data );
+	}
+
+	if ( data && data != baseBuffer ) {
+#ifdef USE_STRING_DATA_ALLOCATOR
+		stringDataAllocator.Free( data );
+#else
+		delete [] data;
+#endif
+	}
+
+	data = newbuffer;
+}
 ////
 /////*
 ////============
@@ -131,51 +131,51 @@
 ////	}
 ////}
 ////
-/////*
-////============
-////idStr::operator=
-////============
-////*/
-////void idStr::operator=( const char *text ) {
-////	int l;
-////	int diff;
-////	int i;
-////
-////	if ( !text ) {
-////		// safe behaviour if NULL
-////		EnsureAlloced( 1, false );
-////		data[ 0 ] = '\0';
-////		len = 0;
-////		return;
-////	}
-////
-////	if ( text == data ) {
-////		return; // copying same thing
-////	}
-////
-////	// check if we're aliasing
-////	if ( text >= data && text <= data + len ) {
-////		diff = text - data;
-////
-////		assert( strlen( text ) < (unsigned)len );
-////
-////		for ( i = 0; text[ i ]; i++ ) {
-////			data[ i ] = text[ i ];
-////		}
-////
-////		data[ i ] = '\0';
-////
-////		len -= diff;
-////
-////		return;
-////	}
-////
-////	l = strlen( text );
-////	EnsureAlloced( l + 1, false );
-////	strcpy( data, text );
-////	len = l;
-////}
-////
+/*
+============
+idStr::operator=
+============
+*/
+void idStr::operator=( const char *text ) {
+	int l;
+	int diff;
+	int i;
+
+	if ( !text ) {
+		// safe behaviour if NULL
+		EnsureAlloced( 1, false );
+		data[ 0 ] = '\0';
+		len = 0;
+		return;
+	}
+
+	if ( text == data ) {
+		return; // copying same thing
+	}
+
+	// check if we're aliasing
+	if ( text >= data && text <= data + len ) {
+		diff = text - data;
+
+		assert( strlen( text ) < (unsigned)len );
+
+		for ( i = 0; text[ i ]; i++ ) {
+			data[ i ] = text[ i ];
+		}
+
+		data[ i ] = '\0';
+
+		len -= diff;
+
+		return;
+	}
+
+	l = strlen( text );
+	EnsureAlloced( l + 1, false );
+	strcpy( data, text );
+	len = l;
+}
+
 /////*
 ////============
 ////idStr::FindChar

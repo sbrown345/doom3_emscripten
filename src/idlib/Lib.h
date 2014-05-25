@@ -1,82 +1,82 @@
-/////*
-////===========================================================================
-////
-////Doom 3 GPL Source Code
-////Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
-////
-////This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
-////
-////Doom 3 Source Code is free software: you can redistribute it and/or modify
-////it under the terms of the GNU General Public License as published by
-////the Free Software Foundation, either version 3 of the License, or
-////(at your option) any later version.
-////
-////Doom 3 Source Code is distributed in the hope that it will be useful,
-////but WITHOUT ANY WARRANTY; without even the implied warranty of
-////MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-////GNU General Public License for more details.
-////
-////You should have received a copy of the GNU General Public License
-////along with Doom 3 Source Code.  If not, see <http://www.gnu.org/licenses/>.
-////
-////In addition, the Doom 3 Source Code is also subject to certain additional terms. You should have received a copy of these additional terms immediately following the terms and conditions of the GNU General Public License which accompanied the Doom 3 Source Code.  If not, please request a copy in writing from id Software at the address below.
-////
-////If you have questions concerning this license or the applicable additional terms, you may contact in writing id Software LLC, c/o ZeniMax Media Inc., Suite 120, Rockville, Maryland 20850 USA.
-////
-////===========================================================================
-////*/
-////
+/*
+===========================================================================
+
+Doom 3 GPL Source Code
+Copyright (C) 1999-2011 id Software LLC, a ZeniMax Media company. 
+
+This file is part of the Doom 3 GPL Source Code (?Doom 3 Source Code?).  
+
+Doom 3 Source Code is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Doom 3 Source Code is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Doom 3 Source Code.  If not, see <http://www.gnu.org/licenses/>.
+
+In addition, the Doom 3 Source Code is also subject to certain additional terms. You should have received a copy of these additional terms immediately following the terms and conditions of the GNU General Public License which accompanied the Doom 3 Source Code.  If not, please request a copy in writing from id Software at the address below.
+
+If you have questions concerning this license or the applicable additional terms, you may contact in writing id Software LLC, c/o ZeniMax Media Inc., Suite 120, Rockville, Maryland 20850 USA.
+
+===========================================================================
+*/
+
 ////#ifndef __LIB_H__
 ////#define __LIB_H__
 ////
-////
-/////*
-////===============================================================================
-////
-////	idLib contains stateless support classes and concrete types. Some classes
-////	do have static variables, but such variables are initialized once and
-////	read-only after initialization (they do not maintain a modifiable state).
-////
-////	The interface pointers idSys, idCommon, idCVarSystem and idFileSystem
-////	should be set before using idLib. The pointers stored here should not
-////	be used by any part of the engine except for idLib.
-////
-////	The frameNumber should be continuously set to the number of the current
-////	frame if frame base memory logging is required.
-////
-////===============================================================================
-////*/
-////
-////class idLib {
-////public:
-////	static class idSys *		sys;
-////	static class idCommon *		common;
-////	static class idCVarSystem *	cvarSystem;
-////	static class idFileSystem *	fileSystem;
-////	static int					frameNumber;
-////
-////	static void					Init( void );
-////	static void					ShutDown( void );
-////
-////	// wrapper to idCommon functions 
-////	static void					Error( const char *fmt, ... );
-////	static void					Warning( const char *fmt, ... );
-////};
-////
-////
-/////*
-////===============================================================================
-////
-////	Types and defines used throughout the engine.
-////
-////===============================================================================
-////*/
-////
-////typedef unsigned char			byte;		// 8 bits
-////typedef unsigned short			word;		// 16 bits
-////typedef unsigned int			dword;		// 32 bits
-////typedef unsigned int			uint;
-////typedef unsigned long			ulong;
+
+/*
+===============================================================================
+
+	idLib contains stateless support classes and concrete types. Some classes
+	do have static variables, but such variables are initialized once and
+	read-only after initialization (they do not maintain a modifiable state).
+
+	The interface pointers idSys, idCommon, idCVarSystem and idFileSystem
+	should be set before using idLib. The pointers stored here should not
+	be used by any part of the engine except for idLib.
+
+	The frameNumber should be continuously set to the number of the current
+	frame if frame base memory logging is required.
+
+===============================================================================
+*/
+
+class idLib {
+public:
+	static class idSys *		sys;
+	static class idCommon *		common;
+	//static class idCVarSystem *	cvarSystem;
+	//static class idFileSystem *	fileSystem;
+	static int					frameNumber;
+
+	static void					Init( void );
+	static void					ShutDown( void );
+
+	// wrapper to idCommon functions 
+	static void					Error( const char *fmt, ... );
+	static void					Warning( const char *fmt, ... );
+};
+
+
+/*
+===============================================================================
+
+	Types and defines used throughout the engine.
+
+===============================================================================
+*/
+
+typedef unsigned char			byte;		// 8 bits
+typedef unsigned short			word;		// 16 bits
+typedef unsigned int			dword;		// 32 bits
+typedef unsigned int			uint;
+typedef unsigned long			ulong;
 
 typedef int						qhandle_t;
 
@@ -94,12 +94,12 @@ class idVec4;
 
 #define	MAX_STRING_CHARS		1024		// max length of a string
 
-////// maximum world size
-////#define MAX_WORLD_COORD			( 128 * 1024 )
-////#define MIN_WORLD_COORD			( -128 * 1024 )
-////#define MAX_WORLD_SIZE			( MAX_WORLD_COORD - MIN_WORLD_COORD )
-////
-////// basic colors
+// maximum world size
+#define MAX_WORLD_COORD			( 128 * 1024 )
+#define MIN_WORLD_COORD			( -128 * 1024 )
+#define MAX_WORLD_SIZE			( MAX_WORLD_COORD - MIN_WORLD_COORD )
+
+// basic colors
 ////extern	idVec4 colorBlack;
 ////extern	idVec4 colorWhite;
 ////extern	idVec4 colorRed;
@@ -205,9 +205,9 @@ class idVec4;
 ////
 ////===============================================================================
 ////*/
-////
-////// memory management and arrays
-////#include "Heap.h"
+
+// memory management and arrays
+#include "Heap.h"
 ////#include "containers/List.h"
 ////
 // math

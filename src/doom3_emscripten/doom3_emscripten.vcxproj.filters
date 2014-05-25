@@ -48,6 +48,9 @@
     <ClCompile Include="..\framework\CmdSystem.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="..\sys\sys_local.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\framework\Common.h">
@@ -58,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="..\framework\CmdSystem.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sys\sys_local.h">
+      <Filter>Sys</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

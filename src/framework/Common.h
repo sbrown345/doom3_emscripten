@@ -189,10 +189,10 @@ public:
 ////								// Issues a C++ throw. Normal errors just abort to the game loop,
 ////								// which is appropriate for media or dynamic logic errors.
 ////	virtual void				Error( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
-////
-////								// Fatal errors quit all the way to a system dialog box, which is appropriate for
-////								// static internal errors or cases where the system may be corrupted.
-////	virtual void				FatalError( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
+
+								// Fatal errors quit all the way to a system dialog box, which is appropriate for
+								// static internal errors or cases where the system may be corrupted.
+	virtual void				FatalError( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
 ////
 ////								// Returns a pointer to the dictionary with language specific strings.
 ////	virtual const idLangDict *	GetLanguageDict( void ) = 0;

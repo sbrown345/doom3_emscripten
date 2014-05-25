@@ -29,6 +29,7 @@
     <ClCompile Include="Str.cpp">
       <Filter>Text</Filter>
     </ClCompile>
+    <ClCompile Include="Heap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompiled.h" />
@@ -42,5 +43,6 @@
     <ClInclude Include="math\Math.h">
       <Filter>Math</Filter>
     </ClInclude>
+    <ClInclude Include="Heap.h" />
   </ItemGroup>
 </Project>

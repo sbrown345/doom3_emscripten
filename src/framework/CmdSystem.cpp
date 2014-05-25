@@ -331,11 +331,11 @@ void idCmdSystemLocal::Init( void ) {
 ////	AddCommand( "echo", Echo_f, CMD_FL_SYSTEM, "prints text" );
 ////	AddCommand( "parse", Parse_f, CMD_FL_SYSTEM, "prints tokenized string" );
 ////	AddCommand( "wait", Wait_f, CMD_FL_SYSTEM, "delays remaining buffered commands one or more frames" );
-////
-////	completionString = "*";
-////
-////	textLength = 0;
 #endif
+
+	completionString = "*";
+
+	textLength = 0;
 }
 ////
 /////*

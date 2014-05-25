@@ -12,12 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CmdArgs.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="Lib.cpp" />
     <ClCompile Include="precompiled.cpp" />
     <ClCompile Include="Str.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CmdArgs.h" />
+    <ClInclude Include="Heap.h" />
     <ClInclude Include="Lib.h" />
     <ClInclude Include="math\Math.h" />
     <ClInclude Include="precompiled.h" />

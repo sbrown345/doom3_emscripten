@@ -25,8 +25,8 @@
 ////
 ////===========================================================================
 ////*/
-////
-////#include "precompiled.h"
+
+#include "precompiled.h"
 ////#pragma hdrstop
 ////
 ////#if defined( MACOS_X )

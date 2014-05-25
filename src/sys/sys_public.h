@@ -55,7 +55,7 @@
 ////#define PATHSEPERATOR_STR				"\\"
 ////#define PATHSEPERATOR_CHAR				'\\'
 ////
-#define ID_INLINE					//	__forceinline // ignore warnings
+#define ID_INLINE						__forceinline
 ////#define ID_STATIC_TEMPLATE				static
 ////
 ////#define assertmem( x, y )				assert( _CrtIsValidPointer( x, y, true ) )
@@ -234,8 +234,8 @@ typedef struct sysMemoryStats_s {
 	int availExtendedVirtual;
 } sysMemoryStats_t;
 
-////typedef unsigned long address_t;
-////
+typedef unsigned long address_t;
+
 ////template<class type> class idList;		// for Sys_ListFiles
 ////
 ////
@@ -505,40 +505,40 @@ typedef struct sysMemoryStats_s {
 ////// if index != NULL, set the index in g_threads array (use -1 for "main" thread)
 ////const char *		Sys_GetThreadName( int *index = 0 );
 //// 
-////const int MAX_CRITICAL_SECTIONS		= 4;
-////
-////enum {
-////	CRITICAL_SECTION_ZERO = 0,
-////	CRITICAL_SECTION_ONE,
-////	CRITICAL_SECTION_TWO,
-////	CRITICAL_SECTION_THREE
-////};
-////
+const int MAX_CRITICAL_SECTIONS		= 4;
+
+enum {
+	CRITICAL_SECTION_ZERO = 0,
+	CRITICAL_SECTION_ONE,
+	CRITICAL_SECTION_TWO,
+	CRITICAL_SECTION_THREE
+};
+
 ////void				Sys_EnterCriticalSection( int index = CRITICAL_SECTION_ZERO );
 ////void				Sys_LeaveCriticalSection( int index = CRITICAL_SECTION_ZERO );
-////
-////const int MAX_TRIGGER_EVENTS		= 4;
-////
-////enum {
-////	TRIGGER_EVENT_ZERO = 0,
-////	TRIGGER_EVENT_ONE,
-////	TRIGGER_EVENT_TWO,
-////	TRIGGER_EVENT_THREE
-////};
-////
+
+const int MAX_TRIGGER_EVENTS		= 4;
+
+enum {
+	TRIGGER_EVENT_ZERO = 0,
+	TRIGGER_EVENT_ONE,
+	TRIGGER_EVENT_TWO,
+	TRIGGER_EVENT_THREE
+};
+
 ////void				Sys_WaitForEvent( int index = TRIGGER_EVENT_ZERO );
 ////void				Sys_TriggerEvent( int index = TRIGGER_EVENT_ZERO );
-////
-/////*
-////==============================================================
-////
-////	idSys
-////
-////==============================================================
-////*/
-////
-////class idSys {
-////public:
+
+/*
+==============================================================
+
+	idSys
+
+==============================================================
+*/
+
+class idSys {
+public:
 ////	virtual void			DebugPrintf( const char *fmt, ... )id_attribute((format(printf,2,3))) = 0;
 ////	virtual void			DebugVPrintf( const char *fmt, va_list arg ) = 0;
 ////
@@ -558,7 +558,7 @@ typedef struct sysMemoryStats_s {
 ////
 ////	virtual void			GetCallStack( address_t *callStack, const int callStackSize ) = 0;
 ////	virtual const char *	GetCallStackStr( const address_t *callStack, const int callStackSize ) = 0;
-////	virtual const char *	GetCallStackCurStr( int depth ) = 0;
+	virtual const char *	GetCallStackCurStr( int depth ) = 0;
 ////	virtual void			ShutdownSymbols( void ) = 0;
 ////
 ////	virtual int				DLL_Load( const char *dllName ) = 0;
@@ -571,10 +571,10 @@ typedef struct sysMemoryStats_s {
 ////
 ////	virtual void			OpenURL( const char *url, bool quit ) = 0;
 ////	virtual void			StartProcess( const char *exePath, bool quit ) = 0;
-////};
-////
-////extern idSys *				sys;
-////
+};
+
+extern idSys *				sys;
+
 ////bool Sys_LoadOpenAL( void );
 ////void Sys_FreeOpenAL( void );
 ////

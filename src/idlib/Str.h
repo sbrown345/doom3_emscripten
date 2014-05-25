@@ -136,8 +136,8 @@ public:
 ////	char				operator[]( int index ) const;
 ////	char &				operator[]( int index );
 ////
-////	void				operator=( const idStr &text );
-////	void				operator=( const char *text );
+	void				operator=( const idStr &text );
+	void				operator=( const char *text );
 ////
 ////	friend idStr		operator+( const idStr &a, const idStr &b );
 ////	friend idStr		operator+( const idStr &a, const char *b );
@@ -296,7 +296,7 @@ public:
 ////	friend int			sprintf( idStr &dest, const char *fmt, ... );
 ////	friend int			vsprintf( idStr &dest, const char *fmt, va_list ap );
 ////
-////	void				ReAllocate( int amount, bool keepold );				// reallocate string data buffer
+	void				ReAllocate( int amount, bool keepold );				// reallocate string data buffer
 	void				FreeData( void );									// free allocated string memory
 ////
 ////						// format value in the given measurement with the best unit, returns the best unit
@@ -319,17 +319,17 @@ public:
 	char				baseBuffer[ STR_ALLOC_BASE ];
 
 	void				Init( void );										// initialize string using base buffer
-////	void				EnsureAlloced( int amount, bool keepold = true );	// ensure string data buffer is large anough
+	void				EnsureAlloced( int amount, bool keepold = true );	// ensure string data buffer is large anough
 };
 
 ////char *					va( const char *fmt, ... ) id_attribute((format(printf,1,2)));
 
 
-////ID_INLINE void idStr::EnsureAlloced( int amount, bool keepold ) {
-////	if ( amount > alloced ) {
-////		ReAllocate( amount, keepold );
-////	}
-////}
+ID_INLINE void idStr::EnsureAlloced( int amount, bool keepold ) {
+	if ( amount > alloced ) {
+		ReAllocate( amount, keepold );
+	}
+}
 
 ID_INLINE void idStr::Init( void ) {
 	len = 0;
