@@ -173,9 +173,9 @@ public:
 ////								// Prints message that only shows up if the "developer" cvar is set,
 ////								// and NEVER forces a screen update, which could cause reentrancy problems.
 ////	virtual void				DPrintf( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
-////
-////								// Prints WARNING %s message and adds the warning message to a queue for printing later on.
-////	virtual void				Warning( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
+
+								// Prints WARNING %s message and adds the warning message to a queue for printing later on.
+	virtual void				Warning( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
 ////
 ////								// Prints WARNING %s message in yellow that only shows up if the "developer" cvar is set.
 ////	virtual void				DWarning( const char *fmt, ...) id_attribute((format(printf,2,3))) = 0;
@@ -185,10 +185,10 @@ public:
 ////
 ////								// Removes all queued warnings.
 ////	virtual void				ClearWarnings( const char *reason ) = 0;
-////
-////								// Issues a C++ throw. Normal errors just abort to the game loop,
-////								// which is appropriate for media or dynamic logic errors.
-////	virtual void				Error( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
+
+								// Issues a C++ throw. Normal errors just abort to the game loop,
+								// which is appropriate for media or dynamic logic errors.
+	virtual void				Error( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
 
 								// Fatal errors quit all the way to a system dialog box, which is appropriate for
 								// static internal errors or cases where the system may be corrupted.

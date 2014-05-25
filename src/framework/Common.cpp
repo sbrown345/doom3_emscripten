@@ -30,17 +30,17 @@
 ////#pragma hdrstop
 ////
 ////#include "../renderer/Image.h"
-////
-////#define	MAX_PRINT_MSG_SIZE	4096
-////#define MAX_WARNING_LIST	256
-////
-////typedef enum {
-////	ERP_NONE,
-////	ERP_FATAL,						// exit the entire game with a popup window
-////	ERP_DROP,						// print to console and disconnect from game
-////	ERP_DISCONNECT					// don't kill server
-////} errorParm_t;
-////
+
+#define	MAX_PRINT_MSG_SIZE	4096
+#define MAX_WARNING_LIST	256
+
+typedef enum {
+	ERP_NONE,
+	ERP_FATAL,						// exit the entire game with a popup window
+	ERP_DROP,						// print to console and disconnect from game
+	ERP_DISCONNECT					// don't kill server
+} errorParm_t;
+
 ////#if defined( _DEBUG )
 ////	#define BUILD_DEBUG "-debug"
 ////#else
@@ -84,19 +84,19 @@
 ////idCVar com_videoRam( "com_videoRam", "64", CVAR_INTEGER | CVAR_SYSTEM | CVAR_NOCHEAT | CVAR_ARCHIVE, "holds the last amount of detected video ram" );
 ////
 ////idCVar com_product_lang_ext( "com_product_lang_ext", "1", CVAR_INTEGER | CVAR_SYSTEM | CVAR_ARCHIVE, "Extension to use when creating language files." );
-////
-////// com_speeds times
-////int				time_gameFrame;
-////int				time_gameDraw;
-////int				time_frontend;			// renderSystem frontend time
-////int				time_backend;			// renderSystem backend time
-////
-////int				com_frameTime;			// time for the current frame in milliseconds
-////int				com_frameNumber;		// variable frame number
-////volatile int	com_ticNumber;			// 60 hz tics
-////int				com_editors;			// currently opened editor(s)
-////bool			com_editorActive;		//  true if an editor has focus
-////
+
+// com_speeds times
+int				time_gameFrame;
+int				time_gameDraw;
+int				time_frontend;			// renderSystem frontend time
+int				time_backend;			// renderSystem backend time
+
+int				com_frameTime;			// time for the current frame in milliseconds
+int				com_frameNumber;		// variable frame number
+volatile int	com_ticNumber;			// 60 hz tics
+int				com_editors;			// currently opened editor(s)
+bool			com_editorActive;		//  true if an editor has focus
+
 ////#ifdef _WIN32
 ////HWND			com_hwndMsg = NULL;
 ////bool			com_outputMsg = false;
@@ -107,7 +107,7 @@
 //////idGame *		game = NULL;
 //////idGameEdit *	gameEdit = NULL;
 //////#endif
-////
+
 ////// writes si_version to the config file - in a kinda obfuscated way
 //////#define ID_WRITE_VERSION
 ////
@@ -133,11 +133,11 @@ class idCommonLocal : public idCommon {
 	virtual void				Printf( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 ////	virtual void				VPrintf( const char *fmt, va_list arg );
 ////	virtual void				DPrintf( const char *fmt, ... ) id_attribute((format(printf,2,3)));
-////	virtual void				Warning( const char *fmt, ... ) id_attribute((format(printf,2,3)));
+	virtual void				Warning( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 ////	virtual void				DWarning( const char *fmt, ...) id_attribute((format(printf,2,3)));
 ////	virtual void				PrintWarnings( void );
 ////	virtual void				ClearWarnings( const char *reason );
-////	virtual void				Error( const char *fmt, ... ) id_attribute((format(printf,2,3)));
+	virtual void				Error( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 	virtual void				FatalError( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 ////	virtual const idLangDict *	GetLanguageDict( void );
 ////
@@ -2783,13 +2783,12 @@ void idCommonLocal::Init( int argc, const char **argv, const char *cmdline ) {
 ////		ParseCommandLine( argc, argv );
 ////
 		// init console command system
-		cmdSystem->Init();
-		
+		cmdSystem->Init();		
+
+
+		// init CVar system
+		cvarSystem->Init();
 		exit(0); // i'm here
-////
-////		// init CVar system
-////		cvarSystem->Init();
-////
 ////		// start file logging right away, before early console or whatever
 ////		StartupVariable( "win_outputDebugString", false );
 ////

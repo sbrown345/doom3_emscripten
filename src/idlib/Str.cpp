@@ -114,23 +114,23 @@ void idStr::ReAllocate( int amount, bool keepold ) {
 
 	data = newbuffer;
 }
-////
-/////*
-////============
-////idStr::FreeData
-////============
-////*/
-////void idStr::FreeData( void ) {
-////	if ( data && data != baseBuffer ) {
-////#ifdef USE_STRING_DATA_ALLOCATOR
-////		stringDataAllocator.Free( data );
-////#else
-////		delete[] data;
-////#endif
-////		data = baseBuffer;
-////	}
-////}
-////
+
+/*
+============
+idStr::FreeData
+============
+*/
+void idStr::FreeData( void ) {
+	if ( data && data != baseBuffer ) {
+#ifdef USE_STRING_DATA_ALLOCATOR
+		stringDataAllocator.Free( data );
+#else
+		delete[] data;
+#endif
+		data = baseBuffer;
+	}
+}
+
 /*
 ============
 idStr::operator=
@@ -982,86 +982,86 @@ void idStr::operator=( const char *text ) {
 ////}
 ////
 ////
-/////*
-////=====================================================================
-////
-////  char * methods to replace library functions
-////
-////=====================================================================
-////*/
-////
-/////*
-////============
-////idStr::IsNumeric
-////
-////Checks a string to see if it contains only numerical values.
-////============
-////*/
-////bool idStr::IsNumeric( const char *s ) {
-////	int		i;
-////	bool	dot;
-////
-////	if ( *s == '-' ) {
-////		s++;
-////	}
-////
-////	dot = false;
-////	for ( i = 0; s[i]; i++ ) {
-////		if ( !isdigit( s[i] ) ) {
-////			if ( ( s[ i ] == '.' ) && !dot ) {
-////				dot = true;
-////				continue;
-////			}
-////			return false;
-////		}
-////	}
-////
-////	return true;
-////}
-////
-/////*
-////============
-////idStr::HasLower
-////
-////Checks if a string has any lowercase chars
-////============
-////*/
-////bool idStr::HasLower( const char *s ) {
-////	if ( !s ) {
-////		return false;
-////	}
-////	
-////	while ( *s ) {
-////		if ( CharIsLower( *s ) ) {
-////			return true;
-////		}
-////		s++;
-////	}
-////	
-////	return false;
-////}
-////
-/////*
-////============
-////idStr::HasUpper
-////	
-////Checks if a string has any uppercase chars
-////============
-////*/
-////bool idStr::HasUpper( const char *s ) {
-////	if ( !s ) {
-////		return false;
-////	}
-////	
-////	while ( *s ) {
-////		if ( CharIsUpper( *s ) ) {
-////			return true;
-////		}
-////		s++;
-////	}
-////	
-////	return false;
-////}
+/*
+=====================================================================
+
+  char * methods to replace library functions
+
+=====================================================================
+*/
+
+/*
+============
+idStr::IsNumeric
+
+Checks a string to see if it contains only numerical values.
+============
+*/
+bool idStr::IsNumeric( const char *s ) {
+	int		i;
+	bool	dot;
+
+	if ( *s == '-' ) {
+		s++;
+	}
+
+	dot = false;
+	for ( i = 0; s[i]; i++ ) {
+		if ( !isdigit( s[i] ) ) {
+			if ( ( s[ i ] == '.' ) && !dot ) {
+				dot = true;
+				continue;
+			}
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/*
+============
+idStr::HasLower
+
+Checks if a string has any lowercase chars
+============
+*/
+bool idStr::HasLower( const char *s ) {
+	if ( !s ) {
+		return false;
+	}
+	
+	while ( *s ) {
+		if ( CharIsLower( *s ) ) {
+			return true;
+		}
+		s++;
+	}
+	
+	return false;
+}
+
+/*
+============
+idStr::HasUpper
+	
+Checks if a string has any uppercase chars
+============
+*/
+bool idStr::HasUpper( const char *s ) {
+	if ( !s ) {
+		return false;
+	}
+	
+	while ( *s ) {
+		if ( CharIsUpper( *s ) ) {
+			return true;
+		}
+		s++;
+	}
+	
+	return false;
+}
 
 /*
 ================
@@ -1084,326 +1084,326 @@ int idStr::Cmp( const char *s1, const char *s2 ) {
 	return 0;		// strings are equal
 }
 
-/////*
-////================
-////idStr::Cmpn
-////================
-////*/
-////int idStr::Cmpn( const char *s1, const char *s2, int n ) {
-////	int c1, c2, d;
-////
-////	assert( n >= 0 );
-////
-////	do {
-////		c1 = *s1++;
-////		c2 = *s2++;
-////
-////		if ( !n-- ) {
-////			return 0;		// strings are equal until end point
-////		}
-////
-////		d = c1 - c2;
-////		if ( d ) {
-////			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
-////		}
-////	} while( c1 );
-////
-////	return 0;		// strings are equal
-////}
-////
-/////*
-////================
-////idStr::Icmp
-////================
-////*/
-////int idStr::Icmp( const char *s1, const char *s2 ) {
-////	int c1, c2, d;
-////
-////	do {
-////		c1 = *s1++;
-////		c2 = *s2++;
-////
-////		d = c1 - c2;
-////		while( d ) {
-////			if ( c1 <= 'Z' && c1 >= 'A' ) {
-////				d += ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c2 <= 'Z' && c2 >= 'A' ) {
-////				d -= ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
-////		}
-////	} while( c1 );
-////
-////	return 0;		// strings are equal
-////}
-////
-/////*
-////================
-////idStr::Icmpn
-////================
-////*/
-////int idStr::Icmpn( const char *s1, const char *s2, int n ) {
-////	int c1, c2, d;
-////
-////	assert( n >= 0 );
-////
-////	do {
-////		c1 = *s1++;
-////		c2 = *s2++;
-////
-////		if ( !n-- ) {
-////			return 0;		// strings are equal until end point
-////		}
-////
-////		d = c1 - c2;
-////		while( d ) {
-////			if ( c1 <= 'Z' && c1 >= 'A' ) {
-////				d += ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c2 <= 'Z' && c2 >= 'A' ) {
-////				d -= ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
-////		}
-////	} while( c1 );
-////
-////	return 0;		// strings are equal
-////}
-////
-/////*
-////================
-////idStr::Icmp
-////================
-////*/
-////int idStr::IcmpNoColor( const char *s1, const char *s2 ) {
-////	int c1, c2, d;
-////
-////	do {
-////		while ( idStr::IsColor( s1 ) ) {
-////			s1 += 2;
-////		}
-////		while ( idStr::IsColor( s2 ) ) {
-////			s2 += 2;
-////		}
-////		c1 = *s1++;
-////		c2 = *s2++;
-////
-////		d = c1 - c2;
-////		while( d ) {
-////			if ( c1 <= 'Z' && c1 >= 'A' ) {
-////				d += ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c2 <= 'Z' && c2 >= 'A' ) {
-////				d -= ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
-////		}
-////	} while( c1 );
-////
-////	return 0;		// strings are equal
-////}
-////
-/////*
-////================
-////idStr::IcmpPath
-////================
-////*/
-////int idStr::IcmpPath( const char *s1, const char *s2 ) {
-////	int c1, c2, d;
-////
-////#if 0
-//////#if !defined( _WIN32 )
-////	idLib::common->Printf( "WARNING: IcmpPath used on a case-sensitive filesystem?\n" );
-////#endif
-////
-////	do {
-////		c1 = *s1++;
-////		c2 = *s2++;
-////
-////		d = c1 - c2;
-////		while( d ) {
-////			if ( c1 <= 'Z' && c1 >= 'A' ) {
-////				d += ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c1 == '\\' ) {
-////				d += ('/' - '\\');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c2 <= 'Z' && c2 >= 'A' ) {
-////				d -= ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c2 == '\\' ) {
-////				d -= ('/' - '\\');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			// make sure folders come first
-////			while( c1 ) {
-////				if ( c1 == '/' || c1 == '\\' ) {
-////					break;
-////				}
-////				c1 = *s1++;
-////			}
-////			while( c2 ) {
-////				if ( c2 == '/' || c2 == '\\' ) {
-////					break;
-////				}
-////				c2 = *s2++;
-////			}
-////			if ( c1 && !c2 ) {
-////				return -1;
-////			} else if ( !c1 && c2 ) {
-////				return 1;
-////			}
-////			// same folder depth so use the regular compare
-////			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
-////		}
-////	} while( c1 );
-////
-////	return 0;
-////}
-////
-/////*
-////================
-////idStr::IcmpnPath
-////================
-////*/
-////int idStr::IcmpnPath( const char *s1, const char *s2, int n ) {
-////	int c1, c2, d;
-////
-////#if 0
-//////#if !defined( _WIN32 )
-////	idLib::common->Printf( "WARNING: IcmpPath used on a case-sensitive filesystem?\n" );
-////#endif
-////
-////	assert( n >= 0 );
-////
-////	do {
-////		c1 = *s1++;
-////		c2 = *s2++;
-////
-////		if ( !n-- ) {
-////			return 0;		// strings are equal until end point
-////		}
-////
-////		d = c1 - c2;
-////		while( d ) {
-////			if ( c1 <= 'Z' && c1 >= 'A' ) {
-////				d += ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c1 == '\\' ) {
-////				d += ('/' - '\\');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c2 <= 'Z' && c2 >= 'A' ) {
-////				d -= ('a' - 'A');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			if ( c2 == '\\' ) {
-////				d -= ('/' - '\\');
-////				if ( !d ) {
-////					break;
-////				}
-////			}
-////			// make sure folders come first
-////			while( c1 ) {
-////				if ( c1 == '/' || c1 == '\\' ) {
-////					break;
-////				}
-////				c1 = *s1++;
-////			}
-////			while( c2 ) {
-////				if ( c2 == '/' || c2 == '\\' ) {
-////					break;
-////				}
-////				c2 = *s2++;
-////			}
-////			if ( c1 && !c2 ) {
-////				return -1;
-////			} else if ( !c1 && c2 ) {
-////				return 1;
-////			}
-////			// same folder depth so use the regular compare
-////			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
-////		}
-////	} while( c1 );
-////
-////	return 0;
-////}
-////
-/////*
-////=============
-////idStr::Copynz
-//// 
-////Safe strncpy that ensures a trailing zero
-////=============
-////*/
-////void idStr::Copynz( char *dest, const char *src, int destsize ) {
-////	if ( !src ) {
-////		idLib::common->Warning( "idStr::Copynz: NULL src" );
-////		return;
-////	}
-////	if ( destsize < 1 ) {
-////		idLib::common->Warning( "idStr::Copynz: destsize < 1" ); 
-////		return;
-////	}
-////
-////	strncpy( dest, src, destsize-1 );
-////    dest[destsize-1] = 0;
-////}
-////
-/////*
-////================
-////idStr::Append
-////
-////  never goes past bounds or leaves without a terminating 0
-////================
-////*/
-////void idStr::Append( char *dest, int size, const char *src ) {
-////	int		l1;
-////
-////	l1 = strlen( dest );
-////	if ( l1 >= size ) {
-////		idLib::common->Error( "idStr::Append: already overflowed" );
-////	}
-////	idStr::Copynz( dest + l1, src, size - l1 );
-////}
-////
+/*
+================
+idStr::Cmpn
+================
+*/
+int idStr::Cmpn( const char *s1, const char *s2, int n ) {
+	int c1, c2, d;
+
+	assert( n >= 0 );
+
+	do {
+		c1 = *s1++;
+		c2 = *s2++;
+
+		if ( !n-- ) {
+			return 0;		// strings are equal until end point
+		}
+
+		d = c1 - c2;
+		if ( d ) {
+			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
+		}
+	} while( c1 );
+
+	return 0;		// strings are equal
+}
+
+/*
+================
+idStr::Icmp
+================
+*/
+int idStr::Icmp( const char *s1, const char *s2 ) {
+	int c1, c2, d;
+
+	do {
+		c1 = *s1++;
+		c2 = *s2++;
+
+		d = c1 - c2;
+		while( d ) {
+			if ( c1 <= 'Z' && c1 >= 'A' ) {
+				d += ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c2 <= 'Z' && c2 >= 'A' ) {
+				d -= ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
+		}
+	} while( c1 );
+
+	return 0;		// strings are equal
+}
+
+/*
+================
+idStr::Icmpn
+================
+*/
+int idStr::Icmpn( const char *s1, const char *s2, int n ) {
+	int c1, c2, d;
+
+	assert( n >= 0 );
+
+	do {
+		c1 = *s1++;
+		c2 = *s2++;
+
+		if ( !n-- ) {
+			return 0;		// strings are equal until end point
+		}
+
+		d = c1 - c2;
+		while( d ) {
+			if ( c1 <= 'Z' && c1 >= 'A' ) {
+				d += ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c2 <= 'Z' && c2 >= 'A' ) {
+				d -= ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
+		}
+	} while( c1 );
+
+	return 0;		// strings are equal
+}
+
+/*
+================
+idStr::Icmp
+================
+*/
+int idStr::IcmpNoColor( const char *s1, const char *s2 ) {
+	int c1, c2, d;
+
+	do {
+		while ( idStr::IsColor( s1 ) ) {
+			s1 += 2;
+		}
+		while ( idStr::IsColor( s2 ) ) {
+			s2 += 2;
+		}
+		c1 = *s1++;
+		c2 = *s2++;
+
+		d = c1 - c2;
+		while( d ) {
+			if ( c1 <= 'Z' && c1 >= 'A' ) {
+				d += ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c2 <= 'Z' && c2 >= 'A' ) {
+				d -= ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
+		}
+	} while( c1 );
+
+	return 0;		// strings are equal
+}
+
+/*
+================
+idStr::IcmpPath
+================
+*/
+int idStr::IcmpPath( const char *s1, const char *s2 ) {
+	int c1, c2, d;
+
+#if 0
+//#if !defined( _WIN32 )
+	idLib::common->Printf( "WARNING: IcmpPath used on a case-sensitive filesystem?\n" );
+#endif
+
+	do {
+		c1 = *s1++;
+		c2 = *s2++;
+
+		d = c1 - c2;
+		while( d ) {
+			if ( c1 <= 'Z' && c1 >= 'A' ) {
+				d += ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c1 == '\\' ) {
+				d += ('/' - '\\');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c2 <= 'Z' && c2 >= 'A' ) {
+				d -= ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c2 == '\\' ) {
+				d -= ('/' - '\\');
+				if ( !d ) {
+					break;
+				}
+			}
+			// make sure folders come first
+			while( c1 ) {
+				if ( c1 == '/' || c1 == '\\' ) {
+					break;
+				}
+				c1 = *s1++;
+			}
+			while( c2 ) {
+				if ( c2 == '/' || c2 == '\\' ) {
+					break;
+				}
+				c2 = *s2++;
+			}
+			if ( c1 && !c2 ) {
+				return -1;
+			} else if ( !c1 && c2 ) {
+				return 1;
+			}
+			// same folder depth so use the regular compare
+			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
+		}
+	} while( c1 );
+
+	return 0;
+}
+
+/*
+================
+idStr::IcmpnPath
+================
+*/
+int idStr::IcmpnPath( const char *s1, const char *s2, int n ) {
+	int c1, c2, d;
+
+#if 0
+//#if !defined( _WIN32 )
+	idLib::common->Printf( "WARNING: IcmpPath used on a case-sensitive filesystem?\n" );
+#endif
+
+	assert( n >= 0 );
+
+	do {
+		c1 = *s1++;
+		c2 = *s2++;
+
+		if ( !n-- ) {
+			return 0;		// strings are equal until end point
+		}
+
+		d = c1 - c2;
+		while( d ) {
+			if ( c1 <= 'Z' && c1 >= 'A' ) {
+				d += ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c1 == '\\' ) {
+				d += ('/' - '\\');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c2 <= 'Z' && c2 >= 'A' ) {
+				d -= ('a' - 'A');
+				if ( !d ) {
+					break;
+				}
+			}
+			if ( c2 == '\\' ) {
+				d -= ('/' - '\\');
+				if ( !d ) {
+					break;
+				}
+			}
+			// make sure folders come first
+			while( c1 ) {
+				if ( c1 == '/' || c1 == '\\' ) {
+					break;
+				}
+				c1 = *s1++;
+			}
+			while( c2 ) {
+				if ( c2 == '/' || c2 == '\\' ) {
+					break;
+				}
+				c2 = *s2++;
+			}
+			if ( c1 && !c2 ) {
+				return -1;
+			} else if ( !c1 && c2 ) {
+				return 1;
+			}
+			// same folder depth so use the regular compare
+			return ( INTSIGNBITNOTSET( d ) << 1 ) - 1;
+		}
+	} while( c1 );
+
+	return 0;
+}
+
+/*
+=============
+idStr::Copynz
+ 
+Safe strncpy that ensures a trailing zero
+=============
+*/
+void idStr::Copynz( char *dest, const char *src, int destsize ) {
+	if ( !src ) {
+		idLib::common->Warning( "idStr::Copynz: NULL src" );
+		return;
+	}
+	if ( destsize < 1 ) {
+		idLib::common->Warning( "idStr::Copynz: destsize < 1" ); 
+		return;
+	}
+
+	strncpy( dest, src, destsize-1 );
+    dest[destsize-1] = 0;
+}
+
+/*
+================
+idStr::Append
+
+  never goes past bounds or leaves without a terminating 0
+================
+*/
+void idStr::Append( char *dest, int size, const char *src ) {
+	int		l1;
+
+	l1 = strlen( dest );
+	if ( l1 >= size ) {
+		idLib::common->Error( "idStr::Append: already overflowed" );
+	}
+	idStr::Copynz( dest + l1, src, size - l1 );
+}
+
 /////*
 ////================
 ////idStr::LengthWithoutColors
