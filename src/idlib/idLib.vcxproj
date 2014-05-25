@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}</ProjectGuid>
+    <ProjectGuid>{0C0D322E-24A5-4533-BCCD-E1CB423F1619}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>idLib</RootNamespace>
   </PropertyGroup>

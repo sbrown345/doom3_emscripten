@@ -5,7 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "doom3_emscripten", "doom3_e
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{CDCEED6D-EEEE-4D50-8493-A0B98E20910C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "idLib", "idlib\idLib\idLib.vcxproj", "{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "idLib", "idlib\idLib.vcxproj", "{0C0D322E-24A5-4533-BCCD-E1CB423F1619}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,15 +17,15 @@ Global
 		{ACF4DEBC-3285-43A8-BC23-16A2CACC2C34}.Debug|Win32.Build.0 = Debug|Win32
 		{ACF4DEBC-3285-43A8-BC23-16A2CACC2C34}.Release|Win32.ActiveCfg = Release|Win32
 		{ACF4DEBC-3285-43A8-BC23-16A2CACC2C34}.Release|Win32.Build.0 = Release|Win32
-		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}.Debug|Win32.ActiveCfg = Debug|Win32
-		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}.Debug|Win32.Build.0 = Debug|Win32
-		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}.Release|Win32.ActiveCfg = Release|Win32
-		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509}.Release|Win32.Build.0 = Release|Win32
+		{0C0D322E-24A5-4533-BCCD-E1CB423F1619}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0C0D322E-24A5-4533-BCCD-E1CB423F1619}.Debug|Win32.Build.0 = Debug|Win32
+		{0C0D322E-24A5-4533-BCCD-E1CB423F1619}.Release|Win32.ActiveCfg = Release|Win32
+		{0C0D322E-24A5-4533-BCCD-E1CB423F1619}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{961F0F0C-9A04-4F2A-AF05-7ED7903C5509} = {CDCEED6D-EEEE-4D50-8493-A0B98E20910C}
+		{0C0D322E-24A5-4533-BCCD-E1CB423F1619} = {CDCEED6D-EEEE-4D50-8493-A0B98E20910C}
 	EndGlobalSection
 EndGlobal
