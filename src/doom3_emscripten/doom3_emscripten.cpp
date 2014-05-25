@@ -8,7 +8,7 @@
 #include "stdafx.h"
 
 
-int main(int argc, char **av)
+int main(int argc, char* argv[])
 {
 	printf("hi\n");
 	printf("hi\n");
