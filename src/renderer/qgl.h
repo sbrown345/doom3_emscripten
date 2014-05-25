@@ -36,10 +36,10 @@ If you have questions concerning this license or the applicable additional terms
 
 #include <GL/gl.h>
 #include <EGL/egl.h>
-#include "eglext.h"
+#include <EGL/eglext.h>
 #include <GLES2/gl2.h>
-#include "gl2ext.h"
-#include "esUtil.h"
+#include <GLES2/gl2ext.h>
+//#include "esUtil.h"
 
 #include <wingdi.h>
 
