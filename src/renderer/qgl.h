@@ -34,12 +34,12 @@ If you have questions concerning this license or the applicable additional terms
 
 #if defined( _WIN32 )
 
-#include <GL/gl.h>
+//#include <GL/gl.h> // egl etc has this stuff in anyway
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
-//#include "esUtil.h"
+//#include "esUtil.h" // todo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 #include <wingdi.h>
 

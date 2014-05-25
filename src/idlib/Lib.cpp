@@ -65,7 +65,7 @@ bool DEBUG_CM;
 bool DEBUG_MAP_FILE;
 bool DEBUG_SPAWN;
 
-bool RTCount;
+int RTCount;
 
 /*
 ================

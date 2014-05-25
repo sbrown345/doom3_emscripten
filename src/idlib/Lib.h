@@ -185,7 +185,7 @@ extern "C" bool DEBUG_CM;
 extern "C" bool DEBUG_MAP_FILE;
 extern "C" bool DEBUG_SPAWN;
 
-extern "C" bool RTCount;
+extern "C" int RTCount;
 
 void dlog(bool log, char *format, ...);
 

@@ -7,11 +7,21 @@
 
 #include "stdafx.h"
 
+//#include "..\idlib\math\Vector.h"
 
-int main(int argc, char* argv[])
-{
+int main(int argc, const char **argv) {
 	printf("hi\n");
-	printf("hi\n");
-	return 0;
+//	////Posix_EarlyInit( );
+//
+//	if ( argc > 1 ) {
+//		common->Init( argc-1, &argv[1], NULL );
+//	} else {
+//		common->Init( 0, NULL, NULL );
+//	}
+//
+//	////Posix_LateInit( );
+//
+//	while (1) {
+//		common->Frame();
+//	}
 }
-
