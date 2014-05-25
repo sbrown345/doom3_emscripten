@@ -16,10 +16,42 @@
     <Filter Include="Sys">
       <UniqueIdentifier>{2bae689a-bf5c-49ec-b3bb-aa86c236238f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{5f5af265-20d7-4fb4-b677-73ac5994f671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Async">
+      <UniqueIdentifier>{6fca48af-7045-47d1-9fa4-be2c0c7b7b79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CM">
+      <UniqueIdentifier>{0eacd93a-b864-4eb1-8ae8-8adf73d01430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{b58f15f3-36d9-4f09-b278-9165c8cf9787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{078d1311-8041-4578-96aa-075ea13c6f98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{9ba46f7e-154f-4f33-b32b-530245953994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ui">
+      <UniqueIdentifier>{55825438-d6f4-4463-ae6f-ca5630b98205}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="js_main.cpp">
       <Filter>Sys</Filter>
     </ClCompile>
+    <ClCompile Include="..\framework\Common.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\framework\Common.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sys\sys_public.h">
+      <Filter>Sys</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

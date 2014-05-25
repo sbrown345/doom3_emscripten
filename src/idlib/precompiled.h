@@ -62,15 +62,15 @@ If you have questions concerning this license or the applicable additional terms
 
 #endif
 
-#include <winsock2.h>
-#include <mmsystem.h>
-#include <mmreg.h>
+////#include <winsock2.h>
+////#include <mmsystem.h>
+////#include <mmreg.h>
 
 #define DIRECTINPUT_VERSION  0x0800			// was 0x0700 with the old mssdk
 #define DIRECTSOUND_VERSION  0x0800
 
-#include <dsound.h>
-#include <dinput.h>
+////#include <dsound.h>
+////#include <dinput.h>
 
 #endif /* !GAME_DLL */
 #endif /* !_D3SDK */
@@ -80,8 +80,8 @@ If you have questions concerning this license or the applicable additional terms
 #pragma warning(disable : 4714)				// function marked as __forceinline not inlined
 #pragma warning(disable : 4996)				// unsafe string operations
 
-#include <malloc.h>							// no malloc.h on mac or unix
-#include <windows.h>						// for gl.h
+////#include <malloc.h>							// no malloc.h on mac or unix
+////#include <windows.h>						// for gl.h
 #undef FindText								// stupid namespace poluting Microsoft monkeys
 
 #endif /* _WIN32 */
@@ -105,71 +105,71 @@ If you have questions concerning this license or the applicable additional terms
 #include <math.h>
 
 //-----------------------------------------------------
-
-// non-portable system services
-#include "../sys/sys_public.h"
-
-// id lib
-#include "../idlib/Lib.h"
-
-// framework
-#include "../framework/BuildVersion.h"
-#include "../framework/BuildDefines.h"
-#include "../framework/Licensee.h"
-#include "../framework/CmdSystem.h"
-#include "../framework/CVarSystem.h"
+////
+////// non-portable system services
+////#include "../sys/sys_public.h"
+////
+////// id lib
+////#include "../idlib/Lib.h"
+////
+////// framework
+////#include "../framework/BuildVersion.h"
+////#include "../framework/BuildDefines.h"
+////#include "../framework/Licensee.h"
+////#include "../framework/CmdSystem.h"
+////#include "../framework/CVarSystem.h"
 #include "../framework/Common.h"
-#include "../framework/File.h"
-#include "../framework/FileSystem.h"
-#include "../framework/UsercmdGen.h"
-
-// decls
-#include "../framework/DeclManager.h"
-#include "../framework/DeclTable.h"
-#include "../framework/DeclSkin.h"
-#include "../framework/DeclEntityDef.h"
-#include "../framework/DeclFX.h"
-#include "../framework/DeclParticle.h"
-#include "../framework/DeclAF.h"
-#include "../framework/DeclPDA.h"
-
-// We have expression parsing and evaluation code in multiple places:
-// materials, sound shaders, and guis. We should unify them.
-const int MAX_EXPRESSION_OPS = 4096;
-const int MAX_EXPRESSION_REGISTERS = 4096;
-
-// renderer
-#include "../renderer/qgl.h"
-#include "../renderer/Cinematic.h"
-#include "../renderer/Material.h"
-#include "../renderer/Model.h"
-#include "../renderer/ModelManager.h"
-#include "../renderer/RenderSystem.h"
-#include "../renderer/RenderWorld.h"
-
-// sound engine
-#include "../sound/sound.h"
-
-// asynchronous networking
-#include "../framework/async/NetworkSystem.h"
-
-// user interfaces
-#include "../ui/ListGUI.h"
-#include "../ui/UserInterface.h"
-
-// collision detection system
-#include "../cm/CollisionModel.h"
-
-// AAS files and manager
-#include "../tools/compilers/aas/AASFile.h"
-#include "../tools/compilers/aas/AASFileManager.h"
-
-// game
-#if defined(_D3XP)
-#include "../d3xp/Game.h"
-#else
-#include "../game/Game.h"
-#endif
+////#include "../framework/File.h"
+////#include "../framework/FileSystem.h"
+////#include "../framework/UsercmdGen.h"
+////
+////// decls
+////#include "../framework/DeclManager.h"
+////#include "../framework/DeclTable.h"
+////#include "../framework/DeclSkin.h"
+////#include "../framework/DeclEntityDef.h"
+////#include "../framework/DeclFX.h"
+////#include "../framework/DeclParticle.h"
+////#include "../framework/DeclAF.h"
+////#include "../framework/DeclPDA.h"
+////
+////// We have expression parsing and evaluation code in multiple places:
+////// materials, sound shaders, and guis. We should unify them.
+////const int MAX_EXPRESSION_OPS = 4096;
+////const int MAX_EXPRESSION_REGISTERS = 4096;
+////
+////// renderer
+////#include "../renderer/qgl.h"
+////#include "../renderer/Cinematic.h"
+////#include "../renderer/Material.h"
+////#include "../renderer/Model.h"
+////#include "../renderer/ModelManager.h"
+////#include "../renderer/RenderSystem.h"
+////#include "../renderer/RenderWorld.h"
+////
+////// sound engine
+////#include "../sound/sound.h"
+////
+////// asynchronous networking
+////#include "../framework/async/NetworkSystem.h"
+////
+////// user interfaces
+////#include "../ui/ListGUI.h"
+////#include "../ui/UserInterface.h"
+////
+////// collision detection system
+////#include "../cm/CollisionModel.h"
+////
+////// AAS files and manager
+////#include "../tools/compilers/aas/AASFile.h"
+////#include "../tools/compilers/aas/AASFileManager.h"
+////
+////// game
+////#if defined(_D3XP)
+////#include "../d3xp/Game.h"
+////#else
+////#include "../game/Game.h"
+////#endif
 
 //-----------------------------------------------------
 
@@ -177,36 +177,36 @@ const int MAX_EXPRESSION_REGISTERS = 4096;
 
 #ifdef GAME_DLL
 
-#if defined(_D3XP)
-#include "../d3xp/Game_local.h"
-#else
-#include "../game/Game_local.h"
-#endif
-
-#else
-
-#include "../game/Game_local.h"
-
-#include "../framework/DemoChecksum.h"
-
-// framework
-#include "../framework/Compressor.h"
-#include "../framework/EventLoop.h"
-#include "../framework/KeyInput.h"
-#include "../framework/EditField.h"
-#include "../framework/Console.h"
-#include "../framework/DemoFile.h"
-#include "../framework/Session.h"
-
-// asynchronous networking
-#include "../framework/async/AsyncNetwork.h"
-
-// The editor entry points are always declared, but may just be
-// stubbed out on non-windows platforms.
-#include "../tools/edit_public.h"
-
-// Compilers for map, model, video etc. processing.
-#include "../tools/compilers/compiler_public.h"
+////#if defined(_D3XP)
+////#include "../d3xp/Game_local.h"
+////#else
+////#include "../game/Game_local.h"
+////#endif
+////
+////#else
+////
+////#include "../game/Game_local.h"
+////
+////#include "../framework/DemoChecksum.h"
+////
+////// framework
+////#include "../framework/Compressor.h"
+////#include "../framework/EventLoop.h"
+////#include "../framework/KeyInput.h"
+////#include "../framework/EditField.h"
+////#include "../framework/Console.h"
+////#include "../framework/DemoFile.h"
+////#include "../framework/Session.h"
+////
+////// asynchronous networking
+////#include "../framework/async/AsyncNetwork.h"
+////
+////// The editor entry points are always declared, but may just be
+////// stubbed out on non-windows platforms.
+////#include "../tools/edit_public.h"
+////
+////// Compilers for map, model, video etc. processing.
+////#include "../tools/compilers/compiler_public.h"
 
 #endif /* !GAME_DLL */
 
