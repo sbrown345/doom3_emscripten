@@ -2754,15 +2754,15 @@ idCommonLocal::Init
 */
 void idCommonLocal::Init( int argc, const char **argv, const char *cmdline ) {
 	//try {
-////
-////		// set interface pointers used by idLib
-////		idLib::sys			= sys;
-////		idLib::common		= common;
-////		idLib::cvarSystem	= cvarSystem;
-////		idLib::fileSystem	= fileSystem;
-////
-////		// initialize idLib
-////		idLib::Init();
+	////
+	////		// set interface pointers used by idLib
+	////		idLib::sys			= sys;
+	////		idLib::common		= common;
+	////		idLib::cvarSystem	= cvarSystem;
+	////		idLib::fileSystem	= fileSystem;
+	////
+	////		// initialize idLib
+	////		idLib::Init();
 ////
 ////		// clear warning buffer
 ////		ClearWarnings( GAME_NAME " initialization" );
@@ -2776,8 +2776,10 @@ void idCommonLocal::Init( int argc, const char **argv, const char *cmdline ) {
 ////		}
 ////		ParseCommandLine( argc, argv );
 ////
-////		// init console command system
-////		cmdSystem->Init();
+		// init console command system
+		cmdSystem->Init();
+		
+		exit(0); // i'm here
 ////
 ////		// init CVar system
 ////		cvarSystem->Init();

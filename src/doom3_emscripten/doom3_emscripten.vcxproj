@@ -135,10 +135,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\framework\CmdSystem.cpp" />
     <ClCompile Include="..\framework\Common.cpp" />
     <ClCompile Include="js_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\framework\CmdSystem.h" />
     <ClInclude Include="..\framework\Common.h" />
     <ClInclude Include="..\sys\sys_public.h" />
   </ItemGroup>

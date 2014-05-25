@@ -108,15 +108,15 @@ If you have questions concerning this license or the applicable additional terms
 ////
 ////// non-portable system services
 ////#include "../sys/sys_public.h"
-////
-////// id lib
-////#include "../idlib/Lib.h"
-////
+
+// id lib
+#include "../idlib/Lib.h"
+
 ////// framework
 ////#include "../framework/BuildVersion.h"
 ////#include "../framework/BuildDefines.h"
 ////#include "../framework/Licensee.h"
-////#include "../framework/CmdSystem.h"
+#include "../framework/CmdSystem.h"
 ////#include "../framework/CVarSystem.h"
 #include "../framework/Common.h"
 ////#include "../framework/File.h"

@@ -22,8 +22,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="precompiled.cpp" />
+    <ClCompile Include="CmdArgs.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib.cpp" />
+    <ClCompile Include="Str.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompiled.h" />
+    <ClInclude Include="CmdArgs.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib.h" />
+    <ClInclude Include="Str.h">
+      <Filter>Text</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
