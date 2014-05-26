@@ -48,10 +48,10 @@ If you have questions concerning this license or the applicable additional terms
 //#include <sys/stat.h>
 //#endif
 //
-//#include "../sys_local.h"
-//#include "win_local.h"
+#include "../sys_local.h"
+#include "js_local.h"
 //#include "rc/CreateResourceIDs.h"
-//#include "../../renderer/tr_local.h"
+#include "../../renderer/tr_local.h"
 //
 //idCVar Win32Vars_t::sys_arch( "sys_arch", "", CVAR_SYSTEM | CVAR_INIT, "" );
 //idCVar Win32Vars_t::sys_cpustring( "sys_cpustring", "detect", CVAR_SYSTEM | CVAR_INIT, "" );
@@ -515,14 +515,20 @@ ID_TIME_T Sys_FileTimeStamp( FILE *fp ) {
 //	return "";
 //}
 //
-///*
-//==============
-//Sys_DefaultBasePath
-//==============
-//*/
-//const char *Sys_DefaultBasePath( void ) {
-//	return Sys_Cwd();
-//}
+/*
+==============
+Sys_DefaultBasePath
+==============
+*/
+const char *Sys_DefaultBasePath( void ) {
+	printf("todo: Sys_DefaultBasePath");
+	exit(0);
+
+#ifdef TODO
+	return Sys_Cwd();
+#endif
+	return "todo";
+}
 //
 ///*
 //==============
@@ -543,13 +549,17 @@ ID_TIME_T Sys_FileTimeStamp( FILE *fp ) {
 //	GetModuleFileName( NULL, exe, sizeof( exe ) - 1 );
 //	return exe;
 //}
-//
-///*
-//==============
-//Sys_ListFiles
-//==============
-//*/
-//int Sys_ListFiles( const char *directory, const char *extension, idStrList &list ) {
+
+/*
+==============
+Sys_ListFiles
+==============
+*/
+int Sys_ListFiles( const char *directory, const char *extension, idStrList &list ) {
+	printf("todo: METHOD_NAME");
+	exit(0);
+
+#ifdef TODO
 //	idStr		search;
 //	struct _finddata_t findinfo;
 //	int			findhandle;
@@ -584,9 +594,10 @@ ID_TIME_T Sys_FileTimeStamp( FILE *fp ) {
 //	} while ( _findnext( findhandle, &findinfo ) != -1 );
 //
 //	_findclose( findhandle );
-//
-//	return list.Num();
-//}
+//	
+#endif
+	return list.Num();
+}
 //
 //
 ///*

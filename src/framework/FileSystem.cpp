@@ -31,22 +31,22 @@ If you have questions concerning this license or the applicable additional terms
 
 #include "Unzip.h"
 
-#ifdef WIN32
-	#include <io.h>	// for _read
-#else
-	#if !__MACH__ && __MWERKS__
-		#include <types.h>
-		#include <stat.h>
-	#else
-		#include <sys/types.h>
-		#include <sys/stat.h>
-	#endif
-	#include <unistd.h>
-#endif
+//#ifdef WIN32
+	//#include <io.h>	// for _read
+//#else
+//	#if !__MACH__ && __MWERKS__
+//		#include <types.h>
+//		#include <stat.h>
+//	#else
+//		#include <sys/types.h>
+//		#include <sys/stat.h>
+//	#endif
+//	#include <unistd.h>
+//#endif
 
-#if ID_ENABLE_CURL
-	#include "../curl/include/curl/curl.h"
-#endif
+//#if ID_ENABLE_CURL
+//	#include "../curl/include/curl/curl.h"
+//#endif
 
 /*
 =============================================================================
@@ -598,13 +598,13 @@ FILE *idFileSystemLocal::OpenOSFile( const char *fileName, const char *mode, idS
 	idStrList list;
 
 #ifndef __MWERKS__
-#ifndef WIN32 
-	// some systems will let you fopen a directory
-	struct stat buf;
-	if ( stat( fileName, &buf ) != -1 && !S_ISREG(buf.st_mode) ) {
-		return NULL;
-	}
-#endif
+////#ifndef WIN32 
+////	// some systems will let you fopen a directory
+////	struct stat buf;
+////	if ( stat( fileName, &buf ) != -1 && !S_ISREG(buf.st_mode) ) {
+////		return NULL;
+////	}
+////#endif
 #endif
 	fp = fopen( fileName, mode );
 	if ( !fp && fs_caseSensitiveOS.GetBool() ) {
@@ -681,6 +681,10 @@ Creates any directories needed to store the given filename
 ============
 */
 void idFileSystemLocal::CreateOSPath( const char *OSPath ) {
+	printf("todo: idFileSystemLocal::CreateOSPath");
+	exit(0);
+
+#ifdef TODO	
 	char	*ofs;
 	
 	// make absolutely sure that it can't back up the path
@@ -701,6 +705,7 @@ void idFileSystemLocal::CreateOSPath( const char *OSPath ) {
 			*ofs = PATHSEPERATOR_CHAR;
 		}
 	}
+#endif
 }
 
 /*
@@ -1045,6 +1050,10 @@ int idFileSystemLocal::ReadFile( const char *relativePath, void **buffer, ID_TIM
 	byte *		buf;
 	int			len;
 	bool		isConfig;
+	printf("todo: idFileSystemLocal::ReadFile");
+	exit(0);
+
+#ifdef TODO
 
 	if ( !searchPaths ) {
 		common->FatalError( "Filesystem call made without initialization\n" );
@@ -1135,7 +1144,7 @@ int idFileSystemLocal::ReadFile( const char *relativePath, void **buffer, ID_TIM
 		eventLoop->com_journalDataFile->Write( buf, len );
 		eventLoop->com_journalDataFile->Flush();
 	}
-
+#endif
 	return len;
 }
 
@@ -2865,6 +2874,10 @@ void idFileSystemLocal::Init( void ) {
 	if ( fs_basepath.GetString()[0] == '\0' ) {
 		fs_basepath.SetString( Sys_DefaultBasePath() );
 	}
+	printf("todo: idFileSystemLocal::Init");
+	exit(0);
+
+#ifdef TODO
 	if ( fs_savepath.GetString()[0] == '\0' ) {
 		fs_savepath.SetString( Sys_DefaultSavePath() );
 	}
@@ -2879,6 +2892,8 @@ void idFileSystemLocal::Init( void ) {
 		fs_devpath.SetString( fs_savepath.GetString() );
 #endif
 	}
+
+#endif
 
 	// try to start up normally
 	Startup( );
@@ -3876,6 +3891,10 @@ idFileSystemLocal::FindDLL
 =================
 */
 void idFileSystemLocal::FindDLL( const char *name, char _dllPath[ MAX_OSPATH ], bool updateChecksum ) {
+	printf("todo: idFileSystemLocal::FindDLL");
+	exit(0);
+
+#ifdef TODO
 	idFile			*dllFile = NULL;
 	char			dllName[MAX_OSPATH];
 	idStr			dllPath;
@@ -3974,6 +3993,7 @@ void idFileSystemLocal::FindDLL( const char *name, char _dllPath[ MAX_OSPATH ], 
 		dllPath = "";
 	}
 	idStr::snPrintf( _dllPath, MAX_OSPATH, dllPath.c_str() );
+#endif
 }
 
 /*

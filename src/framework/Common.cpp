@@ -118,11 +118,11 @@ class idCommonLocal : public idCommon {
 	virtual void				Init( int argc, const char **argv, const char *cmdline );
 ////	virtual void				Shutdown( void );
 ////	virtual void				Quit( void );
-////	virtual bool				IsInitialized( void ) const;
+	virtual bool				IsInitialized( void ) const;
 ////	virtual void				Frame( void );
 ////	virtual void				GUIFrame( bool execCmd, bool network );
 ////	virtual void				Async( void );
-////	virtual void				StartupVariable( const char *match, bool once );
+	virtual void				StartupVariable( const char *match, bool once );
 ////	virtual void				InitTool( const toolFlag_t tool, const idDict *dict );
 ////	virtual void				ActivateTool( bool active );
 ////	virtual void				WriteConfigToFile( const char *filename );
@@ -804,29 +804,29 @@ void idCommonLocal::FatalError( const char *fmt, ... ) {
 ////
 ////	Sys_Quit();
 ////}
-////
-////
-/////*
-////============================================================================
-////
-////COMMAND LINE FUNCTIONS
-////
-////+ characters separate the commandLine string into multiple console
-////command lines.
-////
-////All of these are valid:
-////
-////doom +set test blah +map test
-////doom set test blah+map test
-////doom set test blah + map test
-////
-////============================================================================
-////*/
-////
-////#define		MAX_CONSOLE_LINES	32
-////int			com_numConsoleLines;
-////idCmdArgs	com_consoleLines[MAX_CONSOLE_LINES];
-////
+
+
+/*
+============================================================================
+
+COMMAND LINE FUNCTIONS
+
++ characters separate the commandLine string into multiple console
+command lines.
+
+All of these are valid:
+
+doom +set test blah +map test
+doom set test blah+map test
+doom set test blah + map test
+
+============================================================================
+*/
+
+#define		MAX_CONSOLE_LINES	32
+int			com_numConsoleLines;
+idCmdArgs	com_consoleLines[MAX_CONSOLE_LINES];
+
 /////*
 ////==================
 ////idCommonLocal::ParseCommandLine
@@ -919,48 +919,48 @@ void idCommonLocal::FatalError( const char *fmt, ... ) {
 ////		}
 ////	}
 ////}
-////
-/////*
-////==================
-////idCommonLocal::StartupVariable
-////
-////Searches for command line parameters that are set commands.
-////If match is not NULL, only that cvar will be looked for.
-////That is necessary because cddir and basedir need to be set
-////before the filesystem is started, but all other sets should
-////be after execing the config and default.
-////==================
-////*/
-////void idCommonLocal::StartupVariable( const char *match, bool once ) {
-////	int			i;
-////	const char *s;
-////
-////	i = 0;
-////	while (	i < com_numConsoleLines ) {
-////		if ( strcmp( com_consoleLines[ i ].Argv( 0 ), "set" ) ) {
-////			i++;
-////			continue;
-////		}
-////
-////		s = com_consoleLines[ i ].Argv(1);
-////
-////		if ( !match || !idStr::Icmp( s, match ) ) {
-////			cvarSystem->SetCVarString( s, com_consoleLines[ i ].Argv( 2 ) );
-////			if ( once ) {
-////				// kill the line
-////				int j = i + 1;
-////				while ( j < com_numConsoleLines ) {
-////					com_consoleLines[ j - 1 ] = com_consoleLines[ j ];
-////					j++;
-////				}
-////				com_numConsoleLines--;
-////				continue;
-////			}
-////		}
-////		i++;
-////	}
-////}
-////
+
+/*
+==================
+idCommonLocal::StartupVariable
+
+Searches for command line parameters that are set commands.
+If match is not NULL, only that cvar will be looked for.
+That is necessary because cddir and basedir need to be set
+before the filesystem is started, but all other sets should
+be after execing the config and default.
+==================
+*/
+void idCommonLocal::StartupVariable( const char *match, bool once ) {
+	int			i;
+	const char *s;
+
+	i = 0;
+	while (	i < com_numConsoleLines ) {
+		if ( strcmp( com_consoleLines[ i ].Argv( 0 ), "set" ) ) {
+			i++;
+			continue;
+		}
+
+		s = com_consoleLines[ i ].Argv(1);
+
+		if ( !match || !idStr::Icmp( s, match ) ) {
+			cvarSystem->SetCVarString( s, com_consoleLines[ i ].Argv( 2 ) );
+			if ( once ) {
+				// kill the line
+				int j = i + 1;
+				while ( j < com_numConsoleLines ) {
+					com_consoleLines[ j - 1 ] = com_consoleLines[ j ];
+					j++;
+				}
+				com_numConsoleLines--;
+				continue;
+			}
+		}
+		i++;
+	}
+}
+
 /////*
 ////==================
 ////idCommonLocal::AddStartupCommands
@@ -2720,16 +2720,16 @@ const idLangDict *idCommonLocal::GetLanguageDict( void ) {
 //////
 //////#endif
 ////}
-////
-/////*
-////=================
-////idCommonLocal::IsInitialized
-////=================
-////*/
-////bool idCommonLocal::IsInitialized( void ) const {
-////	return com_fullyInitialized;
-////}
-////
+
+/*
+=================
+idCommonLocal::IsInitialized
+=================
+*/
+bool idCommonLocal::IsInitialized( void ) const {
+	return com_fullyInitialized;
+}
+
 /////*
 ////=================
 ////idCommonLocal::SetMachineSpec
@@ -2798,9 +2798,7 @@ void idCommonLocal::Init( int argc, const char **argv, const char *cmdline ) {
 		cvarSystem->Init();
 	
 		// start file logging right away, before early console or whatever
-#ifdef TODO
 		StartupVariable( "win_outputDebugString", false );
-#endif
 
 		// register all static CVars
 		idCVar::RegisterStaticVars();

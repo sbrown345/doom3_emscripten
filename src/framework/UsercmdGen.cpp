@@ -305,18 +305,18 @@ void buttonState_t::SetKeyState( int keystate, bool toggle ) {
 const int NUM_USER_COMMANDS = sizeof(userCmdStrings) / sizeof(userCmdString_t);
 
 const int MAX_CHAT_BUFFER = 127;
-////
-////class idUsercmdGenLocal : public idUsercmdGen {
-////public:
-////					idUsercmdGenLocal( void );
-////	
-////	void			Init( void );
+
+class idUsercmdGenLocal : public idUsercmdGen {
+public:
+					idUsercmdGenLocal( void );
+
+	void			Init( void );
 ////
 ////	void			InitForNewMap( void );
 ////
 ////	void			Shutdown( void );
 ////
-////	void			Clear( void );
+	void			Clear( void );
 ////
 ////	void			ClearAngles( void );
 ////
@@ -325,8 +325,8 @@ const int MAX_CHAT_BUFFER = 127;
 ////	void			InhibitUsercmd( inhibit_t subsystem, bool inhibit );
 ////
 ////	void			UsercmdInterrupt( void );
-////
-////	int				CommandStringUsercmdData( const char *cmdString );
+
+	int				CommandStringUsercmdData( const char *cmdString );
 ////
 ////	int				GetNumUserCommands( void );
 ////
@@ -355,69 +355,69 @@ const int MAX_CHAT_BUFFER = 127;
 ////	void			Joystick( void );
 ////
 ////	void			Key( int keyNum, bool down );
-////
-////	idVec3			viewangles;
-////	int				flags;
-////	int				impulse;
-////
-////	buttonState_t	toggled_crouch;
-////	buttonState_t	toggled_run;
-////	buttonState_t	toggled_zoom;
-////
-////	int				buttonState[UB_MAX_BUTTONS];
-////	bool			keyState[K_LAST_KEY];
-////
-////	int				inhibitCommands;	// true when in console or menu locally
-////	int				lastCommandTime;
-////
-////	bool			initialized;
-////
-////	usercmd_t		cmd;		// the current cmd being built
-////	usercmd_t		buffered[MAX_BUFFERED_USERCMD];
-////
-////	int				continuousMouseX, continuousMouseY;	// for gui event generatioin, never zerod
-////	int				mouseButton;						// for gui event generatioin
-////	bool			mouseDown;
-////
-////	int				mouseDx, mouseDy;	// added to by mouse events
-////	int				joystickAxis[MAX_JOYSTICK_AXIS];	// set by joystick events
-////
-////	static idCVar	in_yawSpeed;
-////	static idCVar	in_pitchSpeed;
-////	static idCVar	in_angleSpeedKey;
-////	static idCVar	in_freeLook;
-////	static idCVar	in_alwaysRun;
-////	static idCVar	in_toggleRun;
-////	static idCVar	in_toggleCrouch;
-////	static idCVar	in_toggleZoom;
-////	static idCVar	sensitivity;
-////	static idCVar	m_pitch;
-////	static idCVar	m_yaw;
-////	static idCVar	m_strafeScale;
-////	static idCVar	m_smooth;
-////	static idCVar	m_strafeSmooth;
-////	static idCVar	m_showMouseRate;
-////};
-////
-////idCVar idUsercmdGenLocal::in_yawSpeed( "in_yawspeed", "140", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "yaw change speed when holding down _left or _right button" );
-////idCVar idUsercmdGenLocal::in_pitchSpeed( "in_pitchspeed", "140", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "pitch change speed when holding down look _lookUp or _lookDown button" );
-////idCVar idUsercmdGenLocal::in_angleSpeedKey( "in_anglespeedkey", "1.5", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "angle change scale when holding down _speed button" );
-////idCVar idUsercmdGenLocal::in_freeLook( "in_freeLook", "1", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "look around with mouse (reverse _mlook button)" );
-////idCVar idUsercmdGenLocal::in_alwaysRun( "in_alwaysRun", "0", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "always run (reverse _speed button) - only in MP" );
-////idCVar idUsercmdGenLocal::in_toggleRun( "in_toggleRun", "0", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "pressing _speed button toggles run on/off - only in MP" );
-////idCVar idUsercmdGenLocal::in_toggleCrouch( "in_toggleCrouch", "0", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "pressing _movedown button toggles player crouching/standing" );
-////idCVar idUsercmdGenLocal::in_toggleZoom( "in_toggleZoom", "0", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "pressing _zoom button toggles zoom on/off" );
-////idCVar idUsercmdGenLocal::sensitivity( "sensitivity", "5", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "mouse view sensitivity" );
-////idCVar idUsercmdGenLocal::m_pitch( "m_pitch", "0.022", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "mouse pitch scale" );
-////idCVar idUsercmdGenLocal::m_yaw( "m_yaw", "0.022", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "mouse yaw scale" );
-////idCVar idUsercmdGenLocal::m_strafeScale( "m_strafeScale", "6.25", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "mouse strafe movement scale" );
-////idCVar idUsercmdGenLocal::m_smooth( "m_smooth", "1", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_INTEGER, "number of samples blended for mouse viewing", 1, 8, idCmdSystem::ArgCompletion_Integer<1,8> );
-////idCVar idUsercmdGenLocal::m_strafeSmooth( "m_strafeSmooth", "4", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_INTEGER, "number of samples blended for mouse moving", 1, 8, idCmdSystem::ArgCompletion_Integer<1,8> );
-////idCVar idUsercmdGenLocal::m_showMouseRate( "m_showMouseRate", "0", CVAR_SYSTEM | CVAR_BOOL, "shows mouse movement" );
-////
-////static idUsercmdGenLocal localUsercmdGen;
-////idUsercmdGen	*usercmdGen = &localUsercmdGen;
-////
+
+	idVec3			viewangles;
+	int				flags;
+	int				impulse;
+
+	buttonState_t	toggled_crouch;
+	buttonState_t	toggled_run;
+	buttonState_t	toggled_zoom;
+
+	int				buttonState[UB_MAX_BUTTONS];
+	bool			keyState[K_LAST_KEY];
+
+	int				inhibitCommands;	// true when in console or menu locally
+	int				lastCommandTime;
+
+	bool			initialized;
+
+	usercmd_t		cmd;		// the current cmd being built
+	usercmd_t		buffered[MAX_BUFFERED_USERCMD];
+
+	int				continuousMouseX, continuousMouseY;	// for gui event generatioin, never zerod
+	int				mouseButton;						// for gui event generatioin
+	bool			mouseDown;
+
+	int				mouseDx, mouseDy;	// added to by mouse events
+	int				joystickAxis[MAX_JOYSTICK_AXIS];	// set by joystick events
+
+	static idCVar	in_yawSpeed;
+	static idCVar	in_pitchSpeed;
+	static idCVar	in_angleSpeedKey;
+	static idCVar	in_freeLook;
+	static idCVar	in_alwaysRun;
+	static idCVar	in_toggleRun;
+	static idCVar	in_toggleCrouch;
+	static idCVar	in_toggleZoom;
+	static idCVar	sensitivity;
+	static idCVar	m_pitch;
+	static idCVar	m_yaw;
+	static idCVar	m_strafeScale;
+	static idCVar	m_smooth;
+	static idCVar	m_strafeSmooth;
+	static idCVar	m_showMouseRate;
+};
+
+idCVar idUsercmdGenLocal::in_yawSpeed( "in_yawspeed", "140", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "yaw change speed when holding down _left or _right button" );
+idCVar idUsercmdGenLocal::in_pitchSpeed( "in_pitchspeed", "140", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "pitch change speed when holding down look _lookUp or _lookDown button" );
+idCVar idUsercmdGenLocal::in_angleSpeedKey( "in_anglespeedkey", "1.5", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "angle change scale when holding down _speed button" );
+idCVar idUsercmdGenLocal::in_freeLook( "in_freeLook", "1", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "look around with mouse (reverse _mlook button)" );
+idCVar idUsercmdGenLocal::in_alwaysRun( "in_alwaysRun", "0", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "always run (reverse _speed button) - only in MP" );
+idCVar idUsercmdGenLocal::in_toggleRun( "in_toggleRun", "0", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "pressing _speed button toggles run on/off - only in MP" );
+idCVar idUsercmdGenLocal::in_toggleCrouch( "in_toggleCrouch", "0", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "pressing _movedown button toggles player crouching/standing" );
+idCVar idUsercmdGenLocal::in_toggleZoom( "in_toggleZoom", "0", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_BOOL, "pressing _zoom button toggles zoom on/off" );
+idCVar idUsercmdGenLocal::sensitivity( "sensitivity", "5", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "mouse view sensitivity" );
+idCVar idUsercmdGenLocal::m_pitch( "m_pitch", "0.022", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "mouse pitch scale" );
+idCVar idUsercmdGenLocal::m_yaw( "m_yaw", "0.022", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "mouse yaw scale" );
+idCVar idUsercmdGenLocal::m_strafeScale( "m_strafeScale", "6.25", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_FLOAT, "mouse strafe movement scale" );
+idCVar idUsercmdGenLocal::m_smooth( "m_smooth", "1", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_INTEGER, "number of samples blended for mouse viewing", 1, 8, idCmdSystem::ArgCompletion_Integer<1,8> );
+idCVar idUsercmdGenLocal::m_strafeSmooth( "m_strafeSmooth", "4", CVAR_SYSTEM | CVAR_ARCHIVE | CVAR_INTEGER, "number of samples blended for mouse moving", 1, 8, idCmdSystem::ArgCompletion_Integer<1,8> );
+idCVar idUsercmdGenLocal::m_showMouseRate( "m_showMouseRate", "0", CVAR_SYSTEM | CVAR_BOOL, "shows mouse movement" );
+
+static idUsercmdGenLocal localUsercmdGen;
+idUsercmdGen	*usercmdGen = &localUsercmdGen;
+
 /////*
 ////================
 ////idUsercmdGenLocal::idUsercmdGenLocal
@@ -808,34 +808,34 @@ const int MAX_CHAT_BUFFER = 127;
 ////	impulse = cmd.impulse;
 ////
 ////}
-////
-//////=====================================================================
-////
-////
-/////*
-////================
-////idUsercmdGenLocal::CommandStringUsercmdData
-////
-////Returns the button if the command string is used by the async usercmd generator.
-////================
-////*/
-////int	idUsercmdGenLocal::CommandStringUsercmdData( const char *cmdString ) {
-////	for ( userCmdString_t *ucs = userCmdStrings ; ucs->string ; ucs++ ) {
-////		if ( idStr::Icmp( cmdString, ucs->string ) == 0 ) {
-////			return ucs->button;
-////		}
-////	}
-////	return UB_NONE;
-////}
-////
-/////*
-////================
-////idUsercmdGenLocal::Init
-////================
-////*/
-////void idUsercmdGenLocal::Init( void ) {
-////	initialized = true;
-////}
+
+//=====================================================================
+
+
+/*
+================
+idUsercmdGenLocal::CommandStringUsercmdData
+
+Returns the button if the command string is used by the async usercmd generator.
+================
+*/
+int	idUsercmdGenLocal::CommandStringUsercmdData( const char *cmdString ) {
+	for ( userCmdString_t *ucs = userCmdStrings ; ucs->string ; ucs++ ) {
+		if ( idStr::Icmp( cmdString, ucs->string ) == 0 ) {
+			return ucs->button;
+		}
+	}
+	return UB_NONE;
+}
+
+/*
+================
+idUsercmdGenLocal::Init
+================
+*/
+void idUsercmdGenLocal::Init( void ) {
+	initialized = true;
+}
 ////
 /////*
 ////================
@@ -863,23 +863,23 @@ const int MAX_CHAT_BUFFER = 127;
 ////void idUsercmdGenLocal::Shutdown( void ) {
 ////	initialized = false;
 ////}
-////
-/////*
-////================
-////idUsercmdGenLocal::Clear
-////================
-////*/
-////void idUsercmdGenLocal::Clear( void ) {
-////	// clears all key states 
-////	memset( buttonState, 0, sizeof( buttonState ) );
-////	memset( keyState, false, sizeof( keyState ) );
-////
-////	inhibitCommands = false;
-////
-////	mouseDx = mouseDy = 0;
-////	mouseButton = 0;
-////	mouseDown = false;
-////}
+
+/*
+================
+idUsercmdGenLocal::Clear
+================
+*/
+void idUsercmdGenLocal::Clear( void ) {
+	// clears all key states 
+	memset( buttonState, 0, sizeof( buttonState ) );
+	memset( keyState, false, sizeof( keyState ) );
+
+	inhibitCommands = false;
+
+	mouseDx = mouseDy = 0;
+	mouseButton = 0;
+	mouseDown = false;
+}
 ////
 /////*
 ////================

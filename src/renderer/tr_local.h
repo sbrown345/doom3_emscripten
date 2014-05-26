@@ -483,12 +483,12 @@ typedef enum {
 typedef struct {
 	renderCommand_t		commandId, *next;
 } emptyCommand_t;
-
-typedef struct {
-	renderCommand_t		commandId, *next;
-	GLenum	buffer;
-	int		frameCount;
-} setBufferCommand_t;
+////
+////typedef struct {
+////	renderCommand_t		commandId, *next;
+////	GLenum	buffer;
+////	int		frameCount;
+////} setBufferCommand_t;
 
 typedef struct {
 	renderCommand_t		commandId, *next;
@@ -806,7 +806,7 @@ public:
 
 extern backEndState_t		backEnd;
 extern idRenderSystemLocal	tr;
-extern glconfig_t			glConfig;		// outside of TR since it shouldn't be cleared during ref re-init
+////extern glconfig_t			glConfig;		// outside of TR since it shouldn't be cleared during ref re-init
 
 
 //
@@ -1295,7 +1295,7 @@ void	R_ARB2_Init( void );
 void	RB_ARB2_DrawInteractions( void );
 void	R_ReloadARBPrograms_f( const idCmdArgs &args );
 void	R_ReloadGLSLShaders_f( const idCmdArgs &args );
-int		R_FindARBProgram( GLenum target, const char *program );
+////int		R_FindARBProgram( GLenum target, const char *program );
 
 void	R_GLSL_Init( void );
 void	RB_GLSL_DrawInteractions( void );
@@ -1329,55 +1329,55 @@ DRAW_GLSL
 
 
 typedef struct shaderProgram_s {
-	GLuint		program;
+	//GLuint		program;
 
-	GLuint		vertexShader;
-	GLuint		fragmentShader;
+	//GLuint		vertexShader;
+	//GLuint		fragmentShader;
 
-	GLint		glColor;
-	GLint		alphaTest;
-	GLint		specularExponent;
+	//GLint		glColor;
+	//GLint		alphaTest;
+	//GLint		specularExponent;
 
-	GLint		modelViewProjectionMatrix;
-	GLint		modelMatrix;
-	GLint		textureMatrix;
+	//GLint		modelViewProjectionMatrix;
+	//GLint		modelMatrix;
+	//GLint		textureMatrix;
 
-	GLint		windowCoords;
-	GLint		eyeOrigin;
-	GLint		localEyeOrigin;
-	GLint		localLightOrigin;
-	GLint		localViewOrigin;
+	//GLint		windowCoords;
+	//GLint		eyeOrigin;
+	//GLint		localEyeOrigin;
+	//GLint		localLightOrigin;
+	//GLint		localViewOrigin;
 
-	GLint		lightProjectionS;
-	GLint		lightProjectionT;
-	GLint		lightProjectionQ;
-	GLint		lightFalloff;
+	//GLint		lightProjectionS;
+	//GLint		lightProjectionT;
+	//GLint		lightProjectionQ;
+	//GLint		lightFalloff;
 
-	GLint		bumpMatrixS;
-	GLint		bumpMatrixT;
-	GLint		diffuseMatrixS;
-	GLint		diffuseMatrixT;
-	GLint		specularMatrixS;
-	GLint		specularMatrixT;
+	//GLint		bumpMatrixS;
+	//GLint		bumpMatrixT;
+	//GLint		diffuseMatrixS;
+	//GLint		diffuseMatrixT;
+	//GLint		specularMatrixS;
+	//GLint		specularMatrixT;
 
-	GLint		colorModulate;
-	GLint		colorAdd;
+	//GLint		colorModulate;
+	//GLint		colorAdd;
 
-	GLint		diffuseColor;
-	GLint		specularColor;
+	//GLint		diffuseColor;
+	//GLint		specularColor;
 
-	/* gl_... */
-	GLint		attr_TexCoord;
-	GLint		attr_Tangent;
-	GLint		attr_Bitangent;
-	GLint		attr_Normal;
-	GLint		attr_Vertex;
-	GLint		attr_Color;
+	///* gl_... */
+	//GLint		attr_TexCoord;
+	//GLint		attr_Tangent;
+	//GLint		attr_Bitangent;
+	//GLint		attr_Normal;
+	//GLint		attr_Vertex;
+	//GLint		attr_Color;
 
-	GLint		nonPowerOfTwo;
+	//GLint		nonPowerOfTwo;
 
-	GLint		u_fragmentMap[MAX_FRAGMENT_IMAGES];
-	GLint		u_vertexParm[MAX_VERTEX_PARMS];
+	//GLint		u_fragmentMap[MAX_FRAGMENT_IMAGES];
+	//GLint		u_vertexParm[MAX_VERTEX_PARMS];
 } shaderProgram_t;
 
 

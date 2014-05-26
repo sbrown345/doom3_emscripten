@@ -123,10 +123,10 @@ public:
 ////
 ////								// Shuts down everything.
 ////	virtual void				Quit( void ) = 0;
-////
-////								// Returns true if common initialization is complete.
-////	virtual bool				IsInitialized( void ) const = 0;
-////
+
+								// Returns true if common initialization is complete.
+	virtual bool				IsInitialized( void ) const = 0;
+
 ////								// Called repeatedly as the foreground thread for rendering and game logic.
 ////	virtual void				Frame( void ) = 0;
 ////
@@ -137,11 +137,11 @@ public:
 ////								// and input generation. Not called until idCommon::Init() has completed.
 ////	virtual void				Async( void ) = 0;
 ////
-////								// Checks for and removes command line "+set var arg" constructs.
-////								// If match is NULL, all set commands will be executed, otherwise
-////								// only a set with the exact name.  Only used during startup.
-////								// set once to clear the cvar from +set for early init code
-////	virtual void				StartupVariable( const char *match, bool once ) = 0;
+								// Checks for and removes command line "+set var arg" constructs.
+								// If match is NULL, all set commands will be executed, otherwise
+								// only a set with the exact name.  Only used during startup.
+								// set once to clear the cvar from +set for early init code
+	virtual void				StartupVariable( const char *match, bool once ) = 0;
 ////
 ////								// Initializes a tool with the given dictionary.
 ////	virtual void				InitTool( const toolFlag_t tool, const idDict *dict ) = 0;
@@ -193,9 +193,9 @@ public:
 								// Fatal errors quit all the way to a system dialog box, which is appropriate for
 								// static internal errors or cases where the system may be corrupted.
 	virtual void				FatalError( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
-////
-////								// Returns a pointer to the dictionary with language specific strings.
-////	virtual const idLangDict *	GetLanguageDict( void ) = 0;
+
+								// Returns a pointer to the dictionary with language specific strings.
+	virtual const idLangDict *	GetLanguageDict( void ) = 0;
 ////
 ////								// Returns key bound to the command
 ////	virtual const char *		KeysFromBinding( const char *bind ) = 0;

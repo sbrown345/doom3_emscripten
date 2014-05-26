@@ -370,10 +370,10 @@ int				Sys_Milliseconds( void );
 ////void			Sys_InitScanTable( void );
 ////const unsigned char *Sys_GetScanTable( void );
 unsigned char	Sys_GetConsoleKey( bool shifted );
-////// map a scancode key to a char
-////// does nothing on win32, as SE_KEY == SE_CHAR there
-////// on other OSes, consider the keyboard mapping
-////unsigned char	Sys_MapCharForKey( int key );
+// map a scancode key to a char
+// does nothing on win32, as SE_KEY == SE_CHAR there
+// on other OSes, consider the keyboard mapping
+unsigned char	Sys_MapCharForKey( int key );
 ////
 ////// keyboard input polling
 ////int				Sys_PollKeyboardInputEvents( void );
@@ -400,14 +400,14 @@ ID_TIME_T			Sys_FileTimeStamp( FILE *fp );
 ////// NOTE: do we need to guarantee the same output on all platforms?
 ////const char *	Sys_TimeStampToStr( ID_TIME_T timeStamp );
 ////const char *	Sys_DefaultCDPath( void );
-////const char *	Sys_DefaultBasePath( void );
+const char *	Sys_DefaultBasePath( void );
 ////const char *	Sys_DefaultSavePath( void );
 ////const char *	Sys_EXEPath( void );
-////
-////// use fs_debug to verbose Sys_ListFiles
-////// returns -1 if directory was not found (the list is cleared)
-////int				Sys_ListFiles( const char *directory, const char *extension, idList<class idStr> &list );
-////
+
+// use fs_debug to verbose Sys_ListFiles
+// returns -1 if directory was not found (the list is cleared)
+int				Sys_ListFiles( const char *directory, const char *extension, idList<class idStr> &list );
+
 ////// know early if we are performing a fatal error shutdown so the error message doesn't get lost
 ////void			Sys_SetFatalError( const char *error );
 ////
@@ -589,7 +589,7 @@ public:
 ////	virtual int				DLL_Load( const char *dllName ) = 0;
 ////	virtual void *			DLL_GetProcAddress( int dllHandle, const char *procName ) = 0;
 ////	virtual void			DLL_Unload( int dllHandle ) = 0;
-////	virtual void			DLL_GetFileName( const char *baseName, char *dllName, int maxLength ) = 0;
+	virtual void			DLL_GetFileName( const char *baseName, char *dllName, int maxLength ) = 0;
 ////
 ////	virtual sysEvent_t		GenerateMouseButtonEvent( int button, bool down ) = 0;
 ////	virtual sysEvent_t		GenerateMouseMoveEvent( int deltax, int deltay ) = 0;

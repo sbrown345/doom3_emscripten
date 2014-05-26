@@ -2471,13 +2471,16 @@ bool	idSessionLocal::IsMultiplayer() {
 ////	}
 ////}
 ////
-/////*
-////===============
-////idSessionLocal::UpdateScreen
-////===============
-////*/
-////void idSessionLocal::UpdateScreen( bool outOfSequence ) {
-////
+/*
+===============
+idSessionLocal::UpdateScreen
+===============
+*/
+void idSessionLocal::UpdateScreen( bool outOfSequence ) {
+	printf("todo: idSessionLocal::UpdateScreen");
+	exit(0);
+
+#ifdef TODO
 ////#ifdef _WIN32
 ////
 ////	if ( com_editors ) {
@@ -2512,7 +2515,8 @@ bool	idSessionLocal::IsMultiplayer() {
 ////	}
 ////
 ////	insideUpdateScreen = false;
-////}
+#endif
+}
 ////
 /////*
 ////===============

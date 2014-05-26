@@ -74,11 +74,11 @@ public:
 	////// Called on errors and game exits.
 	////virtual void	Stop() = 0;
 
-	////// Redraws the screen, handling games, guis, console, etc
-	////// during normal once-a-frame updates, outOfSequence will be false,
-	////// but when the screen is updated in a modal manner, as with utility
-	////// output, the mouse cursor will be released if running windowed.
-	////virtual void	UpdateScreen( bool outOfSequence = true ) = 0;
+	// Redraws the screen, handling games, guis, console, etc
+	// during normal once-a-frame updates, outOfSequence will be false,
+	// but when the screen is updated in a modal manner, as with utility
+	// output, the mouse cursor will be released if running windowed.
+	virtual void	UpdateScreen( bool outOfSequence = true ) = 0;
 
 	////// Called when console prints happen, allowing the loading screen
 	////// to redraw if enough time has passed.

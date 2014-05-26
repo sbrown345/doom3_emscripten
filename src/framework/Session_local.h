@@ -92,7 +92,7 @@ public:
 
 	////virtual void		Stop();
 
-	////virtual void		UpdateScreen( bool outOfSequence = true );
+	virtual void		UpdateScreen( bool outOfSequence = true );
 
 	////virtual void		PacifierUpdate();
 
