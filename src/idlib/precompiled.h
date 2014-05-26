@@ -122,36 +122,36 @@ If you have questions concerning this license or the applicable additional terms
 #include "../framework/CVarSystem.h"
 #include "../framework/Common.h"
 #include "../framework/File.h"
-////#include "../framework/FileSystem.h"
+#include "../framework/FileSystem.h"
 #include "../framework/UsercmdGen.h"
-////
-////// decls
+
+// decls
 #include "../framework/DeclManager.h"
-////#include "../framework/DeclTable.h"
-////#include "../framework/DeclSkin.h"
-////#include "../framework/DeclEntityDef.h"
-////#include "../framework/DeclFX.h"
-////#include "../framework/DeclParticle.h"
-////#include "../framework/DeclAF.h"
-////#include "../framework/DeclPDA.h"
+#include "../framework/DeclTable.h"
+#include "../framework/DeclSkin.h"
+#include "../framework/DeclEntityDef.h"
+#include "../framework/DeclFX.h"
+#include "../framework/DeclParticle.h"
+#include "../framework/DeclAF.h"
+#include "../framework/DeclPDA.h"
 
 // We have expression parsing and evaluation code in multiple places:
 // materials, sound shaders, and guis. We should unify them.
 const int MAX_EXPRESSION_OPS = 4096;
 const int MAX_EXPRESSION_REGISTERS = 4096;
 
-////// renderer
-////#include "../renderer/qgl.h"
+// renderer
+#include "../renderer/qgl.h"
 ////#include "../renderer/Cinematic.h"
 #include "../renderer/Material.h"
-////#include "../renderer/Model.h"
-////#include "../renderer/ModelManager.h"
+#include "../renderer/Model.h"
+#include "../renderer/ModelManager.h"
 #include "../renderer/RenderSystem.h"
-////#include "../renderer/RenderWorld.h"
-////
-////// sound engine
-////#include "../sound/sound.h"
-////
+#include "../renderer/RenderWorld.h"
+
+// sound engine
+#include "../sound/sound.h"
+
 ////// asynchronous networking
 ////#include "../framework/async/NetworkSystem.h"
 ////

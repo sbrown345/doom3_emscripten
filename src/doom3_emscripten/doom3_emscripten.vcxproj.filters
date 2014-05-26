@@ -39,9 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="js_main.cpp">
-      <Filter>Sys</Filter>
-    </ClCompile>
     <ClCompile Include="..\framework\Common.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
@@ -95,6 +92,45 @@
     </ClCompile>
     <ClCompile Include="..\framework\EditField.cpp">
       <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\DeclAF.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\DeclEntityDef.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\DeclFX.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\DeclParticle.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\DeclPDA.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\DeclSkin.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\DeclTable.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\ModelManager.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\Model.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\RenderWorld.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\FileSystem.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sys\js\js_main.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="js_main_temp_start.cpp">
+      <Filter>Sys</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +211,48 @@
     </ClInclude>
     <ClInclude Include="..\framework\EditField.h">
       <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\DeclAF.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\DeclEntityDef.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\DeclFX.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\DeclParticle.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\DeclPDA.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\DeclSkin.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\DeclTable.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\ModelManager.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\Model.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\tr_local.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\RenderWorld.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\FileSystem.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sound\sound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\qgl.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

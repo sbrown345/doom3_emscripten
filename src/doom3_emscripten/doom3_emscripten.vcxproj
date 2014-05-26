@@ -81,7 +81,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,6 +99,8 @@
       </EnableWarnings>
       <DisableWarnings>
       </DisableWarnings>
+      <PreprocessorUndefinitions>
+      </PreprocessorUndefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,7 +115,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,17 +149,29 @@
     <ClCompile Include="..\framework\Compressor.cpp" />
     <ClCompile Include="..\framework\Console.cpp" />
     <ClCompile Include="..\framework\CVarSystem.cpp" />
+    <ClCompile Include="..\framework\DeclAF.cpp" />
+    <ClCompile Include="..\framework\DeclEntityDef.cpp" />
+    <ClCompile Include="..\framework\DeclFX.cpp" />
     <ClCompile Include="..\framework\DeclManager.cpp" />
+    <ClCompile Include="..\framework\DeclParticle.cpp" />
+    <ClCompile Include="..\framework\DeclPDA.cpp" />
+    <ClCompile Include="..\framework\DeclSkin.cpp" />
+    <ClCompile Include="..\framework\DeclTable.cpp" />
     <ClCompile Include="..\framework\EditField.cpp" />
     <ClCompile Include="..\framework\File.cpp" />
+    <ClCompile Include="..\framework\FileSystem.cpp" />
     <ClCompile Include="..\framework\KeyInput.cpp" />
     <ClCompile Include="..\framework\Session.cpp" />
     <ClCompile Include="..\framework\UsercmdGen.cpp" />
+    <ClCompile Include="..\renderer\Model.cpp" />
+    <ClCompile Include="..\renderer\ModelManager.cpp" />
     <ClCompile Include="..\renderer\RenderSystem.cpp" />
+    <ClCompile Include="..\renderer\RenderWorld.cpp" />
     <ClCompile Include="..\sys\js\js_input.cpp" />
+    <ClCompile Include="..\sys\js\js_main.cpp" />
     <ClCompile Include="..\sys\sys_local.cpp" />
     <ClCompile Include="..\ui\UserInterface.cpp" />
-    <ClCompile Include="js_main.cpp" />
+    <ClCompile Include="js_main_temp_start.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\framework\async\AsyncClient.h" />
@@ -171,16 +185,30 @@
     <ClInclude Include="..\framework\Compressor.h" />
     <ClInclude Include="..\framework\Console.h" />
     <ClInclude Include="..\framework\CVarSystem.h" />
+    <ClInclude Include="..\framework\DeclAF.h" />
+    <ClInclude Include="..\framework\DeclEntityDef.h" />
+    <ClInclude Include="..\framework\DeclFX.h" />
     <ClInclude Include="..\framework\DeclManager.h" />
+    <ClInclude Include="..\framework\DeclParticle.h" />
+    <ClInclude Include="..\framework\DeclPDA.h" />
+    <ClInclude Include="..\framework\DeclSkin.h" />
+    <ClInclude Include="..\framework\DeclTable.h" />
     <ClInclude Include="..\framework\EditField.h" />
     <ClInclude Include="..\framework\File.h" />
+    <ClInclude Include="..\framework\FileSystem.h" />
     <ClInclude Include="..\framework\KeyInput.h" />
     <ClInclude Include="..\framework\Licensee.h" />
     <ClInclude Include="..\framework\Session.h" />
     <ClInclude Include="..\framework\Session_local.h" />
     <ClInclude Include="..\framework\UsercmdGen.h" />
     <ClInclude Include="..\renderer\Material.h" />
+    <ClInclude Include="..\renderer\Model.h" />
+    <ClInclude Include="..\renderer\ModelManager.h" />
+    <ClInclude Include="..\renderer\qgl.h" />
     <ClInclude Include="..\renderer\RenderSystem.h" />
+    <ClInclude Include="..\renderer\RenderWorld.h" />
+    <ClInclude Include="..\renderer\tr_local.h" />
+    <ClInclude Include="..\sound\sound.h" />
     <ClInclude Include="..\sys\js\js_local.h" />
     <ClInclude Include="..\sys\sys_local.h" />
     <ClInclude Include="..\sys\sys_public.h" />

@@ -29,7 +29,7 @@
 #include "../../idlib/precompiled.h"
 //#pragma hdrstop
 //
-#include "AsyncNetwork.h"
+////#include "AsyncNetwork.h"
 
 #include "../Session_local.h"
 
@@ -44,9 +44,7 @@ idAsyncClient::idAsyncClient
 ==================
 */
 idAsyncClient::idAsyncClient( void ) {
-#ifdef TODO
 	guiNetMenu = NULL;
-#endif
 	updateState = UPDATE_NONE;
 	Clear();
 }

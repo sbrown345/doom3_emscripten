@@ -54,21 +54,21 @@ typedef struct {
 	usercmd_t	cmd;
 	int			consistencyHash;
 } logCmd_t;
-////
-////struct fileTIME_T {
-////	int				index;
-////	ID_TIME_T			timeStamp;
-////
-////					operator int() const { return timeStamp; }
-////};
-////
-////typedef struct {
-////	idDict			serverInfo;
-////	idDict			syncedCVars;
-////	idDict			userInfo[MAX_ASYNC_CLIENTS];
-////	idDict			persistentPlayerInfo[MAX_ASYNC_CLIENTS];
-////	usercmd_t		mapSpawnUsercmd[MAX_ASYNC_CLIENTS];		// needed for tracking delta angles
-////} mapSpawnData_t;
+
+struct fileTIME_T {
+	int				index;
+	ID_TIME_T			timeStamp;
+
+					operator int() const { return timeStamp; }
+};
+
+typedef struct {
+	idDict			serverInfo;
+	idDict			syncedCVars;
+	idDict			userInfo[MAX_ASYNC_CLIENTS];
+	idDict			persistentPlayerInfo[MAX_ASYNC_CLIENTS];
+	usercmd_t		mapSpawnUsercmd[MAX_ASYNC_CLIENTS];		// needed for tracking delta angles
+} mapSpawnData_t;
 
 typedef enum {
 	TD_NO,
@@ -225,7 +225,7 @@ public:
 	int					timeDemoStartTime;
 	int					numDemoFrames;		// for timeDemo and demoShot
 	int					demoTimeOffset;
-	renderView_t		currentDemoRenderView;
+	////renderView_t		currentDemoRenderView;
 	// the next one will be read when 
 	// com_frameTime + demoTimeOffset > currentDemoRenderView.
 
@@ -235,7 +235,7 @@ public:
 
 	idUserInterface *	guiInGame;
 	idUserInterface *	guiMainMenu;
-	idListGUI *			guiMainMenu_MapList;		// easy map list handling
+	////idListGUI *			guiMainMenu_MapList;		// easy map list handling
 	idUserInterface *	guiRestartMenu;
 	idUserInterface *	guiLoading;
 	idUserInterface *	guiIntro;

@@ -52,7 +52,7 @@ public:
 	static class idSys *		sys;
 	static class idCommon *		common;
 	static class idCVarSystem *	cvarSystem;
-	//static class idFileSystem *	fileSystem;
+	static class idFileSystem *	fileSystem;
 	static int					frameNumber;
 
 	static void					Init( void );
@@ -221,7 +221,7 @@ char *va(const char *fmt, ...);
 #include "math/Quat.h"
 #include "math/Rotation.h"
 #include "math/Plane.h"
-////#include "math/Pluecker.h"
+#include "math/Pluecker.h"
 ////#include "math/Polynomial.h"
 ////#include "math/Extrapolate.h"
 ////#include "math/Interpolate.h"
@@ -238,13 +238,13 @@ char *va(const char *fmt, ...);
 // geometry
 #include "geometry/DrawVert.h"
 #include "geometry/JointTransform.h"
-////#include "geometry/Winding.h"
-////#include "geometry/Winding2D.h"
+#include "geometry/Winding.h"
+#include "geometry/Winding2D.h"
 ////#include "geometry/Surface.h"
 ////#include "geometry/Surface_Patch.h"
 ////#include "geometry/Surface_Polytope.h"
 ////#include "geometry/Surface_SweptSpline.h"
-////#include "geometry/TraceModel.h"
+#include "geometry/TraceModel.h"
 
 // text manipulation
 #include "Str.h"
@@ -264,7 +264,7 @@ char *va(const char *fmt, ...);
 ////#include "containers/Hierarchy.h"
 ////#include "containers/Queue.h"
 ////#include "containers/Stack.h"
-////#include "containers/StrList.h"
+#include "containers/StrList.h"
 #include "containers/StrPool.h"
 ////#include "containers/VectorSet.h"
 ////#include "containers/PlaneSet.h"
@@ -276,7 +276,7 @@ char *va(const char *fmt, ...);
 
 ////// misc
 #include "Dict.h"
-////#include "LangDict.h"
+#include "LangDict.h"
 #include "BitMsg.h"
 ////#include "MapFile.h"
 ////#include "Timer.h"

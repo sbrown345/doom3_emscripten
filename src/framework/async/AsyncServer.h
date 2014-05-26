@@ -112,7 +112,7 @@ typedef struct serverClient_s {
 	int					gameFrame;
 	int					gameTime;
 
-	idMsgChannel		channel;
+		idMsgChannel		channel;
 	int					lastConnectTime;
 	int					lastEmptyTime;
 	int					lastPingTime;

@@ -29,7 +29,7 @@ If you have questions concerning this license or the applicable additional terms
 #include "../../idlib/precompiled.h"
 #pragma hdrstop
 
-#include "AsyncNetwork.h"
+////#include "AsyncNetwork.h"
 
 #include "../Session_local.h"
 
@@ -206,7 +206,9 @@ void idAsyncServer::Kill( void ) {
 	if ( !active ) {
 		return;
 	}
-
+		printf("todo: idAsyncServer::Kill");
+	exit(0);
+#ifdef TODO
 	// drop all clients
 	for ( i = 0; i < MAX_ASYNC_CLIENTS; i++ ) {
 		DropClient( i, "#str_07135" );
@@ -233,6 +235,7 @@ void idAsyncServer::Kill( void ) {
 
 	// shutdown any current game
 	session->Stop();
+#endif
 }
 
 /*
@@ -241,6 +244,9 @@ idAsyncServer::ExecuteMapChange
 ==================
 */
 void idAsyncServer::ExecuteMapChange( void ) {
+		printf("todo: idAsyncServer::ExecuteMapChange");
+	exit(0);
+#ifdef TODO
 	int			i;
 	idBitMsg	msg;
 	byte		msgBuf[MAX_MESSAGE_SIZE];
@@ -371,6 +377,7 @@ void idAsyncServer::ExecuteMapChange( void ) {
 
 	// serverTime gets reset, force a heartbeat so timings restart
 	MasterHeartbeat( true );
+#endif
 }
 
 /*

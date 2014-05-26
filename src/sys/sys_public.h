@@ -49,6 +49,7 @@
 #define ALIGN16( x )					__declspec(align(16)) x
 #define PACKED
 
+#define _alloca							alloca
 #define _alloca16( x )					((void *)((((int)_alloca( (x)+15 )) + 15) & ~15))
 #define stack_alloc						_alloca
 
@@ -288,10 +289,10 @@ template<class type> class idList;		// for Sys_ListFiles
 ////// allow game to yield CPU time
 ////// NOTE: due to SYS_MINSLEEP this is very bad portability karma, and should be completely removed
 ////void			Sys_Sleep( int msec );
-////
-////// Sys_Milliseconds should only be used for profiling purposes,
-////// any game related timing information should come from event timestamps
-////int				Sys_Milliseconds( void );
+
+// Sys_Milliseconds should only be used for profiling purposes,
+// any game related timing information should come from event timestamps
+int				Sys_Milliseconds( void );
 ////
 ////// for accurate performance testing
 ////double			Sys_GetClockTicks( void );
@@ -368,7 +369,7 @@ template<class type> class idList;		// for Sys_ListFiles
 ////void			Sys_ShutdownInput( void );
 ////void			Sys_InitScanTable( void );
 ////const unsigned char *Sys_GetScanTable( void );
-////unsigned char	Sys_GetConsoleKey( bool shifted );
+unsigned char	Sys_GetConsoleKey( bool shifted );
 ////// map a scancode key to a char
 ////// does nothing on win32, as SE_KEY == SE_CHAR there
 ////// on other OSes, consider the keyboard mapping
@@ -383,11 +384,11 @@ template<class type> class idList;		// for Sys_ListFiles
 ////int				Sys_PollMouseInputEvents( void );
 ////int				Sys_ReturnMouseInputEvent( const int n, int &action, int &value );
 ////void			Sys_EndMouseInputEvents( void );
-////
-////// when the console is down, or the game is about to perform a lengthy
-////// operation like map loading, the system can release the mouse cursor
-////// when in windowed mode
-////void			Sys_GrabMouseCursor( bool grabIt );
+
+// when the console is down, or the game is about to perform a lengthy
+// operation like map loading, the system can release the mouse cursor
+// when in windowed mode
+void			Sys_GrabMouseCursor( bool grabIt );
 ////
 ////void			Sys_ShowWindow( bool show );
 ////bool			Sys_IsWindowVisible( void );
@@ -395,7 +396,7 @@ template<class type> class idList;		// for Sys_ListFiles
 ////
 ////
 ////void			Sys_Mkdir( const char *path );
-////ID_TIME_T			Sys_FileTimeStamp( FILE *fp );
+ID_TIME_T			Sys_FileTimeStamp( FILE *fp );
 ////// NOTE: do we need to guarantee the same output on all platforms?
 ////const char *	Sys_TimeStampToStr( ID_TIME_T timeStamp );
 ////const char *	Sys_DefaultCDPath( void );
@@ -441,15 +442,15 @@ class idPort {
 ////				idPort();				// this just zeros netSocket and port
 ////	virtual		~idPort();
 ////
-////	// if the InitForPort fails, the idPort.port field will remain 0
-////	bool		InitForPort( int portNumber );
-////	int			GetPort( void ) const { return bound_to.port; }
-////	netadr_t	GetAdr( void ) const { return bound_to; }
-////	void		Close();
-////
-////	bool		GetPacket( netadr_t &from, void *data, int &size, int maxSize );
-////	bool		GetPacketBlocking( netadr_t &from, void *data, int &size, int maxSize, int timeout );
-////	void		SendPacket( const netadr_t to, const void *data, int size );
+	// if the InitForPort fails, the idPort.port field will remain 0
+	bool		InitForPort( int portNumber );
+	int			GetPort( void ) const { return bound_to.port; }
+	netadr_t	GetAdr( void ) const { return bound_to; }
+	void		Close();
+
+	bool		GetPacket( netadr_t &from, void *data, int &size, int maxSize );
+	bool		GetPacketBlocking( netadr_t &from, void *data, int &size, int maxSize, int timeout );
+	void		SendPacket( const netadr_t to, const void *data, int size );
 ////
 	int			packetsRead;
 	int			bytesRead;
@@ -462,26 +463,26 @@ private:
 	int			netSocket;		// OS specific socket
 };
 
-////class idTCP {
-////public:
-////				idTCP();
-////	virtual		~idTCP();
-////
-////	// if host is host:port, the value of port is ignored
-////	bool		Init( const char *host, short port );
-////	void		Close();
-////
-////	// returns -1 on failure (and closes socket)
-////	// those are non blocking, can be used for polling
-////	// there is no buffering, you are not guaranteed to Read or Write everything in a single call
-////	// (specially on win32, see recv and send documentation)
-////	int			Read( void *data, int size );
-////	int			Write( void *data, int size );
-////
-////private:
-////	netadr_t	address;		// remote address
-////	int			fd;				// OS specific socket
-////};
+class idTCP {
+public:
+				idTCP();
+	virtual		~idTCP();
+
+	// if host is host:port, the value of port is ignored
+	bool		Init( const char *host, short port );
+	void		Close();
+
+	// returns -1 on failure (and closes socket)
+	// those are non blocking, can be used for polling
+	// there is no buffering, you are not guaranteed to Read or Write everything in a single call
+	// (specially on win32, see recv and send documentation)
+	int			Read( void *data, int size );
+	int			Write( void *data, int size );
+
+private:
+	netadr_t	address;		// remote address
+	int			fd;				// OS specific socket
+};
 ////
 ////				// parses the port number
 ////				// can also do DNS resolve if you ask for it.
@@ -494,33 +495,33 @@ private:
 ////
 ////void			Sys_InitNetworking( void );
 ////void			Sys_ShutdownNetworking( void );
-////
-////
-/////*
-////==============================================================
-////
-////	Multi-threading
-////
-////==============================================================
-////*/
-////
-////typedef unsigned int (*xthread_t)( void * );
-////
-////typedef enum {
-////	THREAD_NORMAL,
-////	THREAD_ABOVE_NORMAL,
-////	THREAD_HIGHEST
-////} xthreadPriority;
-////
-////typedef struct {
-////	const char *	name;
-////	int				threadHandle;
-////	unsigned long	threadId;
-////} xthreadInfo;
-////
-////const int MAX_THREADS				= 10;
-////extern xthreadInfo *g_threads[MAX_THREADS];
-////extern int			g_thread_count;
+
+
+/*
+==============================================================
+
+	Multi-threading
+
+==============================================================
+*/
+
+typedef unsigned int (*xthread_t)( void * );
+
+typedef enum {
+	THREAD_NORMAL,
+	THREAD_ABOVE_NORMAL,
+	THREAD_HIGHEST
+} xthreadPriority;
+
+typedef struct {
+	const char *	name;
+	int				threadHandle;
+	unsigned long	threadId;
+} xthreadInfo;
+
+const int MAX_THREADS				= 10;
+extern xthreadInfo *g_threads[MAX_THREADS];
+extern int			g_thread_count;
 ////
 ////void				Sys_CreateThread( xthread_t function, void *parms, xthreadPriority priority, xthreadInfo &info, const char *name, xthreadInfo *threads[MAX_THREADS], int *thread_count );
 ////void				Sys_DestroyThread( xthreadInfo& info ); // sets threadHandle back to 0

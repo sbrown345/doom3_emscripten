@@ -114,8 +114,8 @@ private:
 	static idCVar		con_notifyTime;
 	static idCVar		con_noPrint;
 
-	////const idMaterial *	whiteShader;
-	////const idMaterial *	consoleShader;
+	const idMaterial *	whiteShader;
+	const idMaterial *	consoleShader;
 };
 
 static idConsoleLocal localConsole;
@@ -179,6 +179,9 @@ SCR_DrawFPS
 */
 #define	FPS_FRAMES	4
 float SCR_DrawFPS( float y ) {
+		printf("todo: SCR_DrawFPS");
+	exit(0);
+#ifdef TODO
 	char		*s;
 	int			w;
 	static int	previousTimes[FPS_FRAMES];
@@ -213,7 +216,7 @@ float SCR_DrawFPS( float y ) {
 
 		renderSystem->DrawBigStringExt( 635 - w, idMath::FtoiFast( y ) + 2, s, colorWhite, true, localConsole.charSetShader);
 	}
-
+#endif
 	return y + BIGCHAR_HEIGHT + 4;
 }
 
@@ -242,6 +245,9 @@ SCR_DrawAsyncStats
 ==================
 */
 float SCR_DrawAsyncStats( float y ) {
+		printf("todo: SCR_DrawAsyncStats");
+	exit(0);
+#ifdef TODO
 	int i, outgoingRate, incomingRate;
 	float outgoingCompression, incomingCompression;
 
@@ -286,7 +292,7 @@ float SCR_DrawAsyncStats( float y ) {
 		SCR_DrawTextRightAlign( y, "predicted frames: %d", idAsyncNetwork::client.GetPredictedFrames() );
 
 	}
-
+#endif
 	return y;
 }
 
@@ -296,6 +302,9 @@ SCR_DrawSoundDecoders
 ==================
 */
 float SCR_DrawSoundDecoders( float y ) {
+		printf("todo: SCR_DrawSoundDecoders");
+	exit(0);
+#ifdef TODO
 	int index, numActiveDecoders;
 	soundDecoderInfo_t decoderInfo;
 
@@ -317,6 +326,7 @@ float SCR_DrawSoundDecoders( float y ) {
 		SCR_DrawTextLeftAlign( y, "%3d: %3d%% (%1.2f) %s: %s (%dkB)", numActiveDecoders, percent, decoderInfo.lastVolume, decoderInfo.format.c_str(), decoderInfo.name.c_str(), decoderInfo.numBytes >> 10 );
 		numActiveDecoders++;
 	}
+#endif	
 	return y;
 }
 
@@ -457,6 +467,9 @@ Save the console contents out to a file
 ================
 */
 void idConsoleLocal::Dump( const char *fileName ) {
+		printf("todo: idConsoleLocal::Dump");
+	exit(0);
+#ifdef TODO
 	int		l, x, i;
 	short *	line;
 	idFile *f;
@@ -503,6 +516,7 @@ void idConsoleLocal::Dump( const char *fileName ) {
 	}
 
 	fileSystem->CloseFile( f );
+	#endif
 }
 
 /*
@@ -564,7 +578,9 @@ Handles history and console scrollback
 ====================
 */
 void idConsoleLocal::KeyDownEvent( int key ) {
-	
+		printf("todo: METHOD_NAME");
+	exit(0);
+#ifdef TODO
 	// Execute F key bindings
 	if ( key >= K_F1 && key <= K_F12 ) {
 		idKeyInput::ExecKeyBinding( key );
@@ -665,6 +681,7 @@ void idConsoleLocal::KeyDownEvent( int key ) {
 
 	// pass to the normal editline routine
 	consoleField.KeyDownEvent( key );
+#endif
 }
 
 /*
@@ -674,6 +691,9 @@ deals with scrolling text because we don't have key repeat
 ==============
 */
 void idConsoleLocal::Scroll( ) {
+		printf("todo: idConsoleLocal::Scroll");
+	exit(0);
+#ifdef TODO
 	if (lastKeyEvent == -1 || (lastKeyEvent+200) > eventLoop->Milliseconds()) {
 		return;
 	}
@@ -689,6 +709,7 @@ void idConsoleLocal::Scroll( ) {
 		nextKeyEvent = CONSOLE_REPEAT;
 		return;
 	}
+#endif
 }
 
 /*

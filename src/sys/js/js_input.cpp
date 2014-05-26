@@ -217,8 +217,10 @@ static byte s_scantokey[128] = {
 ////	mouse_active = false;
 ////}
 ////
-////void Sys_GrabMouseCursor( bool grabIt ) {
-////
+void Sys_GrabMouseCursor( bool grabIt ) {
+		printf("todo: Sys_GrabMouseCursor");
+	exit(0);
+#ifdef TODO
 ////#if defined( ID_DEDICATED )
 ////	return;
 ////#endif
@@ -258,7 +260,8 @@ static byte s_scantokey[128] = {
 ////	} else if ( !grabIt && mouse_active ) {
 ////		Sys_XUninstallGrabs();
 ////	}
-////}
+#endif
+}
 ////
 /////**
 //// * XPending() actually performs a blocking read 
@@ -563,4 +566,28 @@ unsigned char Sys_MapCharForKey( int _key ) {
 	return buf[ 0 ];
 #endif
 	return (unsigned char)_key;
+}
+
+
+
+
+
+
+
+/*
+===============
+Sys_GetConsoleKey
+===============
+*/
+//from win input
+unsigned char Sys_GetConsoleKey( bool shifted ) {
+		printf("todo: Sys_GetConsoleKey");
+	exit(0);
+#ifdef TODO
+	return keyScanTable[41 + ( shifted ? 128 : 0 )];
+#endif
+
+
+
+	return 0;//
 }

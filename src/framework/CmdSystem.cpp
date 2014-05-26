@@ -50,22 +50,22 @@ typedef struct commandDef_s {
 class idCmdSystemLocal : public idCmdSystem {
 public:
 	virtual void			Init( void );
-////	virtual void			Shutdown( void );
-////
+	virtual void			Shutdown( void );
+
 	virtual void			AddCommand( const char *cmdName, cmdFunction_t function, int flags, const char *description, argCompletion_t argCompletion = NULL );
-////	virtual void			RemoveCommand( const char *cmdName );
-////	virtual void			RemoveFlaggedCommands( int flags );
+	virtual void			RemoveCommand( const char *cmdName );
+	virtual void			RemoveFlaggedCommands( int flags );
 
 	virtual void			CommandCompletion( void(*callback)( const char *s ) );
 	virtual void			ArgCompletion( const char *cmdString, void(*callback)( const char *s ) );
-////
-////	virtual void			BufferCommandText( cmdExecution_t exec, const char *text );
-////	virtual void			ExecuteCommandBuffer( void );
+
+	virtual void			BufferCommandText( cmdExecution_t exec, const char *text );
+	virtual void			ExecuteCommandBuffer( void );
 
 	virtual void			ArgCompletion_FolderExtension( const idCmdArgs &args, void(*callback)( const char *s ), const char *folder, bool stripFolder, ... );
 	virtual void			ArgCompletion_DeclName( const idCmdArgs &args, void(*callback)( const char *s ), int type );
-////
-////	virtual void			BufferCommandArgs( cmdExecution_t exec, const idCmdArgs &args );
+
+	virtual void			BufferCommandArgs( cmdExecution_t exec, const idCmdArgs &args );
 ////
 ////	virtual void			SetupReloadEngine( const idCmdArgs &args );
 ////	virtual bool			PostReloadEngine( void );
@@ -80,22 +80,22 @@ public:
 	
 		int						wait;
 		int						textLength;
-		//byte					textBuf[MAX_CMD_BUFFER];
+		byte					textBuf[MAX_CMD_BUFFER];
 	
 		idStr					completionString;
-////	idStrList				completionParms;
-////
-////	// piggybacks on the text buffer, avoids tokenize again and screwing it up
-////	idList<idCmdArgs>		tokenizedCmds;
-////
-////	// a command stored to be executed after a reloadEngine and all associated commands have been processed
-////	idCmdArgs				postReload;
-////
-////private:	
-////	void					ExecuteTokenizedString( const idCmdArgs &args );
-////	void					ExecuteCommandText( const char *text );
-////	void					InsertCommandText( const char *text );
-////	void					AppendCommandText( const char *text );
+	idStrList				completionParms;
+
+	// piggybacks on the text buffer, avoids tokenize again and screwing it up
+	idList<idCmdArgs>		tokenizedCmds;
+
+	// a command stored to be executed after a reloadEngine and all associated commands have been processed
+	idCmdArgs				postReload;
+
+private:	
+	void					ExecuteTokenizedString( const idCmdArgs &args );
+	void					ExecuteCommandText( const char *text );
+	void					InsertCommandText( const char *text );
+	void					AppendCommandText( const char *text );
 ////
 ////	static void				ListByFlags( const idCmdArgs &args, cmdFlags_t flags );
 	static void				List_f( const idCmdArgs &args );
@@ -387,46 +387,46 @@ void idCmdSystemLocal::AddCommand( const char *cmdName, cmdFunction_t function, 
 	commands = cmd;
 }
 
-/////*
-////============
-////idCmdSystemLocal::RemoveCommand
-////============
-////*/
-////void idCmdSystemLocal::RemoveCommand( const char *cmdName ) {
-////	commandDef_t *cmd, **last;
-////
-////	for ( last = &commands, cmd = *last; cmd; cmd = *last ) {
-////		if ( idStr::Cmp( cmdName, cmd->name ) == 0 ) {
-////			*last = cmd->next;
-////			Mem_Free( cmd->name );
-////			Mem_Free( cmd->description );
-////			delete cmd;
-////			return;
-////		}
-////		last = &cmd->next;
-////	}
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::RemoveFlaggedCommands
-////============
-////*/
-////void idCmdSystemLocal::RemoveFlaggedCommands( int flags ) {
-////	commandDef_t *cmd, **last;
-////
-////	for ( last = &commands, cmd = *last; cmd; cmd = *last ) {
-////		if ( cmd->flags & flags ) {
-////			*last = cmd->next;
-////			Mem_Free( cmd->name );
-////			Mem_Free( cmd->description );
-////			delete cmd;
-////			continue;
-////		}
-////		last = &cmd->next;
-////	}
-////}
-////
+/*
+============
+idCmdSystemLocal::RemoveCommand
+============
+*/
+void idCmdSystemLocal::RemoveCommand( const char *cmdName ) {
+	commandDef_t *cmd, **last;
+
+	for ( last = &commands, cmd = *last; cmd; cmd = *last ) {
+		if ( idStr::Cmp( cmdName, cmd->name ) == 0 ) {
+			*last = cmd->next;
+			Mem_Free( cmd->name );
+			Mem_Free( cmd->description );
+			delete cmd;
+			return;
+		}
+		last = &cmd->next;
+	}
+}
+
+/*
+============
+idCmdSystemLocal::RemoveFlaggedCommands
+============
+*/
+void idCmdSystemLocal::RemoveFlaggedCommands( int flags ) {
+	commandDef_t *cmd, **last;
+
+	for ( last = &commands, cmd = *last; cmd; cmd = *last ) {
+		if ( cmd->flags & flags ) {
+			*last = cmd->next;
+			Mem_Free( cmd->name );
+			Mem_Free( cmd->description );
+			delete cmd;
+			continue;
+		}
+		last = &cmd->next;
+	}
+}
+
 /*
 ============
 idCmdSystemLocal::CommandCompletion
@@ -462,223 +462,223 @@ void idCmdSystemLocal::ArgCompletion( const char *cmdString, void(*callback)( co
 	}
 }
 
-/////*
-////============
-////idCmdSystemLocal::ExecuteTokenizedString
-////============
-////*/
-////void idCmdSystemLocal::ExecuteTokenizedString( const idCmdArgs &args ) {	
-////	commandDef_t *cmd, **prev;
-////	
-////	// execute the command line
-////	if ( !args.Argc() ) {
-////		return;		// no tokens
-////	}
-////
-////	// check registered command functions	
-////	for ( prev = &commands; *prev; prev = &cmd->next ) {
-////		cmd = *prev;
-////		if ( idStr::Icmp( args.Argv( 0 ), cmd->name ) == 0 ) {
-////			// rearrange the links so that the command will be
-////			// near the head of the list next time it is used
-////#ifndef JS_CHANGES
-////			*prev = cmd->next;
-////			cmd->next = commands;
-////			commands = cmd;
-////#endif
-////
-////			if ( ( cmd->flags & (CMD_FL_CHEAT|CMD_FL_TOOL) ) && session && session->IsMultiplayer() && !cvarSystem->GetCVarBool( "net_allowCheats" ) ) {
-////				common->Printf( "Command '%s' not valid in multiplayer mode.\n", cmd->name );
-////				return;
-////			}
-////			// perform the action
-////			if ( !cmd->function ) {
-////				break;
-////			} else {
-////				cmd->function( args );
-////			}
-////			return;
-////		}
-////	}
-////	
-////	// check cvars
-////	if ( cvarSystem->Command( args ) ) {
-////		return;
-////	}
-////
-////	common->Printf( "Unknown command '%s'\n", args.Argv( 0 ) );
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::ExecuteCommandText
-////
-////Tokenizes, then executes.
-////============
-////*/
-////void idCmdSystemLocal::ExecuteCommandText( const char *text ) {	
-////	ExecuteTokenizedString( idCmdArgs( text, false ) );
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::InsertCommandText
-////
-////Adds command text immediately after the current command
-////Adds a \n to the text
-////============
-////*/
-////void idCmdSystemLocal::InsertCommandText( const char *text ) {
-////	int		len;
-////	int		i;
-////
-////	len = strlen( text ) + 1;
-////	if ( len + textLength > (int)sizeof( textBuf ) ) {
-////		common->Printf( "idCmdSystemLocal::InsertText: buffer overflow\n" );
-////		return;
-////	}
-////
-////	// move the existing command text
-////	for ( i = textLength - 1; i >= 0; i-- ) {
-////		textBuf[ i + len ] = textBuf[ i ];
-////	}
-////
-////	// copy the new text in
-////	memcpy( textBuf, text, len - 1 );
-////
-////	// add a \n
-////	textBuf[ len - 1 ] = '\n';
-////
-////	textLength += len;
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::AppendCommandText
-////
-////Adds command text at the end of the buffer, does NOT add a final \n
-////============
-////*/
-////void idCmdSystemLocal::AppendCommandText( const char *text ) {
-////	int l;
-////	
-////	l = strlen( text );
-////
-////	if ( textLength + l >= (int)sizeof( textBuf ) ) {
-////		common->Printf( "idCmdSystemLocal::AppendText: buffer overflow\n" );
-////		return;
-////	}
-////	memcpy( textBuf + textLength, text, l );
-////	textLength += l;
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::BufferCommandText
-////============
-////*/
-////void idCmdSystemLocal::BufferCommandText( cmdExecution_t exec, const char *text ) {
-////	switch( exec ) {
-////		case CMD_EXEC_NOW: {
-////			ExecuteCommandText( text );
-////			break;
-////		}
-////		case CMD_EXEC_INSERT: {
-////			InsertCommandText( text );
-////			break;
-////		}
-////		case CMD_EXEC_APPEND: {
-////			AppendCommandText( text );
-////			break;
-////		}
-////		default: {
-////			common->FatalError( "idCmdSystemLocal::BufferCommandText: bad exec type" );
-////		}
-////	}
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::BufferCommandArgs
-////============
-////*/
-////void idCmdSystemLocal::BufferCommandArgs( cmdExecution_t exec, const idCmdArgs &args ) {
-////	switch ( exec ) {
-////		case CMD_EXEC_NOW: {
-////			ExecuteTokenizedString( args );
-////			break;
-////		}
-////		case CMD_EXEC_APPEND: {
-////			AppendCommandText( "_execTokenized\n" );
-////			tokenizedCmds.Append( args );
-////			break;
-////		}
-////		default: {
-////			common->FatalError( "idCmdSystemLocal::BufferCommandArgs: bad exec type" );
-////		}
-////	}
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::ExecuteCommandBuffer
-////============
-////*/
-////void idCmdSystemLocal::ExecuteCommandBuffer( void ) {
-////	int			i;
-////	char *		text;
-////	int			quotes;
-////	idCmdArgs	args;
-////
-////	while( textLength ) {
-////
-////		if ( wait )	{
-////			// skip out while text still remains in buffer, leaving it for next frame
-////			wait--;
-////			break;
-////		}
-////
-////		// find a \n or ; line break
-////		text = (char *)textBuf;
-////
-////		quotes = 0;
-////		for ( i = 0; i < textLength; i++ ) {
-////			if ( text[i] == '"' ) {
-////				quotes++;
-////			}
-////			if ( !( quotes & 1 ) &&  text[i] == ';' ) {
-////				break;	// don't break if inside a quoted string
-////			}
-////			if ( text[i] == '\n' || text[i] == '\r' ) {
-////				break;
-////			}
-////		}
-////			
-////		text[i] = 0;
-////
-////		if ( !idStr::Cmp( text, "_execTokenized" ) ) {
-////			args = tokenizedCmds[ 0 ];
-////			tokenizedCmds.RemoveIndex( 0 );
-////		} else {
-////			args.TokenizeString( text, false );
-////		}
-////
-////		// delete the text from the command buffer and move remaining commands down
-////		// this is necessary because commands (exec) can insert data at the
-////		// beginning of the text buffer
-////
-////		if ( i == textLength ) {
-////			textLength = 0;
-////		} else {
-////			i++;
-////			textLength -= i;
-////			memmove( text, text+i, textLength );
-////		}
-////
-////		// execute the command line that we have already tokenized
-////		ExecuteTokenizedString( args );
-////	}
-////}
+/*
+============
+idCmdSystemLocal::ExecuteTokenizedString
+============
+*/
+void idCmdSystemLocal::ExecuteTokenizedString( const idCmdArgs &args ) {	
+	commandDef_t *cmd, **prev;
+	
+	// execute the command line
+	if ( !args.Argc() ) {
+		return;		// no tokens
+	}
+
+	// check registered command functions	
+	for ( prev = &commands; *prev; prev = &cmd->next ) {
+		cmd = *prev;
+		if ( idStr::Icmp( args.Argv( 0 ), cmd->name ) == 0 ) {
+			// rearrange the links so that the command will be
+			// near the head of the list next time it is used
+#ifndef JS_CHANGES
+			*prev = cmd->next;
+			cmd->next = commands;
+			commands = cmd;
+#endif
+
+			if ( ( cmd->flags & (CMD_FL_CHEAT|CMD_FL_TOOL) ) && session && session->IsMultiplayer() && !cvarSystem->GetCVarBool( "net_allowCheats" ) ) {
+				common->Printf( "Command '%s' not valid in multiplayer mode.\n", cmd->name );
+				return;
+			}
+			// perform the action
+			if ( !cmd->function ) {
+				break;
+			} else {
+				cmd->function( args );
+			}
+			return;
+		}
+	}
+	
+	// check cvars
+	if ( cvarSystem->Command( args ) ) {
+		return;
+	}
+
+	common->Printf( "Unknown command '%s'\n", args.Argv( 0 ) );
+}
+
+/*
+============
+idCmdSystemLocal::ExecuteCommandText
+
+Tokenizes, then executes.
+============
+*/
+void idCmdSystemLocal::ExecuteCommandText( const char *text ) {	
+	ExecuteTokenizedString( idCmdArgs( text, false ) );
+}
+
+/*
+============
+idCmdSystemLocal::InsertCommandText
+
+Adds command text immediately after the current command
+Adds a \n to the text
+============
+*/
+void idCmdSystemLocal::InsertCommandText( const char *text ) {
+	int		len;
+	int		i;
+
+	len = strlen( text ) + 1;
+	if ( len + textLength > (int)sizeof( textBuf ) ) {
+		common->Printf( "idCmdSystemLocal::InsertText: buffer overflow\n" );
+		return;
+	}
+
+	// move the existing command text
+	for ( i = textLength - 1; i >= 0; i-- ) {
+		textBuf[ i + len ] = textBuf[ i ];
+	}
+
+	// copy the new text in
+	memcpy( textBuf, text, len - 1 );
+
+	// add a \n
+	textBuf[ len - 1 ] = '\n';
+
+	textLength += len;
+}
+
+/*
+============
+idCmdSystemLocal::AppendCommandText
+
+Adds command text at the end of the buffer, does NOT add a final \n
+============
+*/
+void idCmdSystemLocal::AppendCommandText( const char *text ) {
+	int l;
+	
+	l = strlen( text );
+
+	if ( textLength + l >= (int)sizeof( textBuf ) ) {
+		common->Printf( "idCmdSystemLocal::AppendText: buffer overflow\n" );
+		return;
+	}
+	memcpy( textBuf + textLength, text, l );
+	textLength += l;
+}
+
+/*
+============
+idCmdSystemLocal::BufferCommandText
+============
+*/
+void idCmdSystemLocal::BufferCommandText( cmdExecution_t exec, const char *text ) {
+	switch( exec ) {
+		case CMD_EXEC_NOW: {
+			ExecuteCommandText( text );
+			break;
+		}
+		case CMD_EXEC_INSERT: {
+			InsertCommandText( text );
+			break;
+		}
+		case CMD_EXEC_APPEND: {
+			AppendCommandText( text );
+			break;
+		}
+		default: {
+			common->FatalError( "idCmdSystemLocal::BufferCommandText: bad exec type" );
+		}
+	}
+}
+
+/*
+============
+idCmdSystemLocal::BufferCommandArgs
+============
+*/
+void idCmdSystemLocal::BufferCommandArgs( cmdExecution_t exec, const idCmdArgs &args ) {
+	switch ( exec ) {
+		case CMD_EXEC_NOW: {
+			ExecuteTokenizedString( args );
+			break;
+		}
+		case CMD_EXEC_APPEND: {
+			AppendCommandText( "_execTokenized\n" );
+			tokenizedCmds.Append( args );
+			break;
+		}
+		default: {
+			common->FatalError( "idCmdSystemLocal::BufferCommandArgs: bad exec type" );
+		}
+	}
+}
+
+/*
+============
+idCmdSystemLocal::ExecuteCommandBuffer
+============
+*/
+void idCmdSystemLocal::ExecuteCommandBuffer( void ) {
+	int			i;
+	char *		text;
+	int			quotes;
+	idCmdArgs	args;
+
+	while( textLength ) {
+
+		if ( wait )	{
+			// skip out while text still remains in buffer, leaving it for next frame
+			wait--;
+			break;
+		}
+
+		// find a \n or ; line break
+		text = (char *)textBuf;
+
+		quotes = 0;
+		for ( i = 0; i < textLength; i++ ) {
+			if ( text[i] == '"' ) {
+				quotes++;
+			}
+			if ( !( quotes & 1 ) &&  text[i] == ';' ) {
+				break;	// don't break if inside a quoted string
+			}
+			if ( text[i] == '\n' || text[i] == '\r' ) {
+				break;
+			}
+		}
+			
+		text[i] = 0;
+
+		if ( !idStr::Cmp( text, "_execTokenized" ) ) {
+			args = tokenizedCmds[ 0 ];
+			tokenizedCmds.RemoveIndex( 0 );
+		} else {
+			args.TokenizeString( text, false );
+		}
+
+		// delete the text from the command buffer and move remaining commands down
+		// this is necessary because commands (exec) can insert data at the
+		// beginning of the text buffer
+
+		if ( i == textLength ) {
+			textLength = 0;
+		} else {
+			i++;
+			textLength -= i;
+			memmove( text, text+i, textLength );
+		}
+
+		// execute the command line that we have already tokenized
+		ExecuteTokenizedString( args );
+	}
+}
 
 /*
 ============

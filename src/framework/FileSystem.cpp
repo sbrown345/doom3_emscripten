@@ -425,9 +425,9 @@ private:
 	static idCVar			fs_caseSensitiveOS;
 	static idCVar			fs_searchAddons;
 
-	backgroundDownload_t *	backgroundDownloads;
-	backgroundDownload_t	defaultBackgroundDownload;
-	xthreadInfo				backgroundThread;
+	////backgroundDownload_t *	backgroundDownloads;
+	////backgroundDownload_t	defaultBackgroundDownload;
+	////xthreadInfo				backgroundThread;
 
 	idList<pack_t *>		serverPaks;
 	bool					loadedFileFromDir;		// set to true once a file was loaded from a directory - can't switch to pure anymore
@@ -514,7 +514,9 @@ idFileSystemLocal::idFileSystemLocal( void ) {
 	d3xp = 0;
 	loadedFileFromDir = false;
 	restartGamePakChecksum = 0;
+#ifdef TODO
 	memset( &backgroundThread, 0, sizeof( backgroundThread ) );
+#endif
 	addonPaks = NULL;
 }
 
@@ -3624,6 +3626,9 @@ Reads part of a file from a background thread.
 ===================
 */
 dword BackgroundDownloadThread( void *parms ) {
+		printf("todo: BackgroundDownload");
+	exit(0);
+#ifdef TODO
 	while( 1 ) {
 		Sys_EnterCriticalSection();
 		backgroundDownload_t	*bgl = fileSystemLocal.backgroundDownloads;
@@ -3736,6 +3741,7 @@ dword BackgroundDownloadThread( void *parms ) {
 #endif
 		}
 	}
+#endif
 	return 0;
 }
 
@@ -3745,6 +3751,9 @@ idFileSystemLocal::StartBackgroundReadThread
 =================
 */
 void idFileSystemLocal::StartBackgroundDownloadThread() {
+		printf("todo: idFileSystemLocal::StartBackgroundReadThread");
+	exit(0);
+#ifdef TODO
 	if ( !backgroundThread.threadHandle ) {
 		Sys_CreateThread( (xthread_t)BackgroundDownloadThread, NULL, THREAD_NORMAL, backgroundThread, "backgroundDownload", g_threads, &g_thread_count );
 		if ( !backgroundThread.threadHandle ) {
@@ -3753,6 +3762,7 @@ void idFileSystemLocal::StartBackgroundDownloadThread() {
 	} else {
 		common->Printf( "background thread already running\n" );
 	}
+#endif
 }
 
 /*
@@ -3761,6 +3771,9 @@ idFileSystemLocal::BackgroundDownload
 =================
 */
 void idFileSystemLocal::BackgroundDownload( backgroundDownload_t *bgl ) {
+		printf("todo: idFileSystemLocal::BackgroundDownload");
+	exit(0);
+#ifdef TODO
 	if ( bgl->opcode == DLTYPE_FILE ) {
 		if ( dynamic_cast<idFile_Permanent *>(bgl->f) ) {
 			// add the bgl to the background download list
@@ -3782,6 +3795,7 @@ void idFileSystemLocal::BackgroundDownload( backgroundDownload_t *bgl ) {
 		Sys_TriggerEvent();
 		Sys_LeaveCriticalSection();
 	}
+#endif
 }
 
 /*

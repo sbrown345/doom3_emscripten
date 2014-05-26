@@ -114,6 +114,9 @@ idLangDict::Save
 ============
 */
 void idLangDict::Save( const char *fileName ) {
+		printf("todo: idLangDict::Save");
+	exit(0);
+#ifdef TODO
 	idFile *outFile = idLib::fileSystem->OpenFileWrite( fileName );
 	outFile->WriteFloatString( "// string table\n// english\n//\n\n{\n" );
 	for ( int j = 0; j < args.Num(); j++ ) {
@@ -138,6 +141,7 @@ void idLangDict::Save( const char *fileName ) {
 	}
 	outFile->WriteFloatString( "\n}\n" );
 	idLib::fileSystem->CloseFile( outFile );
+#endif
 }
 
 /*

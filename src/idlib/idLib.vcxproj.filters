@@ -95,6 +95,19 @@
     <ClCompile Include="hashing\MD5.cpp">
       <Filter>Hashing</Filter>
     </ClCompile>
+    <ClCompile Include="geometry\TraceModel.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\Winding.cpp">
+      <Filter>BV</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\Winding2D.cpp">
+      <Filter>BV</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Pluecker.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="LangDict.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompiled.h" />
@@ -180,5 +193,21 @@
     <ClInclude Include="hashing\MD5.h">
       <Filter>Hashing</Filter>
     </ClInclude>
+    <ClInclude Include="containers\StrList.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\TraceModel.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Winding.h">
+      <Filter>BV</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Winding2D.h">
+      <Filter>BV</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Pluecker.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="LangDict.h" />
   </ItemGroup>
 </Project>

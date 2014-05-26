@@ -136,10 +136,10 @@ class idCommonLocal : public idCommon {
 	virtual void				Warning( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 	virtual void				DWarning( const char *fmt, ...) id_attribute((format(printf,2,3)));
 ////	virtual void				PrintWarnings( void );
-////	virtual void				ClearWarnings( const char *reason );
+	virtual void				ClearWarnings( const char *reason );
 	virtual void				Error( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 	virtual void				FatalError( const char *fmt, ... ) id_attribute((format(printf,2,3)));
-////	virtual const idLangDict *	GetLanguageDict( void );
+	virtual const idLangDict *	GetLanguageDict( void );
 ////
 ////	virtual const char *		KeysFromBinding( const char *bind );
 ////	virtual const char *		BindingFromKey( const char *key );
@@ -175,27 +175,27 @@ class idCommonLocal : public idCommon {
 ////	void						UnloadGameDLL( void );
 ////	void						PrintLoadingMessage( const char *msg );
 ////	void						FilterLangList( idStrList* list, idStr lang );
-////
-////	bool						com_fullyInitialized;
-////	bool						com_refreshOnPrint;		// update the screen every print for dmap
-////	int							com_errorEntered;		// 0, ERP_DROP, etc
-////	bool						com_shuttingDown;
-////
-////	idFile *					logFile;
-////
-////	char						errorMessage[MAX_PRINT_MSG_SIZE];
-////
-////	char *						rd_buffer;
-////	int							rd_buffersize;
-////	void						(*rd_flush)( const char *buffer );
-////
-////	idStr						warningCaption;
-////	idStrList					warningList;
-////	idStrList					errorList;
-////
-////	int							gameDLL;
-////
-////	idLangDict					languageDict;
+
+	bool						com_fullyInitialized;
+	bool						com_refreshOnPrint;		// update the screen every print for dmap
+	int							com_errorEntered;		// 0, ERP_DROP, etc
+	bool						com_shuttingDown;
+
+	idFile *					logFile;
+
+	char						errorMessage[MAX_PRINT_MSG_SIZE];
+
+	char *						rd_buffer;
+	int							rd_buffersize;
+	void						(*rd_flush)( const char *buffer );
+
+	idStr						warningCaption;
+	idStrList					warningList;
+	idStrList					errorList;
+
+	int							gameDLL;
+
+	idLangDict					languageDict;
 ////
 ////#ifdef ID_WRITE_VERSION
 ////	idCompressor *				config_compressor;
@@ -212,7 +212,6 @@ idCommonLocal::idCommonLocal
 ==================
 */
 idCommonLocal::idCommonLocal( void ) {
-#ifdef TODO
 	com_fullyInitialized = false;
 	com_refreshOnPrint = false;
 	com_errorEntered = 0;
@@ -230,7 +229,6 @@ idCommonLocal::idCommonLocal( void ) {
 
 #ifdef ID_WRITE_VERSION
 	config_compressor = NULL;
-#endif
 #endif
 }
 
@@ -581,16 +579,16 @@ void idCommonLocal::Warning( const char *fmt, ... ) {
 ////		}
 ////	}
 ////}
-////
-/////*
-////==================
-////idCommonLocal::ClearWarnings
-////==================
-////*/
-////void idCommonLocal::ClearWarnings( const char *reason ) {
-////	warningCaption = reason;
-////	warningList.Clear();
-////}
+
+/*
+==================
+idCommonLocal::ClearWarnings
+==================
+*/
+void idCommonLocal::ClearWarnings( const char *reason ) {
+	warningCaption = reason;
+	warningList.Clear();
+}
 ////
 /////*
 ////==================
@@ -1585,15 +1583,15 @@ void idCommonLocal::FatalError( const char *fmt, ... ) {
 ////		}
 ////	}
 ////}
-////
-/////*
-////===============
-////idCommonLocal::GetLanguageDict
-////===============
-////*/
-////const idLangDict *idCommonLocal::GetLanguageDict( void ) {
-////	return &languageDict;
-////}
+
+/*
+===============
+idCommonLocal::GetLanguageDict
+===============
+*/
+const idLangDict *idCommonLocal::GetLanguageDict( void ) {
+	return &languageDict;
+}
 ////
 /////*
 ////===============

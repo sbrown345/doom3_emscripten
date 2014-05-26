@@ -485,6 +485,9 @@ idEditField::Paste
 ===============
 */
 void idEditField::Paste( void ) {
+		printf("todo: idEditField::Paste");
+	exit(0);
+#ifdef TODO
 	char	*cbd;
 	int		pasteLen, i;
 
@@ -501,6 +504,7 @@ void idEditField::Paste( void ) {
 	}
 
 	Mem_Free( cbd );
+	#endif
 }
 
 /*

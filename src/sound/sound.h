@@ -310,8 +310,8 @@ public:
 	// is specified
 	virtual void			SetMute( bool mute ) = 0;
 
-	// for the sound level meter window
-	virtual cinData_t		ImageForTime( const int milliseconds, const bool waveform ) = 0;
+	////// for the sound level meter window
+	////virtual cinData_t		ImageForTime( const int milliseconds, const bool waveform ) = 0;
 
 	// get sound decoder info
 	virtual int				GetSoundDecoderInfo( int index, soundDecoderInfo_t &decoderInfo ) = 0;
