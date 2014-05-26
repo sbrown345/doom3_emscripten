@@ -66,6 +66,36 @@
     <ClCompile Include="..\ui\UserInterface.cpp">
       <Filter>Ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\framework\KeyInput.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sys\js\js_input.cpp">
+      <Filter>Sys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\Console.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\RenderSystem.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\DeclManager.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\async\AsyncServer.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\async\MsgChannel.cpp">
+      <Filter>Framework\Async</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\Compressor.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\File.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\framework\EditField.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\framework\Common.h">
@@ -103,6 +133,48 @@
     </ClInclude>
     <ClInclude Include="..\ui\UserInterfaceLocal.h">
       <Filter>Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\Licensee.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\BuildDefines.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\BuildVersion.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\KeyInput.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\sys\js\js_local.h">
+      <Filter>Sys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\Console.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\RenderSystem.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\Material.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\DeclManager.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\async\AsyncServer.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\async\MsgChannel.h">
+      <Filter>Framework\Async</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\Compressor.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\File.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\framework\EditField.h">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

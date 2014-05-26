@@ -28,60 +28,60 @@
 ////
 ////#ifndef __COMMON_H__
 ////#define __COMMON_H__
-////
-/////*
-////==============================================================
-////
-////  Common
-////
-////==============================================================
-////*/
-////
-////typedef enum {
-////	EDITOR_NONE					= 0,
-////	EDITOR_RADIANT				= BIT(1),
-////	EDITOR_GUI					= BIT(2),
-////	EDITOR_DEBUGGER				= BIT(3),
-////	EDITOR_SCRIPT				= BIT(4),
-////	EDITOR_LIGHT				= BIT(5),
-////	EDITOR_SOUND				= BIT(6),
-////	EDITOR_DECL					= BIT(7),
-////	EDITOR_AF					= BIT(8),
-////	EDITOR_PARTICLE				= BIT(9),
-////	EDITOR_PDA					= BIT(10),
-////	EDITOR_AAS					= BIT(11),
-////	EDITOR_MATERIAL				= BIT(12)
-////} toolFlag_t;
-////
-////#define STRTABLE_ID				"#str_"
-////#define STRTABLE_ID_LENGTH		5
-////
-////extern idCVar		com_version;
-////extern idCVar		com_skipRenderer;
-////extern idCVar		com_asyncInput;
-////extern idCVar		com_asyncSound;
-////extern idCVar		com_machineSpec;
-////extern idCVar		com_purgeAll;
-////extern idCVar		com_developer;
-////extern idCVar		com_allowConsole;
-////extern idCVar		com_speeds;
-////extern idCVar		com_showFPS;
-////extern idCVar		com_showMemoryUsage;
-////extern idCVar		com_showAsyncStats;
-////extern idCVar		com_showSoundDecoders;
-////extern idCVar		com_makingBuild;
-////extern idCVar		com_updateLoadSize;
-////extern idCVar		com_videoRam;
-////
-////extern int			time_gameFrame;			// game logic time
-////extern int			time_gameDraw;			// game present time
-////extern int			time_frontend;			// renderer frontend time
-////extern int			time_backend;			// renderer backend time
-////
-////extern int			com_frameTime;			// time for the current frame in milliseconds
-////extern volatile int	com_ticNumber;			// 60 hz tics, incremented by async function
-////extern int			com_editors;			// current active editor(s)
-////extern bool			com_editorActive;		// true if an editor has focus
+
+/*
+==============================================================
+
+  Common
+
+==============================================================
+*/
+
+typedef enum {
+	EDITOR_NONE					= 0,
+	EDITOR_RADIANT				= BIT(1),
+	EDITOR_GUI					= BIT(2),
+	EDITOR_DEBUGGER				= BIT(3),
+	EDITOR_SCRIPT				= BIT(4),
+	EDITOR_LIGHT				= BIT(5),
+	EDITOR_SOUND				= BIT(6),
+	EDITOR_DECL					= BIT(7),
+	EDITOR_AF					= BIT(8),
+	EDITOR_PARTICLE				= BIT(9),
+	EDITOR_PDA					= BIT(10),
+	EDITOR_AAS					= BIT(11),
+	EDITOR_MATERIAL				= BIT(12)
+} toolFlag_t;
+
+#define STRTABLE_ID				"#str_"
+#define STRTABLE_ID_LENGTH		5
+
+extern idCVar		com_version;
+extern idCVar		com_skipRenderer;
+extern idCVar		com_asyncInput;
+extern idCVar		com_asyncSound;
+extern idCVar		com_machineSpec;
+extern idCVar		com_purgeAll;
+extern idCVar		com_developer;
+extern idCVar		com_allowConsole;
+extern idCVar		com_speeds;
+extern idCVar		com_showFPS;
+extern idCVar		com_showMemoryUsage;
+extern idCVar		com_showAsyncStats;
+extern idCVar		com_showSoundDecoders;
+extern idCVar		com_makingBuild;
+extern idCVar		com_updateLoadSize;
+extern idCVar		com_videoRam;
+
+extern int			time_gameFrame;			// game logic time
+extern int			time_gameDraw;			// game present time
+extern int			time_frontend;			// renderer frontend time
+extern int			time_backend;			// renderer backend time
+
+extern int			com_frameTime;			// time for the current frame in milliseconds
+extern volatile int	com_ticNumber;			// 60 hz tics, incremented by async function
+extern int			com_editors;			// current active editor(s)
+extern bool			com_editorActive;		// true if an editor has focus
 ////
 ////#ifdef _WIN32
 ////const char			DMAP_MSGID[] = "DMAPOutput";
@@ -89,26 +89,26 @@
 ////extern HWND			com_hwndMsg;
 ////extern bool			com_outputMsg;
 ////#endif
-////
-////struct MemInfo_t {
-////	idStr			filebase;
-////
-////	int				total;
-////	int				assetTotals;
-////
-////	// memory manager totals
-////	int				memoryManagerTotal;
-////
-////	// subsystem totals
-////	int				gameSubsystemTotal;
-////	int				renderSubsystemTotal;
-////
-////	// asset totals
-////	int				imageAssetsTotal;
-////	int				modelAssetsTotal;
-////	int				soundAssetsTotal;
-////};
-////
+
+struct MemInfo_t {
+	idStr			filebase;
+
+	int				total;
+	int				assetTotals;
+
+	// memory manager totals
+	int				memoryManagerTotal;
+
+	// subsystem totals
+	int				gameSubsystemTotal;
+	int				renderSubsystemTotal;
+
+	// asset totals
+	int				imageAssetsTotal;
+	int				modelAssetsTotal;
+	int				soundAssetsTotal;
+};
+
 class idCommon {
 public:
 	virtual						~idCommon( void ) {}
@@ -167,18 +167,18 @@ public:
 								// Prints message to the console, which may cause a screen update if com_refreshOnPrint is set.
 	virtual void				Printf( const char *fmt, ... )id_attribute((format(printf,2,3))) = 0;
 
-////								// Same as Printf, with a more usable API - Printf pipes to this.
-////	virtual void				VPrintf( const char *fmt, va_list arg ) = 0;
-////
-////								// Prints message that only shows up if the "developer" cvar is set,
-////								// and NEVER forces a screen update, which could cause reentrancy problems.
-////	virtual void				DPrintf( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
+								// Same as Printf, with a more usable API - Printf pipes to this.
+	virtual void				VPrintf( const char *fmt, va_list arg ) = 0;
+
+								// Prints message that only shows up if the "developer" cvar is set,
+								// and NEVER forces a screen update, which could cause reentrancy problems.
+	virtual void				DPrintf( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
 
 								// Prints WARNING %s message and adds the warning message to a queue for printing later on.
 	virtual void				Warning( const char *fmt, ... ) id_attribute((format(printf,2,3))) = 0;
-////
-////								// Prints WARNING %s message in yellow that only shows up if the "developer" cvar is set.
-////	virtual void				DWarning( const char *fmt, ...) id_attribute((format(printf,2,3))) = 0;
+
+								// Prints WARNING %s message in yellow that only shows up if the "developer" cvar is set.
+	virtual void				DWarning( const char *fmt, ...) id_attribute((format(printf,2,3))) = 0;
 ////
 ////								// Prints all queued warnings.
 ////	virtual void				PrintWarnings( void ) = 0;

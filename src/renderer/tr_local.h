@@ -725,7 +725,7 @@ public:
 	virtual void			DrawDemoPics();
 	virtual void			BeginFrame( int windowWidth, int windowHeight );
 	virtual void			EndFrame( int *frontEndMsec, int *backEndMsec );
-	virtual void			TakeScreenshot( int width, int height, const char *fileName, int downSample, renderView_t *ref );
+	////virtual void			TakeScreenshot( int width, int height, const char *fileName, int downSample, renderView_t *ref );
 	virtual void			CropRenderSize( int width, int height, bool makePowerOfTwo = false, bool forceDimensions = false );
 	virtual void			CaptureRenderToImage( const char *imageName );
 	virtual void			CaptureRenderToFile( const char *fileName, bool fixAlpha );
@@ -739,7 +739,7 @@ public:
 
 	void					Clear( void );
 	void					SetBackEndRenderer();			// sets tr.backEndRenderer based on cvars
-	void					RenderViewToViewport( const renderView_t *renderView, idScreenRect *viewport );
+	////void					RenderViewToViewport( const renderView_t *renderView, idScreenRect *viewport );
 
 public:
 	// renderer globals
@@ -771,7 +771,7 @@ public:
 	idList<idRenderWorldLocal*>worlds;
 
 	idRenderWorldLocal *	primaryWorld;
-	renderView_t			primaryRenderView;
+	////renderView_t			primaryRenderView;
 	viewDef_t *				primaryView;
 	// many console commands need to know which world they should operate on
 
@@ -985,20 +985,20 @@ GL wrapper/helper functions
 
 ====================================================================
 */
-
-void	GL_SelectTexture( int unit );
-void	GL_UseProgram(shaderProgram_s *program);
-void	GL_Uniform1fv(GLint location, const GLfloat *value);
-void	GL_Uniform4fv(GLint location, const GLfloat *value);
-void	GL_UniformMatrix4fv(GLint location, const GLfloat *value);
-void	GL_EnableVertexAttribArray(GLuint index);
-void	GL_DisableVertexAttribArray(GLuint index);
-void	GL_VertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid *pointer);
-void	GL_CheckErrors( void );
-void	GL_ClearStateDelta( void );
-void	GL_State( int stateVector );
-void	GL_TexEnv( int env );
-void	GL_Cull( int cullType );
+////
+////void	GL_SelectTexture( int unit );
+////void	GL_UseProgram(shaderProgram_s *program);
+////void	GL_Uniform1fv(GLint location, const GLfloat *value);
+////void	GL_Uniform4fv(GLint location, const GLfloat *value);
+////void	GL_UniformMatrix4fv(GLint location, const GLfloat *value);
+////void	GL_EnableVertexAttribArray(GLuint index);
+////void	GL_DisableVertexAttribArray(GLuint index);
+////void	GL_VertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid *pointer);
+////void	GL_CheckErrors( void );
+////void	GL_ClearStateDelta( void );
+////void	GL_State( int stateVector );
+////void	GL_TexEnv( int env );
+////void	GL_Cull( int cullType );
 
 const int GLS_SRCBLEND_ZERO						= 0x00000001;
 const int GLS_SRCBLEND_ONE						= 0x0;

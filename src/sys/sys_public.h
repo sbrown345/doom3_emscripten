@@ -28,15 +28,39 @@
 ////
 ////#ifndef __SYS_PUBLIC__
 ////#define __SYS_PUBLIC__
+
+/*
+===============================================================================
+
+	Non-portable system services.
+
+===============================================================================
+*/
+
+////#define EMSCRIPTEN
 ////
-/////*
-////===============================================================================
-////
-////	Non-portable system services.
-////
-////===============================================================================
-////*/
-////
+////#if defined(EMSCRIPTEN)
+
+#define	BUILD_STRING					"JavaScript"
+#define BUILD_OS_ID						0
+#define	CPUSTRING						"JavaScript "
+#define CPU_EASYARGS					1
+
+#define ALIGN16( x )					__declspec(align(16)) x
+#define PACKED
+
+#define _alloca16( x )					((void *)((((int)_alloca( (x)+15 )) + 15) & ~15))
+#define stack_alloc						_alloca
+
+#define PATHSEPERATOR_STR				"\\"
+#define PATHSEPERATOR_CHAR				'\\'
+
+#define ID_INLINE						__forceinline
+#define ID_STATIC_TEMPLATE				//static
+
+#define assertmem( x, y )				assert( _CrtIsValidPointer( x, y, true ) )
+
+////#endif
 ////
 ////// Win32
 ////#if defined(WIN32) || defined(_WIN32)
@@ -55,7 +79,7 @@
 ////#define PATHSEPERATOR_STR				"\\"
 ////#define PATHSEPERATOR_CHAR				'\\'
 ////
-#define ID_INLINE						__forceinline
+////#define ID_INLINE						__forceinline
 ////#define ID_STATIC_TEMPLATE				static
 ////
 ////#define assertmem( x, y )				assert( _CrtIsValidPointer( x, y, true ) )
@@ -539,7 +563,7 @@ enum {
 
 class idSys {
 public:
-////	virtual void			DebugPrintf( const char *fmt, ... )id_attribute((format(printf,2,3))) = 0;
+	virtual void			DebugPrintf( const char *fmt, ... )id_attribute((format(printf,2,3))) = 0;
 ////	virtual void			DebugVPrintf( const char *fmt, va_list arg ) = 0;
 ////
 ////	virtual double			GetClockTicks( void ) = 0;

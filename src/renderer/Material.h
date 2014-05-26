@@ -590,25 +590,25 @@ public:
 private:
 	// parse the entire material
 	void				CommonInit();
-	void				ParseMaterial( idLexer &src );
-	bool				MatchToken( idLexer &src, const char *match );
-	void				ParseSort( idLexer &src );
-	void				ParseBlend( idLexer &src, shaderStage_t *stage );
-	void				ParseVertexParm( idLexer &src, newShaderStage_t *newStage );
-	void				ParseFragmentMap( idLexer &src, newShaderStage_t *newStage );
-	void				ParseStage( idLexer &src, const textureRepeat_t trpDefault = TR_REPEAT );
-	void				ParseDeform( idLexer &src );
-	void				ParseDecalInfo( idLexer &src );
-	bool				CheckSurfaceParm( idToken *token );
-	int					GetExpressionConstant( float f );
-	int					GetExpressionTemporary( void );
-	expOp_t	*			GetExpressionOp( void );
-	int					EmitOp( int a, int b, expOpType_t opType );
-	int					ParseEmitOp( idLexer &src, int a, expOpType_t opType, int priority );
-	int					ParseTerm( idLexer &src );
-	int					ParseExpressionPriority( idLexer &src, int priority );
-	int					ParseExpression( idLexer &src );
-	void				ClearStage( shaderStage_t *ss );
+	////void				ParseMaterial( idLexer &src );
+	////bool				MatchToken( idLexer &src, const char *match );
+	////void				ParseSort( idLexer &src );
+	////void				ParseBlend( idLexer &src, shaderStage_t *stage );
+	////void				ParseVertexParm( idLexer &src, newShaderStage_t *newStage );
+	////void				ParseFragmentMap( idLexer &src, newShaderStage_t *newStage );
+	////void				ParseStage( idLexer &src, const textureRepeat_t trpDefault = TR_REPEAT );
+	////void				ParseDeform( idLexer &src );
+	////void				ParseDecalInfo( idLexer &src );
+	////bool				CheckSurfaceParm( idToken *token );
+	////int					GetExpressionConstant( float f );
+	////int					GetExpressionTemporary( void );
+	////expOp_t	*			GetExpressionOp( void );
+	////int					EmitOp( int a, int b, expOpType_t opType );
+	////int					ParseEmitOp( idLexer &src, int a, expOpType_t opType, int priority );
+	////int					ParseTerm( idLexer &src );
+	////int					ParseExpressionPriority( idLexer &src, int priority );
+	////int					ParseExpression( idLexer &src );
+	////void				ClearStage( shaderStage_t *ss );
 	int					NameToSrcBlendMode( const idStr &name );
 	int					NameToDstBlendMode( const idStr &name );
 	void				MultiplyTextureMatrix( textureStage_t *ts, int registers[2][3] );	// FIXME: for some reason the const is bad for gcc and Mac

@@ -34,6 +34,67 @@
       <Filter>Containers</Filter>
     </ClCompile>
     <ClCompile Include="Dict.cpp" />
+    <ClCompile Include="math\Vector.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Angles.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Math.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Rotation.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Matrix.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Simd_Generic.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Quat.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\Plane.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\JointTransform.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\DrawVert.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="bv\Bounds.cpp">
+      <Filter>BV</Filter>
+    </ClCompile>
+    <ClCompile Include="bv\Sphere.cpp">
+      <Filter>BV</Filter>
+    </ClCompile>
+    <ClCompile Include="bv\Box.cpp">
+      <Filter>BV</Filter>
+    </ClCompile>
+    <ClCompile Include="bv\Frustum_gcc.cpp">
+      <Filter>BV</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="BitMsg.cpp" />
+    <ClCompile Include="Parser.cpp">
+      <Filter>Text</Filter>
+    </ClCompile>
+    <ClCompile Include="hashing\CRC32.cpp">
+      <Filter>Hashing</Filter>
+    </ClCompile>
+    <ClCompile Include="hashing\MD4.cpp">
+      <Filter>Hashing</Filter>
+    </ClCompile>
+    <ClCompile Include="hashing\MD5.cpp">
+      <Filter>Hashing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="precompiled.h" />
@@ -57,6 +118,67 @@
     <ClInclude Include="Dict.h" />
     <ClInclude Include="containers\StrPool.h">
       <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Vector.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Angles.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Random.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Rotation.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Matrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Simd_Generic.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Quat.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\Plane.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\JointTransform.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\DrawVert.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="bv\Bounds.h">
+      <Filter>BV</Filter>
+    </ClInclude>
+    <ClInclude Include="bv\Sphere.h">
+      <Filter>BV</Filter>
+    </ClInclude>
+    <ClInclude Include="bv\Box.h">
+      <Filter>BV</Filter>
+    </ClInclude>
+    <ClInclude Include="bv\Frustum.h">
+      <Filter>BV</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="BitMsg.h" />
+    <ClInclude Include="Parser.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="hashing\CRC32.h">
+      <Filter>Hashing</Filter>
+    </ClInclude>
+    <ClInclude Include="hashing\MD4.h">
+      <Filter>Hashing</Filter>
+    </ClInclude>
+    <ClInclude Include="hashing\MD5.h">
+      <Filter>Hashing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -55,15 +55,15 @@ public:
 	virtual void			AddCommand( const char *cmdName, cmdFunction_t function, int flags, const char *description, argCompletion_t argCompletion = NULL );
 ////	virtual void			RemoveCommand( const char *cmdName );
 ////	virtual void			RemoveFlaggedCommands( int flags );
-////
-////	virtual void			CommandCompletion( void(*callback)( const char *s ) );
-////	virtual void			ArgCompletion( const char *cmdString, void(*callback)( const char *s ) );
+
+	virtual void			CommandCompletion( void(*callback)( const char *s ) );
+	virtual void			ArgCompletion( const char *cmdString, void(*callback)( const char *s ) );
 ////
 ////	virtual void			BufferCommandText( cmdExecution_t exec, const char *text );
 ////	virtual void			ExecuteCommandBuffer( void );
-////
-////	virtual void			ArgCompletion_FolderExtension( const idCmdArgs &args, void(*callback)( const char *s ), const char *folder, bool stripFolder, ... );
-////	virtual void			ArgCompletion_DeclName( const idCmdArgs &args, void(*callback)( const char *s ), int type );
+
+	virtual void			ArgCompletion_FolderExtension( const idCmdArgs &args, void(*callback)( const char *s ), const char *folder, bool stripFolder, ... );
+	virtual void			ArgCompletion_DeclName( const idCmdArgs &args, void(*callback)( const char *s ), int type );
 ////
 ////	virtual void			BufferCommandArgs( cmdExecution_t exec, const idCmdArgs &args );
 ////
@@ -427,41 +427,41 @@ void idCmdSystemLocal::AddCommand( const char *cmdName, cmdFunction_t function, 
 ////	}
 ////}
 ////
-/////*
-////============
-////idCmdSystemLocal::CommandCompletion
-////============
-////*/
-////void idCmdSystemLocal::CommandCompletion( void(*callback)( const char *s ) ) {
-////	commandDef_t *cmd;
-////	
-////	for ( cmd = commands; cmd; cmd = cmd->next ) {
-////		callback( cmd->name );
-////	}
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::ArgCompletion
-////============
-////*/
-////void idCmdSystemLocal::ArgCompletion( const char *cmdString, void(*callback)( const char *s ) ) {
-////	commandDef_t *cmd;
-////	idCmdArgs args;
-////
-////	args.TokenizeString( cmdString, false );
-////
-////	for ( cmd = commands; cmd; cmd = cmd->next ) {
-////		if ( !cmd->argCompletion ) {
-////			continue;
-////		}
-////		if ( idStr::Icmp( args.Argv( 0 ), cmd->name ) == 0 ) {
-////			cmd->argCompletion( args, callback );
-////			break;
-////		}
-////	}
-////}
-////
+/*
+============
+idCmdSystemLocal::CommandCompletion
+============
+*/
+void idCmdSystemLocal::CommandCompletion( void(*callback)( const char *s ) ) {
+	commandDef_t *cmd;
+	
+	for ( cmd = commands; cmd; cmd = cmd->next ) {
+		callback( cmd->name );
+	}
+}
+
+/*
+============
+idCmdSystemLocal::ArgCompletion
+============
+*/
+void idCmdSystemLocal::ArgCompletion( const char *cmdString, void(*callback)( const char *s ) ) {
+	commandDef_t *cmd;
+	idCmdArgs args;
+
+	args.TokenizeString( cmdString, false );
+
+	for ( cmd = commands; cmd; cmd = cmd->next ) {
+		if ( !cmd->argCompletion ) {
+			continue;
+		}
+		if ( idStr::Icmp( args.Argv( 0 ), cmd->name ) == 0 ) {
+			cmd->argCompletion( args, callback );
+			break;
+		}
+	}
+}
+
 /////*
 ////============
 ////idCmdSystemLocal::ExecuteTokenizedString
@@ -679,90 +679,92 @@ void idCmdSystemLocal::AddCommand( const char *cmdName, cmdFunction_t function, 
 ////		ExecuteTokenizedString( args );
 ////	}
 ////}
-////
-/////*
-////============
-////idCmdSystemLocal::ArgCompletion_FolderExtension
-////============
-////*/
-////void idCmdSystemLocal::ArgCompletion_FolderExtension( const idCmdArgs &args, void(*callback)( const char *s ), const char *folder, bool stripFolder, ... ) {
-////	int i;
-////	idStr string;
-////	const char *extension;
-////	va_list argPtr;
-////
-////	string = args.Argv( 0 );
-////	string += " ";
-////	string += args.Argv( 1 );
-////
-////	if ( string.Icmp( completionString ) != 0 ) {
-////		idStr parm, path;
-////		idFileList *names;
-////
-////		completionString = string;
-////		completionParms.Clear();
-////
-////		parm = args.Argv( 1 );
-////		parm.ExtractFilePath( path );
-////		if ( stripFolder || path.Length() == 0 ) {
-////			path = folder + path;
-////		}
-////		path.StripTrailing( '/' );
-////
-////		// list folders
-////		names = fileSystem->ListFiles( path, "/", true, true );
-////		for ( i = 0; i < names->GetNumFiles(); i++ ) {
-////			idStr name = names->GetFile( i );
-////			if ( stripFolder ) {
-////				name.Strip( folder );
-////			} else {
-////				name.Strip( "/" );
-////			}
-////			name = args.Argv( 0 ) + ( " " + name ) + "/";
-////			completionParms.Append( name );
-////		}
-////		fileSystem->FreeFileList( names );
-////
-////		// list files
-////		va_start( argPtr, stripFolder );
-////		for ( extension = va_arg( argPtr, const char * ); extension; extension = va_arg( argPtr, const char * ) ) {
-////			names = fileSystem->ListFiles( path, extension, true, true );
-////			for ( i = 0; i < names->GetNumFiles(); i++ ) {
-////				idStr name = names->GetFile( i );
-////				if ( stripFolder ) {
-////					name.Strip( folder );
-////				} else {
-////					name.Strip( "/" );
-////				}
-////				name = args.Argv( 0 ) + ( " " + name );
-////				completionParms.Append( name );
-////			}
-////			fileSystem->FreeFileList( names );
-////		}
-////		va_end( argPtr );
-////	}
-////	for ( i = 0; i < completionParms.Num(); i++ ) {
-////		callback( completionParms[i] );
-////	}
-////}
-////
-/////*
-////============
-////idCmdSystemLocal::ArgCompletion_DeclName
-////============
-////*/
-////void idCmdSystemLocal::ArgCompletion_DeclName( const idCmdArgs &args, void(*callback)( const char *s ), int type ) {
-////	int i, num;
-////
-////	if ( declManager == NULL ) {
-////		return;
-////	}
-////	num = declManager->GetNumDecls( (declType_t)type );
-////	for ( i = 0; i < num; i++ ) {
-////		callback( idStr( args.Argv( 0 ) ) + " " + declManager->DeclByIndex( (declType_t)type, i , false )->GetName() );
-////	}
-////}
-////
+
+/*
+============
+idCmdSystemLocal::ArgCompletion_FolderExtension
+============
+*/
+void idCmdSystemLocal::ArgCompletion_FolderExtension( const idCmdArgs &args, void(*callback)( const char *s ), const char *folder, bool stripFolder, ... ) {
+	int i;
+	idStr string;
+	const char *extension;
+	va_list argPtr;
+
+	string = args.Argv( 0 );
+	string += " ";
+	string += args.Argv( 1 );
+	common->FatalError("idCmdSystemLocal::ArgCompletion_FolderExtension TODO");
+#ifdef TODO
+	if ( string.Icmp( completionString ) != 0 ) {
+		idStr parm, path;
+		idFileList *names;
+
+		completionString = string;
+		completionParms.Clear();
+
+		parm = args.Argv( 1 );
+		parm.ExtractFilePath( path );
+		if ( stripFolder || path.Length() == 0 ) {
+			path = folder + path;
+		}
+		path.StripTrailing( '/' );
+
+		// list folders
+		names = fileSystem->ListFiles( path, "/", true, true );
+		for ( i = 0; i < names->GetNumFiles(); i++ ) {
+			idStr name = names->GetFile( i );
+			if ( stripFolder ) {
+				name.Strip( folder );
+			} else {
+				name.Strip( "/" );
+			}
+			name = args.Argv( 0 ) + ( " " + name ) + "/";
+			completionParms.Append( name );
+		}
+		fileSystem->FreeFileList( names );
+
+		// list files
+		va_start( argPtr, stripFolder );
+		for ( extension = va_arg( argPtr, const char * ); extension; extension = va_arg( argPtr, const char * ) ) {
+			names = fileSystem->ListFiles( path, extension, true, true );
+			for ( i = 0; i < names->GetNumFiles(); i++ ) {
+				idStr name = names->GetFile( i );
+				if ( stripFolder ) {
+					name.Strip( folder );
+				} else {
+					name.Strip( "/" );
+				}
+				name = args.Argv( 0 ) + ( " " + name );
+				completionParms.Append( name );
+			}
+			fileSystem->FreeFileList( names );
+		}
+		va_end( argPtr );
+	}
+	for ( i = 0; i < completionParms.Num(); i++ ) {
+		callback( completionParms[i] );
+	}
+#endif
+}
+
+/*
+============
+idCmdSystemLocal::ArgCompletion_DeclName
+============
+*/
+void idCmdSystemLocal::ArgCompletion_DeclName( const idCmdArgs &args, void(*callback)( const char *s ), int type ) {
+	int i, num;
+
+	if ( declManager == NULL ) {
+		return;
+	}
+	num = declManager->GetNumDecls( (declType_t)type );
+	for ( i = 0; i < num; i++ ) {
+		callback( idStr( args.Argv( 0 ) ) + " " + declManager->DeclByIndex( (declType_t)type, i , false )->GetName() );
+	}
+}
+
 /////*
 ////============
 ////idCmdSystemLocal::SetupReloadEngine

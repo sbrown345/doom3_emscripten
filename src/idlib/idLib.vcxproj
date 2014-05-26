@@ -11,25 +11,67 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BitMsg.cpp" />
+    <ClCompile Include="bv\Bounds.cpp" />
+    <ClCompile Include="bv\Box.cpp" />
+    <ClCompile Include="bv\Frustum_gcc.cpp" />
+    <ClCompile Include="bv\Sphere.cpp" />
     <ClCompile Include="CmdArgs.cpp" />
     <ClCompile Include="containers\HashIndex.cpp" />
     <ClCompile Include="Dict.cpp" />
+    <ClCompile Include="geometry\DrawVert.cpp" />
+    <ClCompile Include="geometry\JointTransform.cpp" />
+    <ClCompile Include="hashing\CRC32.cpp" />
+    <ClCompile Include="hashing\MD4.cpp" />
+    <ClCompile Include="hashing\MD5.cpp" />
     <ClCompile Include="Heap.cpp" />
+    <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="Lib.cpp" />
+    <ClCompile Include="math\Angles.cpp" />
+    <ClCompile Include="math\Math.cpp" />
+    <ClCompile Include="math\Matrix.cpp" />
+    <ClCompile Include="math\Plane.cpp" />
+    <ClCompile Include="math\Quat.cpp" />
+    <ClCompile Include="math\Rotation.cpp" />
+    <ClCompile Include="math\Simd_Generic.cpp" />
+    <ClCompile Include="math\Vector.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="precompiled.cpp" />
     <ClCompile Include="Str.cpp" />
+    <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BitMsg.h" />
+    <ClInclude Include="bv\Bounds.h" />
+    <ClInclude Include="bv\Box.h" />
+    <ClInclude Include="bv\Frustum.h" />
+    <ClInclude Include="bv\Sphere.h" />
     <ClInclude Include="CmdArgs.h" />
     <ClInclude Include="containers\HashIndex.h" />
     <ClInclude Include="containers\List.h" />
     <ClInclude Include="containers\StrPool.h" />
     <ClInclude Include="Dict.h" />
+    <ClInclude Include="geometry\DrawVert.h" />
+    <ClInclude Include="geometry\JointTransform.h" />
+    <ClInclude Include="hashing\CRC32.h" />
+    <ClInclude Include="hashing\MD4.h" />
+    <ClInclude Include="hashing\MD5.h" />
     <ClInclude Include="Heap.h" />
+    <ClInclude Include="Lexer.h" />
     <ClInclude Include="Lib.h" />
+    <ClInclude Include="math\Angles.h" />
     <ClInclude Include="math\Math.h" />
+    <ClInclude Include="math\Matrix.h" />
+    <ClInclude Include="math\Plane.h" />
+    <ClInclude Include="math\Quat.h" />
+    <ClInclude Include="math\Random.h" />
+    <ClInclude Include="math\Rotation.h" />
+    <ClInclude Include="math\Simd_Generic.h" />
+    <ClInclude Include="math\Vector.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="precompiled.h" />
     <ClInclude Include="Str.h" />
+    <ClInclude Include="Token.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0C0D322E-24A5-4533-BCCD-E1CB423F1619}</ProjectGuid>

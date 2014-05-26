@@ -60,9 +60,9 @@ const int MAX_SERVER_PORTS			= 8;
 const int GAME_INIT_ID_INVALID		= -1;
 const int GAME_INIT_ID_MAP_LOAD		= -2;
 
-////
-////#include "MsgChannel.h"
-////#include "AsyncServer.h"
+
+#include "MsgChannel.h"
+#include "AsyncServer.h"
 ////#include "ServerScan.h"
 #include "AsyncClient.h"
 
@@ -146,7 +146,7 @@ public:
 ////
 ////	static void				Init( void );
 ////	static void				Shutdown( void );
-////	static bool				IsActive( void ) { return ( server.IsActive() || client.IsActive() ); }
+	static bool				IsActive( void ) { return ( server.IsActive() || client.IsActive() ); }
 ////	static void				RunFrame( void );
 ////
 ////	static void				WriteUserCmdDelta( idBitMsg &msg, const usercmd_t &cmd, const usercmd_t *base );
@@ -164,7 +164,7 @@ public:
 ////	
 ////	static void				ExecuteSessionCommand( const char *sessCmd );
 ////
-////	static idAsyncServer	server;
+	static idAsyncServer	server;
 	static idAsyncClient	client;
 	
 	static idCVar			verbose;						// verbose output

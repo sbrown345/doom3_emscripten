@@ -131,10 +131,10 @@ class idCommonLocal : public idCommon {
 ////	virtual void				EndRedirect( void );
 ////	virtual void				SetRefreshOnPrint( bool set );
 	virtual void				Printf( const char *fmt, ... ) id_attribute((format(printf,2,3)));
-////	virtual void				VPrintf( const char *fmt, va_list arg );
-////	virtual void				DPrintf( const char *fmt, ... ) id_attribute((format(printf,2,3)));
+	virtual void				VPrintf( const char *fmt, va_list arg );
+	virtual void				DPrintf( const char *fmt, ... ) id_attribute((format(printf,2,3)));
 	virtual void				Warning( const char *fmt, ... ) id_attribute((format(printf,2,3)));
-////	virtual void				DWarning( const char *fmt, ...) id_attribute((format(printf,2,3)));
+	virtual void				DWarning( const char *fmt, ...) id_attribute((format(printf,2,3)));
 ////	virtual void				PrintWarnings( void );
 ////	virtual void				ClearWarnings( const char *reason );
 	virtual void				Error( const char *fmt, ... ) id_attribute((format(printf,2,3)));
@@ -460,6 +460,7 @@ A raw string should NEVER be passed as fmt, because of "%f" type crashers.
 ==================
 */
 void idCommonLocal::Printf( const char *fmt, ... ) {
+	printf("idCommonLocal::Printf\n");
 	va_list argptr;
 #ifdef TODO
 	va_start( argptr, fmt );
@@ -469,79 +470,88 @@ void idCommonLocal::Printf( const char *fmt, ... ) {
 }
 
 /*
-////==================
-////idCommonLocal::DPrintf
-////
-////prints message that only shows up if the "developer" cvar is set
-////==================
-////*/
-////void idCommonLocal::DPrintf( const char *fmt, ... ) {
-////	va_list		argptr;
-////	char		msg[MAX_PRINT_MSG_SIZE];
-////		
-////	if ( !cvarSystem->IsInitialized() || !com_developer.GetBool() ) {
-////		return;			// don't confuse non-developers with techie stuff...
-////	}
-////
-////	va_start( argptr, fmt );
-////	idStr::vsnPrintf( msg, sizeof(msg), fmt, argptr );
-////	va_end( argptr );
-////	msg[sizeof(msg)-1] = '\0';
-////	
-////	// never refresh the screen, which could cause reentrency problems
-////	bool temp = com_refreshOnPrint;
-////	com_refreshOnPrint = false;
-////
-////	Printf( S_COLOR_RED"%s", msg );
-////
-////	com_refreshOnPrint = temp;
-////}
-////
-/////*
-////==================
-////idCommonLocal::DWarning
-////
-////prints warning message in yellow that only shows up if the "developer" cvar is set
-////==================
-////*/
-////void idCommonLocal::DWarning( const char *fmt, ... ) {
-////	va_list		argptr;
-////	char		msg[MAX_PRINT_MSG_SIZE];
-////		
-////	if ( !com_developer.GetBool() ) {
-////		return;			// don't confuse non-developers with techie stuff...
-////	}
-////
-////	va_start( argptr, fmt );
-////	idStr::vsnPrintf( msg, sizeof(msg), fmt, argptr );
-////	va_end( argptr );
-////	msg[sizeof(msg)-1] = '\0';
-////
-////	Printf( S_COLOR_YELLOW"WARNING: %s\n", msg );
-////}
-////
-/////*
-////==================
-////idCommonLocal::Warning
-////
-////prints WARNING %s and adds the warning message to a queue to be printed later on
-////==================
-////*/
-////void idCommonLocal::Warning( const char *fmt, ... ) {
-////	va_list		argptr;
-////	char		msg[MAX_PRINT_MSG_SIZE];
-////		
-////	va_start( argptr, fmt );
-////	idStr::vsnPrintf( msg, sizeof(msg), fmt, argptr );
-////	va_end( argptr );
-////	msg[sizeof(msg)-1] = 0;
-////
-////	Printf( S_COLOR_YELLOW "WARNING: " S_COLOR_RED "%s\n", msg );
-////
-////	if ( warningList.Num() < MAX_WARNING_LIST ) {
-////		warningList.AddUnique( msg );
-////	}
-////}
+==================
+idCommonLocal::DPrintf
+
+prints message that only shows up if the "developer" cvar is set
+==================
+*/
+void idCommonLocal::DPrintf( const char *fmt, ... ) {
+	printf("idCommonLocal::DPrintf\n");
+#ifdef TODO
+	va_list		argptr;
+	char		msg[MAX_PRINT_MSG_SIZE];
+		
+	if ( !cvarSystem->IsInitialized() || !com_developer.GetBool() ) {
+		return;			// don't confuse non-developers with techie stuff...
+	}
+
+	va_start( argptr, fmt );
+	idStr::vsnPrintf( msg, sizeof(msg), fmt, argptr );
+	va_end( argptr );
+	msg[sizeof(msg)-1] = '\0';
+	
+	// never refresh the screen, which could cause reentrency problems
+	bool temp = com_refreshOnPrint;
+	com_refreshOnPrint = false;
+
+	Printf( S_COLOR_RED"%s", msg );
+
+	com_refreshOnPrint = temp;
+#endif
+}
+
+/*
+==================
+idCommonLocal::DWarning
+
+prints warning message in yellow that only shows up if the "developer" cvar is set
+==================
+*/
+void idCommonLocal::DWarning( const char *fmt, ... ) {
+		printf("idCommonLocal::DPrintf\n");
+#ifdef TODO
+	va_list		argptr;
+	char		msg[MAX_PRINT_MSG_SIZE];
+		
+	if ( !com_developer.GetBool() ) {
+		return;			// don't confuse non-developers with techie stuff...
+	}
+
+	va_start( argptr, fmt );
+	idStr::vsnPrintf( msg, sizeof(msg), fmt, argptr );
+	va_end( argptr );
+	msg[sizeof(msg)-1] = '\0';
+
+	Printf( S_COLOR_YELLOW"WARNING: %s\n", msg );
+#endif
+}
+
+/*
+==================
+idCommonLocal::Warning
+
+prints WARNING %s and adds the warning message to a queue to be printed later on
+==================
+*/
+void idCommonLocal::Warning( const char *fmt, ... ) {
+		printf("idCommonLocal::DPrintf\n");
+#ifdef TODO
+	va_list		argptr;
+	char		msg[MAX_PRINT_MSG_SIZE];
+		
+	va_start( argptr, fmt );
+	idStr::vsnPrintf( msg, sizeof(msg), fmt, argptr );
+	va_end( argptr );
+	msg[sizeof(msg)-1] = 0;
+
+	Printf( S_COLOR_YELLOW "WARNING: " S_COLOR_RED "%s\n", msg );
+
+	if ( warningList.Num() < MAX_WARNING_LIST ) {
+		warningList.AddUnique( msg );
+	}
+#endif
+}
 ////
 /////*
 ////==================
@@ -2760,11 +2770,11 @@ idCommonLocal::Init
 */
 void idCommonLocal::Init( int argc, const char **argv, const char *cmdline ) {
 	//try {
-	////
-	////		// set interface pointers used by idLib
-	////		idLib::sys			= sys;
-	////		idLib::common		= common;
-	////		idLib::cvarSystem	= cvarSystem;
+
+		// set interface pointers used by idLib
+		idLib::sys			= sys;
+		idLib::common		= common;
+		idLib::cvarSystem	= cvarSystem;
 	////		idLib::fileSystem	= fileSystem;
 	////
 	////		// initialize idLib
@@ -2802,10 +2812,10 @@ void idCommonLocal::Init( int argc, const char **argv, const char *cmdline ) {
 
 		// initialize key input/binding, done early so bind command exists
 		idKeyInput::Init();
-			exit(0); // i'm here
-////		// init the console so we can take prints
-////		console->Init();
-////
+		
+		// init the console so we can take prints
+		console->Init();
+common->FatalError("i'm here\n");
 ////		// get architecture info
 ////		Sys_Init();
 ////

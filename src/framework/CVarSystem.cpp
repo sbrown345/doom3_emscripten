@@ -440,12 +440,12 @@ public:
 	virtual bool			GetCVarBool( const char *name ) const;
 	virtual int				GetCVarInteger( const char *name ) const;
 	virtual float			GetCVarFloat( const char *name ) const;
-////
-////	virtual bool			Command( const idCmdArgs &args );
-////
-////	virtual void			CommandCompletion( void(*callback)( const char *s ) );
-////	virtual void			ArgCompletion( const char *cmdString, void(*callback)( const char *s ) );
-////
+
+	virtual bool			Command( const idCmdArgs &args );
+
+	virtual void			CommandCompletion( void(*callback)( const char *s ) );
+	virtual void			ArgCompletion( const char *cmdString, void(*callback)( const char *s ) );
+
 	virtual void			SetModifiedFlags( int flags );
 	virtual int				GetModifiedFlags( void ) const;
 	virtual void			ClearModifiedFlags( int flags );
@@ -453,8 +453,8 @@ public:
 	virtual void			ResetFlaggedVariables( int flags );
 	virtual void			RemoveFlaggedAutoCompletion( int flags );
 	virtual void			WriteFlaggedVariables( int flags, const char *setCmd, idFile *f ) const;
-////
-////	////virtual const idDict *	MoveCVarsToDict( int flags ) const;
+//
+//	////virtual const idDict *	MoveCVarsToDict( int flags ) const;
 ////	////virtual void			SetCVarsFromDict( const idDict &dict );
 ////
 ////	void					RegisterInternal( idCVar *cvar );
@@ -466,10 +466,10 @@ private:
 	idList<idInternalCVar*>	cvars;
 	idHashIndex				cvarHash;
 	int						modifiedFlags;
-////							// use a static dictionary to MoveCVarsToDict can be used from game
-////	////static idDict			moveCVarsToDict;
-////
-////
+							// use a static dictionary to MoveCVarsToDict can be used from game
+	static idDict			moveCVarsToDict;
+
+
 private:
 	static void				Toggle_f( const idCmdArgs &args );
 ////	static void				Set_f( const idCmdArgs &args );
@@ -486,7 +486,7 @@ private:
 idCVarSystemLocal			localCVarSystem;
 idCVarSystem *				cvarSystem = &localCVarSystem;
 
-////idDict						idCVarSystemLocal::moveCVarsToDict;
+idDict						idCVarSystemLocal::moveCVarsToDict;
 
 #define NUM_COLUMNS				77		// 78 - 1
 #define NUM_NAME_CHARS			33
@@ -583,18 +583,18 @@ void idCVarSystemLocal::Init( void ) {
 #endif
 	initialized = true;
 }
-////
-/////*
-////============
-////idCVarSystemLocal::Shutdown
-////============
-////*/
-////void idCVarSystemLocal::Shutdown( void ) {
-////	cvars.DeleteContents( true );
-////	cvarHash.Free();
-////	moveCVarsToDict.Clear();
-////	initialized = false;
-////}
+
+/*
+============
+idCVarSystemLocal::Shutdown
+============
+*/
+void idCVarSystemLocal::Shutdown( void ) {
+	cvars.DeleteContents( true );
+	cvarHash.Free();
+	moveCVarsToDict.Clear();
+	initialized = false;
+}
 
 /*
 ============
@@ -726,66 +726,66 @@ float idCVarSystemLocal::GetCVarFloat( const char *name ) const {
 	return 0.0f;
 }
 
-/////*
-////============
-////idCVarSystemLocal::Command
-////============
-////*/
-////bool idCVarSystemLocal::Command( const idCmdArgs &args ) {
-////	idInternalCVar *internal;
-////
-////	internal = FindInternal( args.Argv( 0 ) );
-////
-////	if ( internal == NULL ) {
-////		return false;
-////	}
-////
-////	if ( args.Argc() == 1 ) {
-////		// print the variable
-////		common->Printf( "\"%s\" is:\"%s\"" S_COLOR_WHITE " default:\"%s\"\n",
-////					internal->nameString.c_str(), internal->valueString.c_str(), internal->resetString.c_str() );
-////		if ( idStr::Length( internal->GetDescription() ) > 0 ) {
-////			common->Printf( S_COLOR_WHITE "%s\n", internal->GetDescription() );
-////		}
-////	} else {
-////		// set the value
-////		internal->Set( args.Args(), false, false );
-////	}
-////	return true;
-////}
-////
-/////*
-////============
-////idCVarSystemLocal::CommandCompletion
-////============
-////*/
-////void idCVarSystemLocal::CommandCompletion( void(*callback)( const char *s ) ) {
-////	for( int i = 0; i < cvars.Num(); i++ ) {
-////		callback( cvars[i]->GetName() );
-////	}
-////}
-////
-/////*
-////============
-////idCVarSystemLocal::ArgCompletion
-////============
-////*/
-////void idCVarSystemLocal::ArgCompletion( const char *cmdString, void(*callback)( const char *s ) ) {
-////	idCmdArgs args;
-////
-////	args.TokenizeString( cmdString, false );
-////
-////	for( int i = 0; i < cvars.Num(); i++ ) {
-////		if ( !cvars[i]->valueCompletion ) {
-////			continue;
-////		}
-////		if ( idStr::Icmp( args.Argv( 0 ), cvars[i]->nameString.c_str() ) == 0 ) {
-////			cvars[i]->valueCompletion( args, callback );
-////			break;
-////		}
-////	}
-////}
-////
+/*
+============
+idCVarSystemLocal::Command
+============
+*/
+bool idCVarSystemLocal::Command( const idCmdArgs &args ) {
+	idInternalCVar *internal;
+
+	internal = FindInternal( args.Argv( 0 ) );
+
+	if ( internal == NULL ) {
+		return false;
+	}
+
+	if ( args.Argc() == 1 ) {
+		// print the variable
+		common->Printf( "\"%s\" is:\"%s\"" S_COLOR_WHITE " default:\"%s\"\n",
+					internal->nameString.c_str(), internal->valueString.c_str(), internal->resetString.c_str() );
+		if ( idStr::Length( internal->GetDescription() ) > 0 ) {
+			common->Printf( S_COLOR_WHITE "%s\n", internal->GetDescription() );
+		}
+	} else {
+		// set the value
+		internal->Set( args.Args(), false, false );
+	}
+	return true;
+}
+
+/*
+============
+idCVarSystemLocal::CommandCompletion
+============
+*/
+void idCVarSystemLocal::CommandCompletion( void(*callback)( const char *s ) ) {
+	for( int i = 0; i < cvars.Num(); i++ ) {
+		callback( cvars[i]->GetName() );
+	}
+}
+
+/*
+============
+idCVarSystemLocal::ArgCompletion
+============
+*/
+void idCVarSystemLocal::ArgCompletion( const char *cmdString, void(*callback)( const char *s ) ) {
+	idCmdArgs args;
+
+	args.TokenizeString( cmdString, false );
+
+	for( int i = 0; i < cvars.Num(); i++ ) {
+		if ( !cvars[i]->valueCompletion ) {
+			continue;
+		}
+		if ( idStr::Icmp( args.Argv( 0 ), cvars[i]->nameString.c_str() ) == 0 ) {
+			cvars[i]->valueCompletion( args, callback );
+			break;
+		}
+	}
+}
+
 /*
 ============
 idCVarSystemLocal::SetModifiedFlags
@@ -903,8 +903,7 @@ idCVarSystemLocal::Toggle_f
 ============
 */
 void idCVarSystemLocal::Toggle_f( const idCmdArgs &args ) {
-	printf("idCVarSystemLocal::Toggle_f\n");
-	exit(0);
+	common->FatalError("Toggle_f TODO");
 #ifdef TODO
 	int argc, i;
 	float current, set;

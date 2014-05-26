@@ -1811,7 +1811,9 @@ ID_INLINE float *idMat6::ToFloatPtr( void ) {
 #define MATX_QUAD( x )		( ( ( ( x ) + 3 ) & ~3 ) * sizeof( float ) )
 #define MATX_CLEAREND()		int s = numRows * numColumns; while( s < ( ( s + 3 ) & ~3 ) ) { mat[s++] = 0.0f; }
 #define MATX_ALLOCA( n )	( (float *) _alloca16( MATX_QUAD( n ) ) )
-#define MATX_SIMD
+#ifdef TODO
+#define MATX_SIMD //??
+#endif
 
 class idMatX {
 public:
@@ -2410,13 +2412,16 @@ ID_INLINE void idMatX::Clamp( float min, float max ) {
 }
 
 ID_INLINE idMatX &idMatX::SwapRows( int r1, int r2 ) {
+	printf("todo: SwapRows");
+	exit(0);
+#ifdef TODO
 	float *ptr;
 
 	ptr = (float *) _alloca16( numColumns * sizeof( float ) );
 	memcpy( ptr, mat + r1 * numColumns, numColumns * sizeof( float ) );
 	memcpy( mat + r1 * numColumns, mat + r2 * numColumns, numColumns * sizeof( float ) );
 	memcpy( mat + r2 * numColumns, ptr, numColumns * sizeof( float ) );
-
+#endif
 	return *this;
 }
 

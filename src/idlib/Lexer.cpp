@@ -918,14 +918,14 @@ int idLexer::ReadToken( idToken *token ) {
 	//}
 	//dlog(DEBUG_COMPILER, "RT: %i line:%i, %s\n", RTCount, line, token->data);
 
-	if (RTCount > 7200000) {
-		dlog(DEBUG_COMPILER || DEBUG_RENDERWORLD_LOAD || DEBUG_CM || DEBUG_SPAWN, "RT %i, l:%i %s\n", RTCount, line, token->data);
-	}
-	RTCount++;
-	if (RTCount > 7600000)
-	{
-		exit(0);
-	}
+	////if (RTCount > 7200000) {
+	////	dlog(DEBUG_COMPILER || DEBUG_RENDERWORLD_LOAD || DEBUG_CM || DEBUG_SPAWN, "RT %i, l:%i %s\n", RTCount, line, token->data);
+	////}
+	////RTCount++;
+	////if (RTCount > 7600000)
+	////{
+	////	exit(0);
+	////}
 
 	return 1;
 }
@@ -1609,52 +1609,53 @@ idLexer::LoadFile
 ================
 */
 int idLexer::LoadFile( const char *filename, bool OSPath ) {
-	idFile *fp;
-	idStr pathname;
-	int length;
-	char *buf;
+	common->FatalError("idLexer::LoadFile TODO");
+#ifdef TODO
+	////idFile *fp;
+	////idStr pathname;
+	////int length;
+	////char *buf;
 
-	if ( idLexer::loaded ) {
-		idLib::common->Error("idLexer::LoadFile: another script already loaded");
-		return false;
-	}
-	
-	if ( !OSPath && ( baseFolder[0] != '\0' ) ) {
-		pathname = va( "%s/%s", baseFolder, filename );
-	} else {
-		pathname = filename;
-	}
-	if ( OSPath ) {
-		fp = idLib::fileSystem->OpenExplicitFileRead( pathname );
-	} else {
-		fp = idLib::fileSystem->OpenFileRead( pathname );
-	}
-	if ( !fp ) {
-		return false;
-	}
-	length = fp->Length();
-	buf = (char *) Mem_Alloc( length + 1 );
-	buf[length] = '\0';
-	fp->Read( buf, length );
-	idLexer::fileTime = fp->Timestamp();
-	idLexer::filename = fp->GetFullPath();
-	idLib::fileSystem->CloseFile( fp );
+	////if ( idLexer::loaded ) {
+	////	idLib::common->Error("idLexer::LoadFile: another script already loaded");
+	////	return false;
+	////}
+	////if ( !OSPath && ( baseFolder[0] != '\0' ) ) {
+	////	pathname = va( "%s/%s", baseFolder, filename );
+	////} else {
+	////	pathname = filename;
+	////}
+	////if ( OSPath ) {
+	////	fp = idLib::fileSystem->OpenExplicitFileRead( pathname );
+	////} else {
+	////	fp = idLib::fileSystem->OpenFileRead( pathname );
+	////}
+	////if ( !fp ) {
+	////	return false;
+	////}
+	////length = fp->Length();
+	////buf = (char *) Mem_Alloc( length + 1 );
+	////buf[length] = '\0';
+	////fp->Read( buf, length );
+	////idLexer::fileTime = fp->Timestamp();
+	////idLexer::filename = fp->GetFullPath();
+	////idLib::fileSystem->CloseFile( fp );
 
-	idLexer::buffer = buf;
-	idLexer::length = length;
-	// pointer in script buffer
-	idLexer::script_p = idLexer::buffer;
-	// pointer in script buffer before reading token
-	idLexer::lastScript_p = idLexer::buffer;
-	// pointer to end of script buffer
-	idLexer::end_p = &(idLexer::buffer[length]);
+	////idLexer::buffer = buf;
+	////idLexer::length = length;
+	////// pointer in script buffer
+	////idLexer::script_p = idLexer::buffer;
+	////// pointer in script buffer before reading token
+	////idLexer::lastScript_p = idLexer::buffer;
+	////// pointer to end of script buffer
+	////idLexer::end_p = &(idLexer::buffer[length]);
 
-	idLexer::tokenavailable = 0;
-	idLexer::line = 1;
-	idLexer::lastline = 1;
-	idLexer::allocated = true;
-	idLexer::loaded = true;
-
+	////idLexer::tokenavailable = 0;
+	////idLexer::line = 1;
+	////idLexer::lastline = 1;
+	////idLexer::allocated = true;
+	////idLexer::loaded = true;
+#endif
 	dlog(DEBUG_COMPILER, "LoadFile: %s\n", filename);
 	return true;
 }

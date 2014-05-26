@@ -53,9 +53,9 @@ typedef struct {
 ////void		Mem_Init( void );
 ////void		Mem_Shutdown( void );
 ////void		Mem_EnableLeakTest( const char *name );
-////void		Mem_ClearFrameStats( void );
-////void		Mem_GetFrameStats( memoryStats_t &allocs, memoryStats_t &frees );
-////void		Mem_GetStats( memoryStats_t &stats );
+void		Mem_ClearFrameStats( void );
+void		Mem_GetFrameStats( memoryStats_t &allocs, memoryStats_t &frees );
+void		Mem_GetStats( memoryStats_t &stats );
 ////void		Mem_Dump_f( const class idCmdArgs &args );
 ////void		Mem_DumpCompressed_f( const class idCmdArgs &args );
 ////void		Mem_AllocDefragBlock( void );

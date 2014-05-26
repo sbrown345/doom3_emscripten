@@ -114,8 +114,8 @@ private:
 	static idCVar		con_notifyTime;
 	static idCVar		con_noPrint;
 
-	const idMaterial *	whiteShader;
-	const idMaterial *	consoleShader;
+	////const idMaterial *	whiteShader;
+	////const idMaterial *	consoleShader;
 };
 
 static idConsoleLocal localConsole;
