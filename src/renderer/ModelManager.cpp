@@ -509,63 +509,68 @@ idRenderModelManagerLocal::EndLevelLoad
 =================
 */
 void idRenderModelManagerLocal::EndLevelLoad() {
-	common->Printf( "----- idRenderModelManagerLocal::EndLevelLoad -----\n" );
+	printf("todo: idRenderModelManagerLocal::EndLevelLoad");
+	exit(0);
 
-	int start = Sys_Milliseconds();
-
-	insideLevelLoad = false;
-	int	purgeCount = 0;
-	int	keepCount = 0;
-	int	loadCount = 0;
-
-	// purge any models not touched
-	for ( int i = 0 ; i < models.Num() ; i++ ) {
-		idRenderModel *model = models[i];
-
-		if ( !model->IsLevelLoadReferenced() && model->IsLoaded() && model->IsReloadable() ) {
-
-//			common->Printf( "purging %s\n", model->Name() );
-
-			purgeCount++;
-
-			R_CheckForEntityDefsUsingModel( model );
-
-			model->PurgeModel();
-
-		} else {
-
-//			common->Printf( "keeping %s\n", model->Name() );
-
-			keepCount++;
-		}
-	}
-
-	// purge unused triangle surface memory
-	R_PurgeTriSurfData( frameData );
-
-	// load any new ones
-	for ( int i = 0 ; i < models.Num() ; i++ ) {
-		idRenderModel *model = models[i];
-
-		if ( model->IsLevelLoadReferenced() && !model->IsLoaded() && model->IsReloadable() ) {
-
-			loadCount++;
-			model->LoadModel();
-
-			if ( ( loadCount & 15 ) == 0 ) {
-				session->PacifierUpdate();
-			}
-		}
-	}
-
-	// _D3XP added this
-	int	end = Sys_Milliseconds();
-	common->Printf( "%5i models purged from previous level, ", purgeCount );
-	common->Printf( "%5i models kept.\n", keepCount );
-	if ( loadCount ) {
-		common->Printf( "%5i new models loaded in %5.1f seconds\n", loadCount, (end-start) * 0.001 );
-	}
-	common->Printf( "---------------------------------------------------\n" );
+#ifdef TODO
+////	common->Printf( "----- idRenderModelManagerLocal::EndLevelLoad -----\n" );
+////
+////	int start = Sys_Milliseconds();
+////
+////	insideLevelLoad = false;
+////	int	purgeCount = 0;
+////	int	keepCount = 0;
+////	int	loadCount = 0;
+////
+////	// purge any models not touched
+////	for ( int i = 0 ; i < models.Num() ; i++ ) {
+////		idRenderModel *model = models[i];
+////
+////		if ( !model->IsLevelLoadReferenced() && model->IsLoaded() && model->IsReloadable() ) {
+////
+//////			common->Printf( "purging %s\n", model->Name() );
+////
+////			purgeCount++;
+////
+////			R_CheckForEntityDefsUsingModel( model );
+////
+////			model->PurgeModel();
+////
+////		} else {
+////
+//////			common->Printf( "keeping %s\n", model->Name() );
+////
+////			keepCount++;
+////		}
+////	}
+////
+////	// purge unused triangle surface memory
+////	R_PurgeTriSurfData( frameData );
+////
+////	// load any new ones
+////	for ( int i = 0 ; i < models.Num() ; i++ ) {
+////		idRenderModel *model = models[i];
+////
+////		if ( model->IsLevelLoadReferenced() && !model->IsLoaded() && model->IsReloadable() ) {
+////
+////			loadCount++;
+////			model->LoadModel();
+////
+////			if ( ( loadCount & 15 ) == 0 ) {
+////				session->PacifierUpdate();
+////			}
+////		}
+////	}
+////
+////	// _D3XP added this
+////	int	end = Sys_Milliseconds();
+////	common->Printf( "%5i models purged from previous level, ", purgeCount );
+////	common->Printf( "%5i models kept.\n", keepCount );
+////	if ( loadCount ) {
+////		common->Printf( "%5i new models loaded in %5.1f seconds\n", loadCount, (end-start) * 0.001 );
+////	}
+////	common->Printf( "---------------------------------------------------\n" );
+#endif
 }
 
 /*

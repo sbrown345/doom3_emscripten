@@ -132,6 +132,12 @@
     <ClCompile Include="js_main_temp_start.cpp">
       <Filter>Sys</Filter>
     </ClCompile>
+    <ClCompile Include="..\renderer\GuiModel.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\VertexCache.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\framework\Common.h">
@@ -252,6 +258,18 @@
       <Filter>Sound</Filter>
     </ClInclude>
     <ClInclude Include="..\renderer\qgl.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\Image.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\GuiModel.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\RenderWorld_local.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\VertexCache.h">
       <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>

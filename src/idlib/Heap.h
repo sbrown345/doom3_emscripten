@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-//#ifndef __HEAP_H__
-//#define __HEAP_H__
+#ifndef __HEAP_H__
+#define __HEAP_H__
 
 /*
 ===============================================================================
@@ -885,4 +885,4 @@ void		Mem_Free16( void *ptr, const char *fileName, const int lineNumber );
 ////	}
 ////}
 ////
-////#endif /* !__HEAP_H__ */
+#endif /* !__HEAP_H__ */

@@ -438,19 +438,19 @@ typedef struct {
 #define	PORT_ANY			-1
 
 class idPort {
-////public:
-////				idPort();				// this just zeros netSocket and port
-////	virtual		~idPort();
-////
-	// if the InitForPort fails, the idPort.port field will remain 0
-	bool		InitForPort( int portNumber );
-	int			GetPort( void ) const { return bound_to.port; }
-	netadr_t	GetAdr( void ) const { return bound_to; }
-	void		Close();
+public:
+	//			idPort();				// this just zeros netSocket and port
+	//virtual		~idPort();
 
-	bool		GetPacket( netadr_t &from, void *data, int &size, int maxSize );
-	bool		GetPacketBlocking( netadr_t &from, void *data, int &size, int maxSize, int timeout );
-	void		SendPacket( const netadr_t to, const void *data, int size );
+	//// if the InitForPort fails, the idPort.port field will remain 0
+	//bool		InitForPort( int portNumber );
+	//int			GetPort( void ) const { return bound_to.port; }
+	//netadr_t	GetAdr( void ) const { return bound_to; }
+	//void		Close();
+
+	//bool		GetPacket( netadr_t &from, void *data, int &size, int maxSize );
+	//bool		GetPacketBlocking( netadr_t &from, void *data, int &size, int maxSize, int timeout );
+	//void		SendPacket( const netadr_t to, const void *data, int size );
 ////
 	int			packetsRead;
 	int			bytesRead;

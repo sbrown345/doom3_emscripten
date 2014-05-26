@@ -126,7 +126,7 @@ bool idDeclEntityDef::Parse( const char *text, const int textLength ) {
 printf("todo: precache all referenced media");
 	exit(0);
 #ifdef TODO
-		game->CacheDictionaryMedia( &dict );
+		////game->CacheDictionaryMedia( &dict );
 #endif
 	}
 

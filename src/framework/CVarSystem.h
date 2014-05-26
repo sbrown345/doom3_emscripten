@@ -26,8 +26,8 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-//#ifndef __CVARSYSTEM_H__
-//#define __CVARSYSTEM_H__
+#ifndef __CVARSYSTEM_H__
+#define __CVARSYSTEM_H__
 
 /*
 ===============================================================================
@@ -306,4 +306,4 @@ ID_INLINE void idCVar::RegisterStaticVars( void ) {
 	}
 }
 
-////#endif /* !__CVARSYSTEM_H__ */
+#endif /* !__CVARSYSTEM_H__ */

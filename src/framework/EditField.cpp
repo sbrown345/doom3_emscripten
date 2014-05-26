@@ -533,76 +533,81 @@ idEditField::Draw
 ===============
 */
 void idEditField::Draw( int x, int y, int width, bool showCursor, const idMaterial *shader ) {
-	int		len;
-	int		drawLen;
-	int		prestep;
-	int		cursorChar;
-	char	str[MAX_EDIT_LINE];
-	int		size;
+	printf("todo: idEditField::Draw");
+	exit(0);
 
-	size = SMALLCHAR_WIDTH;
+#ifdef TODO
+	////int		len;
+	////int		drawLen;
+	////int		prestep;
+	////int		cursorChar;
+	////char	str[MAX_EDIT_LINE];
+	////int		size;
 
-	drawLen = widthInChars;
-	len = strlen( buffer ) + 1;
+	////size = SMALLCHAR_WIDTH;
 
-	// guarantee that cursor will be visible
-	if ( len <= drawLen ) {
-		prestep = 0;
-	} else {
-		if ( scroll + drawLen > len ) {
-			scroll = len - drawLen;
-			if ( scroll < 0 ) {
-				scroll = 0;
-			}
-		}
-		prestep = scroll;
+	////drawLen = widthInChars;
+	////len = strlen( buffer ) + 1;
 
-		// Skip color code
-		if ( idStr::IsColor( buffer + prestep ) ) { 
-			prestep += 2;
-		}
-		if ( prestep > 0 && idStr::IsColor( buffer + prestep - 1 ) ) {
-			prestep++;
-		}
-	}
+	////// guarantee that cursor will be visible
+	////if ( len <= drawLen ) {
+	////	prestep = 0;
+	////} else {
+	////	if ( scroll + drawLen > len ) {
+	////		scroll = len - drawLen;
+	////		if ( scroll < 0 ) {
+	////			scroll = 0;
+	////		}
+	////	}
+	////	prestep = scroll;
 
-	if ( prestep + drawLen > len ) {
-		drawLen = len - prestep;
-	}
+	////	// Skip color code
+	////	if ( idStr::IsColor( buffer + prestep ) ) { 
+	////		prestep += 2;
+	////	}
+	////	if ( prestep > 0 && idStr::IsColor( buffer + prestep - 1 ) ) {
+	////		prestep++;
+	////	}
+	////}
 
-	// extract <drawLen> characters from the field at <prestep>
-	if ( drawLen >= MAX_EDIT_LINE ) {
-		common->Error( "drawLen >= MAX_EDIT_LINE" );
-	}
+	////if ( prestep + drawLen > len ) {
+	////	drawLen = len - prestep;
+	////}
 
-	memcpy( str, buffer + prestep, drawLen );
-	str[ drawLen ] = 0;
+	////// extract <drawLen> characters from the field at <prestep>
+	////if ( drawLen >= MAX_EDIT_LINE ) {
+	////	common->Error( "drawLen >= MAX_EDIT_LINE" );
+	////}
 
-	// draw it
-	renderSystem->DrawSmallStringExt( x, y, str, colorWhite, false, shader );
+	////memcpy( str, buffer + prestep, drawLen );
+	////str[ drawLen ] = 0;
 
-	// draw the cursor
-	if ( !showCursor ) {
-		return;
-	}
+	////// draw it
+	////renderSystem->DrawSmallStringExt( x, y, str, colorWhite, false, shader );
 
-	if ( (int)( com_ticNumber >> 4 ) & 1 ) {
-		return;		// off blink
-	}
+	////// draw the cursor
+	////if ( !showCursor ) {
+	////	return;
+	////}
 
-	if ( idKeyInput::GetOverstrikeMode() ) {
-		cursorChar = 11;
-	} else {
-		cursorChar = 10;
-	}
+	////if ( (int)( com_ticNumber >> 4 ) & 1 ) {
+	////	return;		// off blink
+	////}
 
-	// Move the cursor back to account for color codes
-	for ( int i = 0; i<cursor; i++ ) {
-		if ( idStr::IsColor( &str[i] ) ) {
-			i++;
-			prestep += 2;
-		}
-	}
+	////if ( idKeyInput::GetOverstrikeMode() ) {
+	////	cursorChar = 11;
+	////} else {
+	////	cursorChar = 10;
+	////}
 
-	renderSystem->DrawSmallChar( x + ( cursor - prestep ) * size, y, cursorChar, shader );
+	////// Move the cursor back to account for color codes
+	////for ( int i = 0; i<cursor; i++ ) {
+	////	if ( idStr::IsColor( &str[i] ) ) {
+	////		i++;
+	////		prestep += 2;
+	////	}
+	////}
+
+	////renderSystem->DrawSmallChar( x + ( cursor - prestep ) * size, y, cursorChar, shader );
+#endif
 }

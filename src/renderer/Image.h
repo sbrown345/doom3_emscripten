@@ -144,77 +144,77 @@ typedef enum {
 
 class idImage {
 public:
-				idImage();
-
-	// Makes this image active on the current GL texture unit.
-	// automatically enables or disables cube mapping or texture3D
-	// May perform file loading if the image was not preloaded.
-	// May start a background image read.
-	void		Bind();
-
-	// for use with fragment programs, doesn't change any enable2D/3D/cube states
-	void		BindFragment();
-
-	// deletes the texture object, but leaves the structure so it can be reloaded
-	void		PurgeImage();
-
-	// used by callback functions to specify the actual data
-	// data goes from the bottom to the top line of the image, as OpenGL expects it
-	// These perform an implicit Bind() on the current texture unit
-	// FIXME: should we implement cinematics this way, instead of with explicit calls?
-	void		GenerateImage( const byte *pic, int width, int height, 
-					   textureFilter_t filter, bool allowDownSize, 
-					   textureRepeat_t repeat, textureDepth_t depth );
-#if !defined(GL_ES_VERSION_2_0)
-	void		Generate3DImage( const byte *pic, int width, int height, int depth,
-						textureFilter_t filter, bool allowDownSize, 
-						textureRepeat_t repeat, textureDepth_t minDepth );
-#endif
-	void		GenerateCubeImage( const byte *pic[6], int size, 
-						textureFilter_t filter, bool allowDownSize, 
-						textureDepth_t depth );
-
-	void		CopyFramebuffer( int x, int y, int width, int height, bool useOversizedBuffer );
-
-	void		CopyDepthbuffer( int x, int y, int width, int height );
-
-	void		UploadScratch( const byte *pic, int width, int height );
-
-	// just for resource tracking
-	void		SetClassification( int tag );
-
-	// estimates size of the GL image based on dimensions and storage type
-	int			StorageSize() const;
-
-	// print a one line summary of the image
-	void		Print() const;
-
-	// check for changed timestamp on disk and reload if necessary
-	void		Reload( bool checkPrecompressed, bool force );
-
-	void		AddReference()				{ refCount++; };
-
-//==========================================================
-
-	void		GetDownsize( int &scaled_width, int &scaled_height ) const;
-	void		MakeDefault();	// fill with a grid pattern
-	void		SetImageFilterAndRepeat() const;
-	bool		ShouldImageBePartialCached();
-	void		WritePrecompressedImage();
-	bool		CheckPrecompressedImage( bool fullLoad );
-	void		UploadPrecompressedImage( byte *data, int len );
-	void		ActuallyLoadImage( bool checkForPrecompressed, bool fromBackEnd );
-	void		StartBackgroundImageLoad();
-	int			BitsForInternalFormat( int internalFormat ) const;
-	void		UploadCompressedNormalMap( int width, int height, const byte *rgba, int mipLevel );
-	GLenum		SelectInternalFormat( const byte **dataPtrs, int numDataPtrs, int width, int height,
-									 textureDepth_t minimumDepth ) const;
-	void		ImageProgramStringToCompressedFileName( const char *imageProg, char *fileName ) const;
-	int			NumLevelsForImageSize( int width, int height ) const;
+				////idImage();
+////
+////	// Makes this image active on the current GL texture unit.
+////	// automatically enables or disables cube mapping or texture3D
+////	// May perform file loading if the image was not preloaded.
+////	// May start a background image read.
+////	void		Bind();
+////
+////	// for use with fragment programs, doesn't change any enable2D/3D/cube states
+////	void		BindFragment();
+////
+////	// deletes the texture object, but leaves the structure so it can be reloaded
+////	void		PurgeImage();
+////
+////	// used by callback functions to specify the actual data
+////	// data goes from the bottom to the top line of the image, as OpenGL expects it
+////	// These perform an implicit Bind() on the current texture unit
+////	// FIXME: should we implement cinematics this way, instead of with explicit calls?
+////	void		GenerateImage( const byte *pic, int width, int height, 
+////					   textureFilter_t filter, bool allowDownSize, 
+////					   textureRepeat_t repeat, textureDepth_t depth );
+////#if !defined(GL_ES_VERSION_2_0)
+////	void		Generate3DImage( const byte *pic, int width, int height, int depth,
+////						textureFilter_t filter, bool allowDownSize, 
+////						textureRepeat_t repeat, textureDepth_t minDepth );
+////#endif
+////	void		GenerateCubeImage( const byte *pic[6], int size, 
+////						textureFilter_t filter, bool allowDownSize, 
+////						textureDepth_t depth );
+////
+////	void		CopyFramebuffer( int x, int y, int width, int height, bool useOversizedBuffer );
+////
+////	void		CopyDepthbuffer( int x, int y, int width, int height );
+////
+////	void		UploadScratch( const byte *pic, int width, int height );
+////
+////	// just for resource tracking
+////	void		SetClassification( int tag );
+////
+////	// estimates size of the GL image based on dimensions and storage type
+////	int			StorageSize() const;
+////
+////	// print a one line summary of the image
+////	void		Print() const;
+////
+////	// check for changed timestamp on disk and reload if necessary
+////	void		Reload( bool checkPrecompressed, bool force );
+////
+////	void		AddReference()				{ refCount++; };
+////
+//////==========================================================
+////
+////	void		GetDownsize( int &scaled_width, int &scaled_height ) const;
+////	void		MakeDefault();	// fill with a grid pattern
+////	void		SetImageFilterAndRepeat() const;
+////	bool		ShouldImageBePartialCached();
+////	void		WritePrecompressedImage();
+////	bool		CheckPrecompressedImage( bool fullLoad );
+////	void		UploadPrecompressedImage( byte *data, int len );
+////	void		ActuallyLoadImage( bool checkForPrecompressed, bool fromBackEnd );
+////	void		StartBackgroundImageLoad();
+////	int			BitsForInternalFormat( int internalFormat ) const;
+////	void		UploadCompressedNormalMap( int width, int height, const byte *rgba, int mipLevel );
+////	//GLenum		SelectInternalFormat( const byte **dataPtrs, /*int numDataPtrs, int width, int height,
+////	//								 textureDepth_t minimumDepth ) const;*/
+////	void		ImageProgramStringToCompressedFileName( const char *imageProg, char *fileName ) const;
+////	int			NumLevelsForImageSize( int width, int height ) const;
 
 	// data commonly accessed is grouped here
 	static const int TEXTURE_NOT_LOADED = -1;
-	GLuint				texnum;					// gl texture binding, will be TEXTURE_NOT_LOADED if not loaded
+	////GLuint				texnum;					// gl texture binding, will be TEXTURE_NOT_LOADED if not loaded
 	textureType_t		type;
 	int					frameUsed;				// for texture usage in frame statistics
 	int					bindCount;				// incremented each bind
@@ -255,44 +255,49 @@ public:
 
 	int					refCount;				// overall ref count
 };
-
-ID_INLINE idImage::idImage() {
-	texnum = TEXTURE_NOT_LOADED;
-	partialImage = NULL;
-	type = TT_DISABLED;
-	isPartialImage = false;
-	frameUsed = 0;
-	classification = 0;
-	backgroundLoadInProgress = false;
-	bgl.opcode = DLTYPE_FILE;
-	bgl.f = NULL;
-	bglNext = NULL;
-	imgName[0] = '\0';
-	generatorFunction = NULL;
-	allowDownSize = false;
-	filter = TF_DEFAULT;
-	repeat = TR_REPEAT;
-	depth = TD_DEFAULT;
-	cubeFiles = CF_2D;
-	referencedOutsideLevelLoad = false;
-	levelLoadReferenced = false;
-	precompressedFile = false;
-	defaulted = false;
-	timestamp = 0;
-	bindCount = 0;
-	uploadWidth = uploadHeight = uploadDepth = 0;
-	internalFormat = 0;
-	cacheUsagePrev = cacheUsageNext = NULL;
-	hashNext = NULL;
-	refCount = 0;
-}
-
-
-// data is RGBA
-void	R_WriteTGA( const char *filename, const byte *data, int width, int height, bool flipVertical = false );
-// data is an 8 bit index into palette, which is RGB (no A)
-void	R_WritePalTGA( const char *filename, const byte *data, const byte *palette, int width, int height, bool flipVertical = false );
-// data is in top-to-bottom raster order unless flipVertical is set
+//
+//ID_INLINE idImage::idImage() {
+//	printf("todo: METHOD_NAME");
+//	exit(0);
+//
+//#ifdef TODO
+//	////texnum = TEXTURE_NOT_LOADED;
+//	////partialImage = NULL;
+//	////type = TT_DISABLED;
+//	////isPartialImage = false;
+//	////frameUsed = 0;
+//	////classification = 0;
+//	////backgroundLoadInProgress = false;
+//	////bgl.opcode = DLTYPE_FILE;
+//	////bgl.f = NULL;
+//	////bglNext = NULL;
+//	////imgName[0] = '\0';
+//	////generatorFunction = NULL;
+//	////allowDownSize = false;
+//	////filter = TF_DEFAULT;
+//	////repeat = TR_REPEAT;
+//	////depth = TD_DEFAULT;
+//	////cubeFiles = CF_2D;
+//	////referencedOutsideLevelLoad = false;
+//	////levelLoadReferenced = false;
+//	////precompressedFile = false;
+//	////defaulted = false;
+//	////timestamp = 0;
+//	////bindCount = 0;
+//	////uploadWidth = uploadHeight = uploadDepth = 0;
+//	////internalFormat = 0;
+//	////cacheUsagePrev = cacheUsageNext = NULL;
+//	////hashNext = NULL;
+//	////refCount = 0;
+//#endif
+//}
+//////
+////
+////// data is RGBA
+////void	R_WriteTGA( const char *filename, const byte *data, int width, int height, bool flipVertical = false );
+////// data is an 8 bit index into palette, which is RGB (no A)
+////void	R_WritePalTGA( const char *filename, const byte *data, const byte *palette, int width, int height, bool flipVertical = false );
+////// data is in top-to-bottom raster order unless flipVertical is set
 
 
 class idImageManager {
@@ -426,8 +431,8 @@ public:
 	byte				compressedPalette[768];		// the palette that normal maps use
 
 	// default filter modes for images
-	GLenum				textureMinFilter;
-	GLenum				textureMaxFilter;
+	////GLenum				textureMinFilter;
+	////GLenum				textureMaxFilter;
 	float				textureAnisotropy;
 	float				textureLODBias;
 
@@ -443,53 +448,53 @@ public:
 
 extern idImageManager	*globalImages;		// pointer to global list for the rest of the system
 
-int MakePowerOfTwo( int num );
-
-/*
-====================================================================
-
-IMAGEPROCESS
-
-FIXME: make an "imageBlock" type to hold byte*,width,height?
-====================================================================
-*/
-
-byte *R_Dropsample( const byte *in, int inwidth, int inheight,  
-							int outwidth, int outheight );
-byte *R_ResampleTexture( const byte *in, int inwidth, int inheight,  
-							int outwidth, int outheight );
-byte *R_MipMapWithAlphaSpecularity( const byte *in, int width, int height );
-byte *R_MipMap( const byte *in, int width, int height, bool preserveBorder );
-byte *R_MipMap3D( const byte *in, int width, int height, int depth, bool preserveBorder );
-
-// these operate in-place on the provided pixels
-void R_SetBorderTexels( byte *inBase, int width, int height, const byte border[4] );
-void R_SetBorderTexels3D( byte *inBase, int width, int height, int depth, const byte border[4] );
-void R_BlendOverTexture( byte *data, int pixelCount, const byte blend[4] );
-void R_HorizontalFlip( byte *data, int width, int height );
-void R_VerticalFlip( byte *data, int width, int height );
-void R_RotatePic( byte *data, int width );
-
-/*
-====================================================================
-
-IMAGEFILES
-
-====================================================================
-*/
-
-void R_LoadImage( const char *name, byte **pic, int *width, int *height, ID_TIME_T *timestamp, bool makePowerOf2 );
-// pic is in top to bottom raster format
-bool R_LoadCubeImages( const char *cname, cubeFiles_t extensions, byte *pic[6], int *size, ID_TIME_T *timestamp );
-
-/*
-====================================================================
-
-IMAGEPROGRAM
-
-====================================================================
-*/
-
-void R_LoadImageProgram( const char *name, byte **pic, int *width, int *height, ID_TIME_T *timestamp, textureDepth_t *depth = NULL );
-const char *R_ParsePastImageProgram( idLexer &src );
-
+////int MakePowerOfTwo( int num );
+////
+/////*
+////====================================================================
+////
+////IMAGEPROCESS
+////
+////FIXME: make an "imageBlock" type to hold byte*,width,height?
+////====================================================================
+////*/
+////
+////byte *R_Dropsample( const byte *in, int inwidth, int inheight,  
+////							int outwidth, int outheight );
+////byte *R_ResampleTexture( const byte *in, int inwidth, int inheight,  
+////							int outwidth, int outheight );
+////byte *R_MipMapWithAlphaSpecularity( const byte *in, int width, int height );
+////byte *R_MipMap( const byte *in, int width, int height, bool preserveBorder );
+////byte *R_MipMap3D( const byte *in, int width, int height, int depth, bool preserveBorder );
+////
+////// these operate in-place on the provided pixels
+////void R_SetBorderTexels( byte *inBase, int width, int height, const byte border[4] );
+////void R_SetBorderTexels3D( byte *inBase, int width, int height, int depth, const byte border[4] );
+////void R_BlendOverTexture( byte *data, int pixelCount, const byte blend[4] );
+////void R_HorizontalFlip( byte *data, int width, int height );
+////void R_VerticalFlip( byte *data, int width, int height );
+////void R_RotatePic( byte *data, int width );
+////
+/////*
+////====================================================================
+////
+////IMAGEFILES
+////
+////====================================================================
+////*/
+////
+////void R_LoadImage( const char *name, byte **pic, int *width, int *height, ID_TIME_T *timestamp, bool makePowerOf2 );
+////// pic is in top to bottom raster format
+////bool R_LoadCubeImages( const char *cname, cubeFiles_t extensions, byte *pic[6], int *size, ID_TIME_T *timestamp );
+////
+/////*
+////====================================================================
+////
+////IMAGEPROGRAM
+////
+////====================================================================
+////*/
+////
+////void R_LoadImageProgram( const char *name, byte **pic, int *width, int *height, ID_TIME_T *timestamp, textureDepth_t *depth = NULL );
+////const char *R_ParsePastImageProgram( idLexer &src );
+////

@@ -26,9 +26,9 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
-////#ifndef __LIB_H__
-////#define __LIB_H__
-////
+#ifndef __LIB_H__
+#define __LIB_H__
+
 
 /*
 ===============================================================================
@@ -280,6 +280,6 @@ char *va(const char *fmt, ...);
 #include "BitMsg.h"
 ////#include "MapFile.h"
 ////#include "Timer.h"
-////
-////#endif	/* !__LIB_H__ */
-////
+
+#endif	/* !__LIB_H__ */
+

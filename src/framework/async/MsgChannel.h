@@ -57,15 +57,15 @@ class idMsgQueue {
 public:
 					idMsgQueue();
 
-	void			Init( int sequence );
+	//void			Init( int sequence );
 
-	bool			Add( const byte *data, const int size );
-	bool			Get( byte *data, int &size );
-	int				GetTotalSize( void ) const;
-	int				GetSpaceLeft( void ) const;
-	int				GetFirst( void ) const { return first; }
-	int				GetLast( void ) const { return last; }
-	void			CopyToBuffer( byte *buf ) const;
+	//bool			Add( const byte *data, const int size );
+	//bool			Get( byte *data, int &size );
+	//int				GetTotalSize( void ) const;
+	//int				GetSpaceLeft( void ) const;
+	//int				GetFirst( void ) const { return first; }
+	//int				GetLast( void ) const { return last; }
+	//void			CopyToBuffer( byte *buf ) const;
 
 private:
 	byte			buffer[MAX_MSG_QUEUE_SIZE];
@@ -74,14 +74,14 @@ private:
 	int				startIndex;		// index pointing to the first byte of the first message
 	int				endIndex;		// index pointing to the first byte after the last message
 
-	void			WriteByte( byte b );
-	byte			ReadByte( void );
-	void			WriteShort( int s );
-	int				ReadShort( void );
-	void			WriteLong( int l );
-	int				ReadLong( void );
-	void			WriteData( const byte *data, const int size );
-	void			ReadData( byte *data, const int size );
+	////void			WriteByte( byte b );
+	////byte			ReadByte( void );
+	////void			WriteShort( int s );
+	////int				ReadShort( void );
+	////void			WriteLong( int l );
+	////int				ReadLong( void );
+	////void			WriteData( const byte *data, const int size );
+	////void			ReadData( byte *data, const int size );
 };
 
 
@@ -89,60 +89,60 @@ class idMsgChannel {
 public:
 					idMsgChannel();
 
-	void			Init( const netadr_t adr, const int id );
-	void			Shutdown( void );
-	void			ResetRate( void );
+	////void			Init( const netadr_t adr, const int id );
+	////void			Shutdown( void );
+	////void			ResetRate( void );
 
-					// Sets the maximum outgoing rate.
-	void			SetMaxOutgoingRate( int rate ) { maxRate = rate; }
+	////				// Sets the maximum outgoing rate.
+	////void			SetMaxOutgoingRate( int rate ) { maxRate = rate; }
 
-					// Gets the maximum outgoing rate.
-	int				GetMaxOutgoingRate( void ) { return maxRate; }
+	////				// Gets the maximum outgoing rate.
+	////int				GetMaxOutgoingRate( void ) { return maxRate; }
 
-					// Returns the address of the entity at the other side of the channel.
-	netadr_t		GetRemoteAddress( void ) const { return remoteAddress; }
+	////				// Returns the address of the entity at the other side of the channel.
+	////netadr_t		GetRemoteAddress( void ) const { return remoteAddress; }
 
-					// Returns the average outgoing rate over the last second.
-	int				GetOutgoingRate( void ) const { return outgoingRateBytes; }
+	////				// Returns the average outgoing rate over the last second.
+	////int				GetOutgoingRate( void ) const { return outgoingRateBytes; }
 
-					// Returns the average incoming rate over the last second.
-	int				GetIncomingRate( void ) const { return incomingRateBytes; }
+	////				// Returns the average incoming rate over the last second.
+	////int				GetIncomingRate( void ) const { return incomingRateBytes; }
 
-					// Returns the average outgoing compression ratio over the last second.
-	float			GetOutgoingCompression( void ) const { return outgoingCompression; }
+	////				// Returns the average outgoing compression ratio over the last second.
+	////float			GetOutgoingCompression( void ) const { return outgoingCompression; }
 
-					// Returns the average incoming compression ratio over the last second.
-	float			GetIncomingCompression( void ) const { return incomingCompression; }
+	////				// Returns the average incoming compression ratio over the last second.
+	////float			GetIncomingCompression( void ) const { return incomingCompression; }
 
-					// Returns the average incoming packet loss over the last 5 seconds.
-	float			GetIncomingPacketLoss( void ) const;
+	////				// Returns the average incoming packet loss over the last 5 seconds.
+	////float			GetIncomingPacketLoss( void ) const;
 
-					// Returns true if the channel is ready to send new data based on the maximum rate.
-	bool			ReadyToSend( const int time ) const;
+	////				// Returns true if the channel is ready to send new data based on the maximum rate.
+	////bool			ReadyToSend( const int time ) const;
 
-					// Sends an unreliable message, in order and without duplicates.
-	int				SendMessage( idPort &port, const int time, const idBitMsg &msg );
+	////				// Sends an unreliable message, in order and without duplicates.
+	////int				SendMessage( idPort &port, const int time, const idBitMsg &msg );
 
-					// Sends the next fragment if the last message was too large to send at once.
-	void			SendNextFragment( idPort &port, const int time );
+	////				// Sends the next fragment if the last message was too large to send at once.
+	////void			SendNextFragment( idPort &port, const int time );
 
-					// Returns true if there are unsent fragments left.
-	bool			UnsentFragmentsLeft( void ) const { return unsentFragments; }
+	////				// Returns true if there are unsent fragments left.
+	////bool			UnsentFragmentsLeft( void ) const { return unsentFragments; }
 
-					// Processes the incoming message. Returns true when a complete message
-					// is ready for further processing. In that case the read pointer of msg
-					// points to the first byte ready for reading, and sequence is set to
-					// the sequence number of the message.
-	bool			Process( const netadr_t from, int time, idBitMsg &msg, int &sequence );
+	////				// Processes the incoming message. Returns true when a complete message
+	////				// is ready for further processing. In that case the read pointer of msg
+	////				// points to the first byte ready for reading, and sequence is set to
+	////				// the sequence number of the message.
+	////bool			Process( const netadr_t from, int time, idBitMsg &msg, int &sequence );
 
-					// Sends a reliable message, in order and without duplicates.
-	bool			SendReliableMessage( const idBitMsg &msg );
+	////				// Sends a reliable message, in order and without duplicates.
+	////bool			SendReliableMessage( const idBitMsg &msg );
 
-					// Returns true if a new reliable message is available and stores the message.
-	bool			GetReliableMessage( idBitMsg &msg );
+	////				// Returns true if a new reliable message is available and stores the message.
+	////bool			GetReliableMessage( idBitMsg &msg );
 
-					// Removes any pending outgoing or incoming reliable messages.
-	void			ClearReliableMessages( void );
+	////				// Removes any pending outgoing or incoming reliable messages.
+	////void			ClearReliableMessages( void );
 
 private:
 	netadr_t		remoteAddress;	// address of remote host
@@ -189,13 +189,13 @@ private:
 	idMsgQueue		reliableReceive;
 
 private:
-	void			WriteMessageData( idBitMsg &out, const idBitMsg &msg );
-	bool			ReadMessageData( idBitMsg &out, const idBitMsg &msg );
+	////void			WriteMessageData( idBitMsg &out, const idBitMsg &msg );
+	////bool			ReadMessageData( idBitMsg &out, const idBitMsg &msg );
 
-	void			UpdateOutgoingRate( const int time, const int size );
-	void			UpdateIncomingRate( const int time, const int size );
+	////void			UpdateOutgoingRate( const int time, const int size );
+	////void			UpdateIncomingRate( const int time, const int size );
 
-	void			UpdatePacketLoss( const int time, const int numReceived, const int numDropped );
+	////void			UpdatePacketLoss( const int time, const int numReceived, const int numDropped );
 };
 
 #endif /* !__MSGCHANNEL_H__ */

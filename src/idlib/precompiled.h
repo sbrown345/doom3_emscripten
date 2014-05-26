@@ -26,6 +26,10 @@ If you have questions concerning this license or the applicable additional terms
 ===========================================================================
 */
 
+#ifndef GAME_DLL
+#define GAME_DLL
+#endif
+
 #ifndef __PRECOMPILED_H__
 #define __PRECOMPILED_H__
 

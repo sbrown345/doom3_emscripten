@@ -1639,12 +1639,16 @@ void idDeclManagerLocal::ReloadDecls_f( const idCmdArgs &args ) {
 		force = false;
 		common->Printf( "reloading changed decl files:\n" );
 	}
+	printf("todo: idDeclManagerLocal::ReloadDecls_f");
+	exit(0);
 
+#ifdef TODO
 	soundSystem->SetMute( true );
 
 	declManagerLocal.Reload( force );
 
 	soundSystem->SetMute( false );
+#endif
 }
 
 /*
